@@ -497,25 +497,11 @@ ninja.data = [{
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
             },},{
-        id: 'social-cv',
-        title: 'CV',
-        section: 'Socials',
-        handler: () => {
-          window.open("/assets/pdf/example_pdf.pdf", "_blank");
-        },
-      },{
         id: 'social-email',
         title: 'email',
         section: 'Socials',
         handler: () => {
           window.open("mailto:%4B%69%73%68%61%77%79%4D@%6D%63%6D%61%73%74%65%72.%63%61", "_blank");
-        },
-      },{
-        id: 'social-ieee',
-        title: 'IEEE Xplore',
-        section: 'Socials',
-        handler: () => {
-          window.open("https://ieeexplore.ieee.org/author/https://ieeexplore.ieee.org/author/37088558557/", "_blank");
         },
       },{
         id: 'social-linkedin',
@@ -536,7 +522,7 @@ ninja.data = [{
         title: 'Google Scholar',
         section: 'Socials',
         handler: () => {
-          window.open("https://scholar.google.com/citations?user=https://scholar.google.ca/citations?user=CSkCecoAAAAJ&hl=en", "_blank");
+          window.open("https://scholar.google.com/citations?user=CSkCecoAAAAJ", "_blank");
         },
       },{
       id: 'light-theme',
