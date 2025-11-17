@@ -2,96 +2,155 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Mohab Kishawy
+    - name: Email
+      value: <a href="mailto:Kishawym@mcmaster.ca" target="_blank">Kishawym@mcmaster.ca</a>
     - name: Languages
-      value: English, German
+      value: Arabic (Native), English (Fluent)
+    - name: Summary
+      value: 
+    - name: Links
+      value: <a href="https://www.linkedin.com/in/mohab-m-eid/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a> &nbsp;&nbsp; <a href="https://github.com/ErrorLogic1211" target="_blank"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp; <a href="https://scholar.google.com/citations?user=CSkCecoAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap fa-2x"></i></a>
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Doctor of Philosophy in Engineering, Electrical and Computer Engineering
+      institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
+      location: Canada
+      year: Sept 2023 - August 2026 (Expected)
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - Focus on image restoration, enhancement, and 3D vision Tasks.
+    - title: Bachelor's of Science in Computer Engineering
+      institution: <a href="https://nu.edu.eg/" target="_blank">Nile University (NU)</a>
+      location: Egypt
+      year: Sept 2018 - June 2023
       description:
-        - Description 1.
-        - Description 2.
+        - GPA (3.7/4.0) with Honors (Dean's List)
+        - Full Merit Scholarship
 
-- title: Experience
+- title: Work Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Doctoral Researcher
+      institution: <a href="https://www.kent.ac.uk/" target="_blank">University of Kent</a>
+      location: United Kingdom
+      year: 2023 - now
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Leading research on LLM safety and security, developing evaluation frameworks to assess risks in fine-tuned models
+        - Building machine learning pipelines to train and evaluate LLMs on cyber security tasks, with focus on safety alignment
+        - Part of the "Countering HArms caused by Ransomware on the Internet of Things (CHARIOT)" project funded by EPSRC in the UK
+    
+    - title: Teaching Assistant
+      institution: <a href="https://www.kent.ac.uk/" target="_blank">University of Kent</a>
+      location: United Kingdom
+      year: 2023 - now
       description:
-        - Description 1.
-        - Description 2.
-
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+        - Teaching assistant for undergraduate and postgraduate courses in Computer Science
+        - Supporting students in programming, algorithms, and software development
+        - Conducting lab sessions and providing academic guidance
+    - title: Machine Learning Engineer
+      institution: <a href="https://www.cnio.es/en/" target="_blank">National Cancer Research Center</a>
+      location: Spain
+      year: 2022 - 2023
       description:
+        - Tested and optimised supervised ML models to detect metal binding sites in proteomes
+        - Participated in the UniProt Machine Learning challenge 2022
+        - Created python pipeline for exploring, cleaning, and filtering datasets to improve accuracy and efficiency
+    - title: Software Engineer
+      institution: <a href="https://www.uncfsu.edu/academics/colleges-schools-and-departments/lloyd-college-of-health-science-and-technology/department-of-mathematics-and-computer-science/intelligent-systems-laboratory" target="_blank">Intelligent Systems Lab (ISL)</a>
+      location: USA
+      year: 2021 - 2022
+      description:
+        - Applied expertise in deep learning to design and implement an architecture for robot's ZED Camera
+        - Improved efficiency of object detection on the moon by 2%
+        - Configured 24 Linux-based robots using RaspberryPi and Jetson Nano using ROS and Python
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+- title: Publications
+  type: time_table
+  contents:
+    - title: Analysing Safety Risks in LLMs Fine-Tuned with Pseudo-Malicious Cyber Security Data
+      year: 2025
+      description:
+        - "Published in <a href='https://arxiv.org/abs/2505.09974' target='_blank'>ArXiv</a>"
+        - "<u>Adel ElZemity</u>, Budi Arief, Shujun Li"
+    - title: CyberLLMInstruct A New Dataset for Analysing Safety of Fine-Tuned LLMs Using Cyber Security Data
+      year: 2025
+      description:
+        - "Published as <a href='https://arxiv.org/abs/2503.09334' target='_blank'>Dataset Paper in ArXiv</a>"
+        - "<u>Adel ElZemity</u>, Budi Arief, Shujun Li"
+    - title: Privacy Threats and Countermeasures in Federated Learning for Internet of Things
+      year: 2024
+      description:
+        - "Published in <a href='https://ieeexplore.ieee.org/document/10731741' target='_blank'>IEEE International Conference on Internet of Things (iThings)</a>"
+        - "<u>Adel ElZemity</u>, Budi Arief"
+    - title: A Comparative Analysis of Time Series Transformers and Alternative Deep Learning Models for SSVEP Classification
+      year: 2023
+      description:
+        - "Published in <a href='https://link.springer.com/chapter/10.1007/978-3-031-55729-3_2' target='_blank'>International Conference on Model and Data Engineering</a>"
+        - "Heba Ali, <u>Adel ElZemity</u>, Amir E Oghostinos, Sahar Selim"
+    - title: A Transformer-Based Deep Learning Architecture for Accurate Intracranial Hemorrhage Detection and Classification
+      year: 2023
+      description:
+        - "Published in <a href='https://ieeexplore.ieee.org/abstract/document/10391388' target='_blank'>IEEE International Conference on Innovation and Intelligence for Informatics, Computing, and Technologies (3ICT)</a>"
+        - "<u>ElZemity</u> et al."
+    - title: Wastewater Treatment Model with Smart Irrigation Utilizing PID Control
+      year: 2020
+      description:
+        - "Published in <a href='https://ieeexplore.ieee.org/document/9257882' target='_blank'>IEEE Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
+        - "<u>ElZemity</u> et al."
+    - title: Interfacial Modification of Perovskite Solar Cell Using ZnO Electron Injection Layer with PDMS as Antireflective Coating
+      year: 2019
+      description:
+        - "Published in <a href='https://ieeexplore.ieee.org/document/8909336' target='_blank'>IEEE Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
+        - "Mohamed K. Othman, <u>Adel ElZemity</u>, Mohamed K. Rawash, Hazem A. Taha, Shorouk Alalem, Maryam El-Fdaly, Yasser M. El-Batawy"
+
+- title: Technical Skills
+  type: nested_list
+  contents:
+    - title: Development & Tools
+      items:
+        - Python, Shell, HTML, CSS, JavaScript, SQL, TypeScript, Swift
+        - Flutter, React, Next.js, Wordpress
+        - VSCode, Cursor, Terminal, XCode, PyCharm
+        - Google Colab, Kaggle, Hugging Face
+        - LaTex, Markdown, Word, Excel, PowerPoint, PDF, Overleaf
+        - AWS, Azure, GCP, Vercel, GitHub Pages, Cloudflare
+        - Git, GitHub, GitLab, Jupyter Notebook
+        - Docker, Kubernetes, Virtual Machines, Virtualization
+        - Linux, Windows, MacOS
+        - API, REST, Webhooks, WebSockets
+        - CI/CD, DevOps, Cloud Computing, Cloud Infrastructure
+        - Data Science, Data Engineering, Data Analysis, Data Visualization
+    - title: Artificial Intelligence
+      items:
+        - Machine Learning, Deep Learning, Computer Vision, Natural Language Processing
+        - Time Series Analysis, Fine-tuning LLMs, Retrieval-Augmented Generation (RAG)
+        - Federated Learning, Federated Learning for IoT, Flower framework
+        - TensorFlow, PyTorch, Keras, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn
+        - ChatGPT, Claude, Gemini, Llama, Qwen, Mistral, Gemma, DeepSeek
+    - title: Cyber Security
+      items:
+        - Network architecture & security (TCP/IP, VLANs, routing, switching, VPNs)
+        - IoT Security (LoRaWAN, Thread, Zigbee, Bluetooth, Wi-Fi)
+        - Access control systems (RFID, NFC, Biometrics)
+        - Capture the Flag (CTF)
+        - Malware analysis (Malware, Ransomware, Botnet, etc.)
+        - AI Security, attacks, and defenses (LLM, RAG, Federated Learning, etc.)
+        - Privacy and Data Protection (GDPR, CCPA, HIPAA, etc.)
+        - Encryption and Decryption (AES, RSA, SHA, etc.)
+
 
 - title: Open Source Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: <a href="https://github.com/Adelsamir01/CyberLLMInstruct" target="_blank">CyberLLMInstruct</a>
+      year: 2025
+      description: A comprehensive dataset and framework for analysing safety of fine-tuned LLMs using cyber security data. Features include dataset creation pipeline, fine-tuning support for multiple LLMs (Phi-3, Mistral, Qwen, Llama, Gemma), and evaluation tools.
+    - title: <a href="https://github.com/Adelsamir01/prayer_times_extension" target="_blank">Canterbury Mosque Prayer Times Extension</a>
+      year: 2025
+      description: A Chrome extension that displays daily prayer times from Canterbury Mosque with notifications and adhan audio. Features include automatic updates, customisable notifications, and a user-friendly interface.
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
-
-- title: Other Interests
-  type: list
-  contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - title: <a href="https://github.com/Adelsamir01/RPL-attacks" target="_blank">RPL Attack Implementations for Contiki-NG and COOJA</a>
+      year: 2024
+      description: A comprehensive implementation of RPL (Routing Protocol for Low-power and Lossy Networks) attacks using Contiki-NG and COOJA. Features include implementation of various attacks (Selective Forwarding, Sinkhole, Version Number, DIS Flooding, and Sybil attacks), simulation scripts, and analysis tools.
