@@ -4,16 +4,16 @@
     "label": "PhD Candidate in Computer Engineering",
     "image": "",
     "email": "KishawyM@mcmaster.ca",
-    "phone": "(912) 123-4567",
-    "url": "https://ErrorLogic1211.github.io/",
+    // "phone": "(912) 123-4567",
+    // "url": "https://ErrorLogic1211.github.io/",
     "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
-    "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
-    },
+    // "location": {
+    //   "address": "2712 Broadway St",
+    //   "postalCode": "CA 94115",
+    //   "city": "San Francisco",
+    //   "countryCode": "US",
+    //   "region": "California"
+    // },
     "profiles": [
       {
         "network": "Twitter",
