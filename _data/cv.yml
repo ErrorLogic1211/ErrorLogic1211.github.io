@@ -2,11 +2,12 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
+      value: Mohab Kishawy
+    - name: Email
+      value: KishawyM@mcmaster.ca
     - name: Languages
-      value: English, German
+      value: English, Arabic
+
 
 - title: Education
   type: time_table
