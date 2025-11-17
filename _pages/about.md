@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: Third Year Ph.D. Researcher & Teaching Assistant at <a href='https://www.mcmaster.ca/'>McMaster University</a>.
 
