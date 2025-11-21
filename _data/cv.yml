@@ -71,49 +71,49 @@
         - Agriculture: Developed a plant disease detection system using a modified CNN.
         - AVs: Researched and implemented a federated learning-based lane segmentation model for autonomous vehicles
 
-# - title: Publications
-#   type: time_table
-#   contents:
-#     - title: RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration
-#       year: 2025
-#       description:
-#         - "Published in <a href='https://arxiv.org/abs/2508.04797' target='_blank'>arXiv</a>"
-#         - "<u>M Kishawy</u>, AA Hussein, J Chen"
-#     - title: NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge Report
-#       year: 2024
-#       description:
-#         - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
-#         - "CO Ancuti, C Ancuti, FA Vasluianu, R Timofte, Y Liu, X Wang, Y Zhu, G Shi, X Lu, X Fu, ZJ Zha, W Dong, H Zhou, R Wang, X Liu, G Zhai, J Chen, W Song, Y Gao, J Xiong, H Lin, X Li, D Li, <u>M Kishawy</u>, R Li, SA Mousavi, R Rauf, Y Liu, H Liu, M Tu, K Xu, J Chen, Q Xu, T Sun, J Guo, B Shao, T Liu, M Wu, X Yan, M Fu, L Yang, X Lin, L Qi, J Song, X Hu, L Tao, H Chen, X Chen, C Xie, Z Zhang, J Wang, Y Wei, S Zhao, S Tang, S Malagi, A Joshi, N Akalwadi, C Desai, RA Tabib, U Mudenagudi, W Jiang, J Kalyanshetti, VA Aralikatti, Y P, N Upasi, D Hegde, U Patil, S C"
-#     - title: Federated Learning System on Autonomous Vehicles for Lane Segmentation
-#       year: 2024
-#       description:
-#         - "Published in <a href='https://www.nature.com/articles/s41598-024-71187-8' target='_blank'>Scientific Reports</a>"
-#         - "<u>M Kishawy</u>, MT Abd El-Hafez, R Yousri, MS Darweesh"
-#     - title: A Generic AI-Based Technique for Assessing Student Performance in Conducting Online Virtual and Remote Controlled Laboratories
-#       year: 2022
-#       description:
-#         - "Published in <a href='https://ieeexplore.ieee.org/document/9973300' target='_blank'>IEEE Access</a>"
-#         - "AM Abd El-Haleem, <u>M Kishawy</u>, MM Elmesalawy, HAH Hosny"
-#     - title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
-#       year: 2022
-#       description:
-#         - "Published in <a href='https://ieeexplore.ieee.org/document/10012057' target='_blank'>2022 14th International Conference on Computational Intelligence and Communication Networks (CICN)</a>"
-#         - "HA Hassan, <u>M Kishawy</u>, MM Elmesalawy, AM Abd El-Haleem"
-#     - title: Using Machine Learning Algorithms for Breast Cancer Diagnosis
-#       year: 2021
-#       description:
-#         - "Published in <a href='https://www.igi-global.com/article/using-machine-learning-algorithms-for-breast-cancer-diagnosis/288550' target='_blank'>International Journal of Applied Metaheuristic Computing (IJAMC)</a>"
-#         - "MM El-Lamey, <u>M Kishawy</u>, M Gamal, NEM Bishady, AW Mohamed"
-#     - title: Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford’s Stringency Index Model in MATLAB
-#       year: 2021
-#       description:
-#         - "Published in <a href='https://link.springer.com/chapter/10.1007/978-3-030-69744-0_25' target='_blank'>Artificial Intelligence for COVID-19</a>"
-#         - "AM Ibrahim, NEHM Bishady, SH Elghalban, NN Mostafa, <u>M Kishawy</u> et al."
-#     - title: Modeling the Effect of Population Density on Controlling COVID-19 Initial Spread with the Use of MATLAB Numerical Methods and Stringency Index Model
-#       year: 2020
-#       description:
-#         - "Published in <a href='https://ieeexplore.ieee.org/document/9257960' target='_blank'>2020 2nd Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
-#         - "AM Ibrahim, <u>M Kishawy</u>, NN Mostafa, NEHM Bishady, SH Elghalban"
+- title: Publications
+  type: time_table
+  contents:
+    - title: RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration
+      year: 2025
+      description:
+        - "Published in <a href='https://arxiv.org/abs/2508.04797' target='_blank'>arXiv</a>"
+        - "<u>M Kishawy</u>, AA Hussein, J Chen"
+    - title: NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge Report
+      year: 2024
+      description:
+        - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
+        - "CO Ancuti, C Ancuti, FA Vasluianu, R Timofte, Y Liu, X Wang, Y Zhu, G Shi, X Lu, X Fu, ZJ Zha, W Dong, H Zhou, R Wang, X Liu, G Zhai, J Chen, W Song, Y Gao, J Xiong, H Lin, X Li, D Li, <u>M Kishawy</u>, R Li, SA Mousavi, R Rauf, Y Liu, H Liu, M Tu, K Xu, J Chen, Q Xu, T Sun, J Guo, B Shao, T Liu, M Wu, X Yan, M Fu, L Yang, X Lin, L Qi, J Song, X Hu, L Tao, H Chen, X Chen, C Xie, Z Zhang, J Wang, Y Wei, S Zhao, S Tang, S Malagi, A Joshi, N Akalwadi, C Desai, RA Tabib, U Mudenagudi, W Jiang, J Kalyanshetti, VA Aralikatti, Y P, N Upasi, D Hegde, U Patil, S C"
+    - title: Federated Learning System on Autonomous Vehicles for Lane Segmentation
+      year: 2024
+      description:
+        - "Published in <a href='https://www.nature.com/articles/s41598-024-71187-8' target='_blank'>Scientific Reports</a>"
+        - "<u>M Kishawy</u>, MT Abd El-Hafez, R Yousri, MS Darweesh"
+    - title: A Generic AI-Based Technique for Assessing Student Performance in Conducting Online Virtual and Remote Controlled Laboratories
+      year: 2022
+      description:
+        - "Published in <a href='https://ieeexplore.ieee.org/document/9973300' target='_blank'>IEEE Access</a>"
+        - "AM Abd El-Haleem, <u>M Kishawy</u>, MM Elmesalawy, HAH Hosny"
+    - title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
+      year: 2022
+      description:
+        - "Published in <a href='https://ieeexplore.ieee.org/document/10012057' target='_blank'>2022 14th International Conference on Computational Intelligence and Communication Networks (CICN)</a>"
+        - "HA Hassan, <u>M Kishawy</u>, MM Elmesalawy, AM Abd El-Haleem"
+    - title: Using Machine Learning Algorithms for Breast Cancer Diagnosis
+      year: 2021
+      description:
+        - "Published in <a href='https://www.igi-global.com/article/using-machine-learning-algorithms-for-breast-cancer-diagnosis/288550' target='_blank'>International Journal of Applied Metaheuristic Computing (IJAMC)</a>"
+        - "MM El-Lamey, <u>M Kishawy</u>, M Gamal, NEM Bishady, AW Mohamed"
+    - title: Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford’s Stringency Index Model in MATLAB
+      year: 2021
+      description:
+        - "Published in <a href='https://link.springer.com/chapter/10.1007/978-3-030-69744-0_25' target='_blank'>Artificial Intelligence for COVID-19</a>"
+        - "AM Ibrahim, NEHM Bishady, SH Elghalban, NN Mostafa, <u>M Kishawy</u> et al."
+    - title: Modeling the Effect of Population Density on Controlling COVID-19 Initial Spread with the Use of MATLAB Numerical Methods and Stringency Index Model
+      year: 2020
+      description:
+        - "Published in <a href='https://ieeexplore.ieee.org/document/9257960' target='_blank'>2020 2nd Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
+        - "AM Ibrahim, <u>M Kishawy</u>, NN Mostafa, NEHM Bishady, SH Elghalban"
 
 - title: Technical Skills
   type: nested_list
