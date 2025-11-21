@@ -8,7 +8,7 @@
     - name: Languages
       value: Arabic (Native), English (Fluent)
     - name: Summary
-      value: 3_rd Year Ph.D Candidate in Electrical and Computer Engineering at McMaster University working on image restoration, enhancement, and 3D vision tasks.
+      value: 3rd Year Ph.D Candidate in Electrical and Computer Engineering at McMaster University working on image restoration, enhancement, and 3D vision tasks.
     - name: Links
       value: <a href="https://www.linkedin.com/in/mohab-m-eid/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a> &nbsp;&nbsp; <a href="https://github.com/ErrorLogic1211" target="_blank"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp; <a href="https://scholar.google.com/citations?user=CSkCecoAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap fa-2x"></i></a>
 
@@ -42,8 +42,8 @@
       location: Canada
       year: 9.2023 - now
       description:
-        - Low Vision: Designing unified image restoration and enhancement approaches.
-        - 3D Vision: Harnessing 3D representations as 3D Gaussian Splatting, Neural Radiance Fields (NeRFs) for 3D reconstruction, restoration, and editing using generative models as Diffusion and flow-based models.
+        - "Low Vision: Designing unified image restoration and enhancement approaches."
+        - "3D Vision: Harnessing 3D representations as 3D Gaussian Splatting, Neural Radiance Fields (NeRFs) for 3D reconstruction, restoration, and editing using generative models as Diffusion and flow-based models."
     
     - title: Teaching Assistant
       institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
@@ -59,22 +59,22 @@
       location: Egypt
       year: 12.2021 - 12.2022
       description:
-        - Project: Designed an automated lab evaluation system using mouse tracking.
-        - Optmization: Reduced grading time by 32 hours per academic term.
-        - Impact: Co-authored a research article in IEEE Access and a conference paper presented at the 14th CICN.
+        - "Project\: Designed an automated lab evaluation system using mouse tracking."
+        - "Optmization\: Reduced grading time by 32 hours per academic term."
+        - "Impact\: Co-authored a research article in IEEE Access and a conference paper presented at the 14th CICN."
 
     - title: Research Assistant
       institution: <a href="https://winc.nu.edu.eg/" target="_blank">Wireless Intelligent Network Center, Nile University</a>
       location: Egypt
       year: 2.2021 - 8.2021
       description:
-        - Agriculture: Developed a plant disease detection system using a modified CNN.
-        - AVs: Researched and implemented a federated learning-based lane segmentation model for autonomous vehicles
+        - "Agriculture\: Developed a plant disease detection system using a modified CNN."
+        - "AVs\: Researched and implemented a federated learning-based lane segmentation model for autonomous vehicles."
 
 - title: Publications
   type: time_table
   contents:
-    - title: RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration
+    - title: "RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration"
       year: 2025
       description:
         - "Published in <a href='https://arxiv.org/abs/2508.04797' target='_blank'>arXiv</a>"
