@@ -8,7 +8,7 @@
     - name: Languages
       value: Arabic (Native), English (Fluent)
     - name: Summary
-      value: 
+      value: 3_rd Year Ph.D Candidate in Electrical and Computer Engineering at McMaster University working on image restoration, enhancement, and 3D vision tasks.
     - name: Links
       value: <a href="https://www.linkedin.com/in/mohab-m-eid/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a> &nbsp;&nbsp; <a href="https://github.com/ErrorLogic1211" target="_blank"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp; <a href="https://scholar.google.com/citations?user=CSkCecoAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap fa-2x"></i></a>
 
@@ -18,9 +18,12 @@
     - title: Doctor of Philosophy in Engineering, Electrical and Computer Engineering
       institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
       location: Canada
-      year: 9.2023 - 8.2026(Exp.)
+      year: 9.2023 - 8.2026
       description:
+        - GPA (3.9/4.0)
+        - Full Merit Scholarship
         - Focus on image restoration, enhancement, and 3D vision Tasks.
+        - Advisor: <a href="https://www.ece.mcmaster.ca/~junchen/" target="_blank">Prof. Jun Chen</a>
     - title: Bachelor's of Science in Computer Engineering
       institution: <a href="https://nu.edu.eg/" target="_blank">Nile University (NU)</a>
       location: Egypt
@@ -28,120 +31,111 @@
       description:
         - GPA (3.7/4.0) with Honors (Dean's List)
         - Full Merit Scholarship
+        - Graduation Project: <a href="https://www.nature.com/articles/s41598-024-71187-8" target="_blank">Federated learning system on autonomous vehicles for lane segmentation</a>
+        - Advisor: <a href="https://nu.edu.eg/academic-staff/dr-mohamed-s-darweesh" target="_blank">Dr. Mohamed S. Darweesh</a>
 
 - title: Work Experience
   type: time_table
   contents:
-    - title: Doctoral Researcher
-      institution: <a href="https://www.kent.ac.uk/" target="_blank">University of Kent</a>
-      location: United Kingdom
-      year: 2023 - now
+    - title: Research Assistant
+      institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
+      location: Canada
+      year: 9.2023 - now
       description:
-        - Leading research on LLM safety and security, developing evaluation frameworks to assess risks in fine-tuned models
-        - Building machine learning pipelines to train and evaluate LLMs on cyber security tasks, with focus on safety alignment
-        - Part of the "Countering HArms caused by Ransomware on the Internet of Things (CHARIOT)" project funded by EPSRC in the UK
+        - Low Vision: Designing unified image restoration and enhancement approaches.
+        - 3D Vision: Harnessing 3D representations as 3D Gaussian Splatting, Neural Radiance Fields (NeRFs) for 3D reconstruction, restoration, and editing using generative models as Diffusion and flow-based models.
     
     - title: Teaching Assistant
-      institution: <a href="https://www.kent.ac.uk/" target="_blank">University of Kent</a>
-      location: United Kingdom
-      year: 2023 - now
+      institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
+      location: Canada
+      year: 9.2023 - now
       description:
-        - Teaching assistant for undergraduate and postgraduate courses in Computer Science
-        - Supporting students in programming, algorithms, and software development
-        - Conducting lab sessions and providing academic guidance
+        - Teaching assistant for undergraduate courses in Department of Electrical and Computer Engineering.
+        - Supporting students in programming, algorithms, and embedded systems courses.
+        - Conducting lab sessions and providing academic guidance.
+
     - title: Machine Learning Engineer
-      institution: <a href="https://www.cnio.es/en/" target="_blank">National Cancer Research Center</a>
-      location: Spain
-      year: 2022 - 2023
+      institution: <a href="https://engh.helwan.edu.eg/en/faculties-en/electronics-and-communications-engineering" target="_blank">Electronics and Computer Engineering lab, Helwan University</a>
+      location: Egypt
+      year: 12.2021 - 12.2022
       description:
-        - Tested and optimised supervised ML models to detect metal binding sites in proteomes
-        - Participated in the UniProt Machine Learning challenge 2022
-        - Created python pipeline for exploring, cleaning, and filtering datasets to improve accuracy and efficiency
-    - title: Software Engineer
-      institution: <a href="https://www.uncfsu.edu/academics/colleges-schools-and-departments/lloyd-college-of-health-science-and-technology/department-of-mathematics-and-computer-science/intelligent-systems-laboratory" target="_blank">Intelligent Systems Lab (ISL)</a>
-      location: USA
-      year: 2021 - 2022
+        - Project: Designed an automated lab evaluation system using mouse tracking.
+        - Optmization: Reduced grading time by 32 hours per academic term.
+        - Impact: Co-authored a research article in IEEE Access and a conference paper presented at the 14th CICN.
+
+    - title: Research Assistant
+      institution: <a href="https://winc.nu.edu.eg/" target="_blank">Wireless Intelligent Network Center, Nile University</a>
+      location: Egypt
+      year: 2.2021 - 8.2021
       description:
-        - Applied expertise in deep learning to design and implement an architecture for robot's ZED Camera
-        - Improved efficiency of object detection on the moon by 2%
-        - Configured 24 Linux-based robots using RaspberryPi and Jetson Nano using ROS and Python
+        - Agriculture: Developed a plant disease detection system using a modified CNN.
+        - AVs: Researched and implemented a federated learning-based lane segmentation model for autonomous vehicles
 
 - title: Publications
   type: time_table
   contents:
-    - title: Analysing Safety Risks in LLMs Fine-Tuned with Pseudo-Malicious Cyber Security Data
+    - title: RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration
       year: 2025
       description:
-        - "Published in <a href='https://arxiv.org/abs/2505.09974' target='_blank'>ArXiv</a>"
-        - "<u>Adel ElZemity</u>, Budi Arief, Shujun Li"
-    - title: CyberLLMInstruct A New Dataset for Analysing Safety of Fine-Tuned LLMs Using Cyber Security Data
-      year: 2025
-      description:
-        - "Published as <a href='https://arxiv.org/abs/2503.09334' target='_blank'>Dataset Paper in ArXiv</a>"
-        - "<u>Adel ElZemity</u>, Budi Arief, Shujun Li"
-    - title: Privacy Threats and Countermeasures in Federated Learning for Internet of Things
+        - "Published in <a href='https://arxiv.org/abs/2508.04797' target='_blank'>arXiv</a>"
+        - "<u>M Kishawy</u>, AA Hussein, J Chen"
+    - title: NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge Report
       year: 2024
       description:
-        - "Published in <a href='https://ieeexplore.ieee.org/document/10731741' target='_blank'>IEEE International Conference on Internet of Things (iThings)</a>"
-        - "<u>Adel ElZemity</u>, Budi Arief"
-    - title: A Comparative Analysis of Time Series Transformers and Alternative Deep Learning Models for SSVEP Classification
-      year: 2023
+        - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
+        - "CO Ancuti, C Ancuti, FA Vasluianu, R Timofte, Y Liu, X Wang, Y Zhu, G Shi, X Lu, X Fu, ZJ Zha, W Dong, H Zhou, R Wang, X Liu, G Zhai, J Chen, W Song, Y Gao, J Xiong, H Lin, X Li, D Li, <u>M Kishawy</u>, R Li, SA Mousavi, R Rauf, Y Liu, H Liu, M Tu, K Xu, J Chen, Q Xu, T Sun, J Guo, B Shao, T Liu, M Wu, X Yan, M Fu, L Yang, X Lin, L Qi, J Song, X Hu, L Tao, H Chen, X Chen, C Xie, Z Zhang, J Wang, Y Wei, S Zhao, S Tang, S Malagi, A Joshi, N Akalwadi, C Desai, RA Tabib, U Mudenagudi, W Jiang, J Kalyanshetti, VA Aralikatti, Y P, N Upasi, D Hegde, U Patil, S C"
+    - title: Federated Learning System on Autonomous Vehicles for Lane Segmentation
+      year: 2024
       description:
-        - "Published in <a href='https://link.springer.com/chapter/10.1007/978-3-031-55729-3_2' target='_blank'>International Conference on Model and Data Engineering</a>"
-        - "Heba Ali, <u>Adel ElZemity</u>, Amir E Oghostinos, Sahar Selim"
-    - title: A Transformer-Based Deep Learning Architecture for Accurate Intracranial Hemorrhage Detection and Classification
-      year: 2023
+        - "Published in <a href='https://www.nature.com/articles/s41598-024-71187-8' target='_blank'>Scientific Reports</a>"
+        - "<u>M Kishawy</u>, MT Abd El-Hafez, R Yousri, MS Darweesh"
+    - title: A Generic AI-Based Technique for Assessing Student Performance in Conducting Online Virtual and Remote Controlled Laboratories
+      year: 2022
       description:
-        - "Published in <a href='https://ieeexplore.ieee.org/abstract/document/10391388' target='_blank'>IEEE International Conference on Innovation and Intelligence for Informatics, Computing, and Technologies (3ICT)</a>"
-        - "<u>ElZemity</u> et al."
-    - title: Wastewater Treatment Model with Smart Irrigation Utilizing PID Control
+        - "Published in <a href='https://ieeexplore.ieee.org/document/9973300' target='_blank'>IEEE Access</a>"
+        - "AM Abd El-Haleem, <u>M Kishawy</u>, MM Elmesalawy, HAH Hosny"
+    - title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
+      year: 2022
+      description:
+        - "Published in <a href='https://ieeexplore.ieee.org/document/10012057' target='_blank'>2022 14th International Conference on Computational Intelligence and Communication Networks (CICN)</a>"
+        - "HA Hassan, <u>M Kishawy</u>, MM Elmesalawy, AM Abd El-Haleem"
+    - title: Using Machine Learning Algorithms for Breast Cancer Diagnosis
+      year: 2021
+      description:
+        - "Published in <a href='https://www.igi-global.com/article/using-machine-learning-algorithms-for-breast-cancer-diagnosis/288550' target='_blank'>International Journal of Applied Metaheuristic Computing (IJAMC)</a>"
+        - "MM El-Lamey, <u>M Kishawy</u>, M Gamal, NEM Bishady, AW Mohamed"
+    - title: Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford’s Stringency Index Model in MATLAB
+      year: 2021
+      description:
+        - "Published in <a href='https://link.springer.com/chapter/10.1007/978-3-030-69744-0_25' target='_blank'>Artificial Intelligence for COVID-19</a>"
+        - "AM Ibrahim, NEHM Bishady, SH Elghalban, NN Mostafa, <u>M Kishawy</u> et al."
+    - title: Modeling the Effect of Population Density on Controlling COVID-19 Initial Spread with the Use of MATLAB Numerical Methods and Stringency Index Model
       year: 2020
       description:
-        - "Published in <a href='https://ieeexplore.ieee.org/document/9257882' target='_blank'>IEEE Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
-        - "<u>ElZemity</u> et al."
-    - title: Interfacial Modification of Perovskite Solar Cell Using ZnO Electron Injection Layer with PDMS as Antireflective Coating
-      year: 2019
-      description:
-        - "Published in <a href='https://ieeexplore.ieee.org/document/8909336' target='_blank'>IEEE Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
-        - "Mohamed K. Othman, <u>Adel ElZemity</u>, Mohamed K. Rawash, Hazem A. Taha, Shorouk Alalem, Maryam El-Fdaly, Yasser M. El-Batawy"
+        - "Published in <a href='https://ieeexplore.ieee.org/document/9257960' target='_blank'>2020 2nd Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
+        - "AM Ibrahim, <u>M Kishawy</u>, NN Mostafa, NEHM Bishady, SH Elghalban"
 
 - title: Technical Skills
   type: nested_list
   contents:
     - title: Development & Tools
       items:
-        - Python, Shell, HTML, CSS, JavaScript, SQL, TypeScript, Swift
-        - Flutter, React, Next.js, Wordpress
+        - Python, C\C++, Java, MATLAB, Shell, HTML, CSS, JavaScript
         - VSCode, Cursor, Terminal, XCode, PyCharm
         - Google Colab, Kaggle, Hugging Face
         - LaTex, Markdown, Word, Excel, PowerPoint, PDF, Overleaf
-        - AWS, Azure, GCP, Vercel, GitHub Pages, Cloudflare
         - Git, GitHub, GitLab, Jupyter Notebook
-        - Docker, Kubernetes, Virtual Machines, Virtualization
         - Linux, Windows, MacOS
-        - API, REST, Webhooks, WebSockets
-        - CI/CD, DevOps, Cloud Computing, Cloud Infrastructure
         - Data Science, Data Engineering, Data Analysis, Data Visualization
     - title: Artificial Intelligence
       items:
         - Machine Learning, Deep Learning, Computer Vision, Natural Language Processing
-        - Time Series Analysis, Fine-tuning LLMs, Retrieval-Augmented Generation (RAG)
+        - Time Series Analysis, Fine-tuning LLMs
         - Federated Learning, Federated Learning for IoT, Flower framework
-        - TensorFlow, PyTorch, Keras, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn
-        - ChatGPT, Claude, Gemini, Llama, Qwen, Mistral, Gemma, DeepSeek
-    - title: Cyber Security
-      items:
-        - Network architecture & security (TCP/IP, VLANs, routing, switching, VPNs)
-        - IoT Security (LoRaWAN, Thread, Zigbee, Bluetooth, Wi-Fi)
-        - Access control systems (RFID, NFC, Biometrics)
-        - Capture the Flag (CTF)
-        - Malware analysis (Malware, Ransomware, Botnet, etc.)
-        - AI Security, attacks, and defenses (LLM, RAG, Federated Learning, etc.)
-        - Privacy and Data Protection (GDPR, CCPA, HIPAA, etc.)
-        - Encryption and Decryption (AES, RSA, SHA, etc.)
+        - TensorFlow, PyTorch, Keras, OpenCV, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn, TensorBoard
 
 
-- title: Open Source Projects
+- title: Selected Projects
   type: time_table
   contents:
     - title: <a href="https://github.com/Adelsamir01/CyberLLMInstruct" target="_blank">CyberLLMInstruct</a>
