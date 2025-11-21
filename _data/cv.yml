@@ -59,17 +59,17 @@
       location: Egypt
       year: 12.2021 - 12.2022
       description:
-        - "Project\: Designed an automated lab evaluation system using mouse tracking."
-        - "Optmization\: Reduced grading time by 32 hours per academic term."
-        - "Impact\: Co-authored a research article in IEEE Access and a conference paper presented at the 14th CICN."
+        - "Project: Designed an automated lab evaluation system using mouse tracking."
+        - "Optmization: Reduced grading time by 32 hours per academic term."
+        - "Impact: Co-authored a research article in IEEE Access and a conference paper presented at the 14th CICN."
 
     - title: Research Assistant
       institution: <a href="https://winc.nu.edu.eg/" target="_blank">Wireless Intelligent Network Center, Nile University</a>
       location: Egypt
       year: 2.2021 - 8.2021
       description:
-        - "Agriculture\: Developed a plant disease detection system using a modified CNN."
-        - "AVs\: Researched and implemented a federated learning-based lane segmentation model for autonomous vehicles."
+        - "Agriculture: Developed a plant disease detection system using a modified CNN."
+        - "AVs: Researched and implemented a federated learning-based lane segmentation model for autonomous vehicles."
 
 - title: Publications
   type: time_table
