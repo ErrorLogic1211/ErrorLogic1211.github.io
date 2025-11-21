@@ -83,7 +83,7 @@
       year: 2024
       description:
         - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
-        - "CO Ancuti, C Ancuti, FA Vasluianu, R Timofte, Y Liu, X Wang, Y Zhu, G Shi, X Lu, X Fu, ZJ Zha, W Dong, H Zhou, R Wang, X Liu, G Zhai, J Chen, W Song, Y Gao, J Xiong, H Lin, X Li, D Li, <u>M Kishawy</u>, R Li, SA Mousavi, R Rauf, Y Liu, H Liu, M Tu, K Xu, J Chen, Q Xu, T Sun, J Guo, B Shao, T Liu, M Wu, X Yan, M Fu, L Yang, X Lin, L Qi, J Song, X Hu, L Tao, H Chen, X Chen, C Xie, Z Zhang, J Wang, Y Wei, S Zhao, S Tang, S Malagi, A Joshi, N Akalwadi, C Desai, RA Tabib, U Mudenagudi, W Jiang, J Kalyanshetti, VA Aralikatti, Y P, N Upasi, D Hegde, U Patil, S C"
+        - "CO Ancuti, C Ancuti, FA Vasluianu, R Timofte, Y Liu, X Wang, Y Zhu, G Shi, X Lu, X Fu, ZJ Zha, W Dong, H Zhou, R Wang, X Liu, G Zhai, J Chen, W Song, Y Gao, J Xiong, H Lin, X Li, D Li, <u>M Kishawy</u>, et al."
     - title: Federated Learning System on Autonomous Vehicles for Lane Segmentation
       year: 2024
       description:
