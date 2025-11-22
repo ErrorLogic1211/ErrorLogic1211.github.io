@@ -121,6 +121,36 @@
         - "Published in <a href='https://ieeexplore.ieee.org/document/9257960' target='_blank'>2020 2nd Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
         - "AM Ibrahim, <u>M Kishawy</u>, NN Mostafa, NEHM Bishady, SH Elghalban"
 
+- title: Honors and Awards
+  type: time_table
+  contents:
+    - year: 2025
+      items:
+        - 2ⁿᵈ Place – NTIRE 2025 Challenge on Low-Light Image Enhancement, CVPR Workshops
+    - year: 2024
+      items:
+        - 4ᵗʰ Place – NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge, CVPR Workshops
+    - year: 2023
+      items:
+        - Full Scholarship – Ph.D. in Electrical and Computer Engineering, McMaster University (2023–2027)
+        - 1ˢᵗ Place Winner – Hacktrick AI Hackathon, Dell Technologies
+    - year: 2022
+      items:
+        - Best Solution Challenge Chapter (Global) – Google Developer Student Clubs
+        - Shield of Contribution – School of Engineering & Applied Sciences, Nile University
+    - year: 2021
+      items:
+        - Dean’s Honor List (GPA > 3.75/4.00) – Fall & Spring semesters, Nile University
+    - year: 2018
+      items:
+        - Full Scholarship – B.Sc. in Computer Engineering, Nile University (2018–2023)
+    - year: 2017
+      items:
+        - 3ʳᵈ Place (Embedded Systems) – Intel International Science and Engineering Fair (ISEF)
+    - year: 2015
+      items:
+        - Bronze Medal – Egyptian Olympiad in Informatics (EOI)
+        
 - title: Technical Skills
   type: nested_list
   contents:
