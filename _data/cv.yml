@@ -79,16 +79,22 @@
       description:
         - "Published in <a href='https://arxiv.org/abs/2508.04797' target='_blank'>arXiv</a>"
         - "<u>M Kishawy</u>, AA Hussein, J Chen"
-    - title: NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge Report
-      year: 2024
+    - title: NTIRE 2025 Challenge on Low Light Image Enhancement: Methods and Results
+      year: 2025
       description:
-        - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
-        - "CO Ancuti, C Ancuti, FA Vasluianu, R Timofte, Y Liu, X Wang, Y Zhu, G Shi, X Lu, X Fu, ZJ Zha, W Dong, H Zhou, R Wang, X Liu, G Zhai, J Chen, W Song, Y Gao, J Xiong, H Lin, X Li, D Li, <u>M Kishawy</u>, et al."
+        - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
+        - "X Liu, Z Wu, FA Vasluianu, CO Ancuti, C Ancuti, R Timofte, ..., <u>M Kishawy</u>, J Chen, ..., C Yu, et al."
     - title: Federated Learning System on Autonomous Vehicles for Lane Segmentation
       year: 2024
       description:
         - "Published in <a href='https://www.nature.com/articles/s41598-024-71187-8' target='_blank'>Scientific Reports</a>"
         - "<u>M Kishawy</u>, MT Abd El-Hafez, R Yousri, MS Darweesh"
+    - title: NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge Report
+      year: 2024
+      description:
+        - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
+        - "CO Ancuti, C Ancuti, FA Vasluianu, R Timofte, Y Liu, X Wang, Y Zhu, G Shi, X Lu, X Fu, ZJ Zha, W Dong, H Zhou, R Wang, X Liu, G Zhai, J Chen, W Song, Y Gao, J Xiong, H Lin, X Li, D Li, <u>M Kishawy</u>, et al."
+    
     - title: A Generic AI-Based Technique for Assessing Student Performance in Conducting Online Virtual and Remote Controlled Laboratories
       year: 2022
       description:
