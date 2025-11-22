@@ -10,7 +10,7 @@ profile:
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Room A202 Information Technology Building</p>
-    <p>1280 Main St W, Hamilton, </p>
+    <p>1280 Main St W, Hamilton,</p>
     <p>ON, Canada L8S 0A1</p>
 
 selected_papers: true # includes a list of papers marked as "selected={true}"
@@ -28,6 +28,7 @@ latest_posts:
 ---
 ### Biography
 I am Ph.D. Researcher in Department of Electrical and Computer Engineering at [McMaster University](https://www.mcmaster.ca/), Canada, under the supervision of [Dr. Jun Chen](https://www.ece.mcmaster.ca/~junchen/). 
+
 Previously, I finished my undergraduate study at [Nile University](https://www.nu.edu.eg/), Egypt, where I did my thesis on [Federated Learning in AV](https://www.nature.com/articles/s41598-024-71187-8). During this time, I worked as a Machine Learning Researcher at [Helwan University](https://engh.helwan.edu.eg/en/faculties-en/electronics-and-communications-engineering) under the mentorship of [Dr. Mahmoud M. Elmesalawy](https://scholar.google.com/citations?hl=en&user=mh_xQLUAAAAJ), and a Research Assistant at [Wireless Intelligent Network Center, Nile University](https://winc.nu.edu.eg/) under the mentorship of [Dr. Mohamed S. Darweesh](https://scholar.google.com/citations?user=vzC9o50AAAAJ&hl=en).
 <!-- - Working as a Graduate Teaching Assistant (GTA) at the University of Kent, teaching various undergraduate and master's courses ([see teaching experience](/teaching/)) -->
 
