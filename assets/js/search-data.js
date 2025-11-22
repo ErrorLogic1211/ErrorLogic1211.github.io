@@ -16,6 +16,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
+        },{id: "nav-news",
+          title: "News",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/news/";
+          },
         },{id: "nav-cv",
           title: "CV",
           description: "",
@@ -28,16 +35,23 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
+            },},{id: "news-started-my-direct-ph-d-in-electrical-and-computer-engineering-mcmaster-university-canada",
+          title: 'Started My Direct Ph.D. in Electrical and Computer Engineering @ McMaster University, Canada...',
           description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
+          section: "News",},{id: "news-secured-4th-place-in-ntire-2024-dense-and-nonhomogeneous-dehazing-challenge-under-team-name-itb-dehaze-work-was-publsihed-in-cvprw-2024",
+          title: 'Secured 4th Place in NTIRE 2024 Dense and NonHomogeneous Dehazing Challenge under team...',
           description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+          section: "News",},{id: "news-i-ve-successfully-passed-my-comprehensive-phd-examination-at-mcmaster-university",
+          title: 'I’ve successfully passed my comprehensive PhD examination at McMaster University!',
+          description: "",
+          section: "News",},{id: "news-my-paper-federated-learning-system-on-autonomous-vehicles-for-lane-segmentation-is-published-in-scietific-reports",
+          title: 'My Paper “Federated learning system on autonomous vehicles for lane segmentation” is published...',
+          description: "",
+          section: "News",},{id: "news-finished-my-1st-ph-d-supervisory-committee-meeting-in-2024",
+          title: 'Finished my 1st Ph.D. Supervisory Committee Meeting in 2024.',
+          description: "",
+          section: "News",},{id: "news-secured-2nd-place-in-ntire-2025-low-light-image-enhancement-challenge-under-team-name-imagine-work-was-publsihed-in-cvprw-2025",
+          title: 'Secured 2nd Place in NTIRE 2025 Low Light Image Enhancement Challenge under team...',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
