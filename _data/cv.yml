@@ -79,7 +79,7 @@
       description:
         - "Published in <a href='https://arxiv.org/abs/2508.04797' target='_blank'>arXiv</a>"
         - "<u>M Kishawy</u>, AA Hussein, J Chen"
-    - title: NTIRE 2025 Challenge on Low Light Image Enhancement: Methods and Results
+    - title: "NTIRE 2025 Challenge on Low Light Image Enhancement: Methods and Results"
       year: 2025
       description:
         - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
