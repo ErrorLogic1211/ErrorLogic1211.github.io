@@ -133,6 +133,7 @@
     - year: 2023
       items:
         - Full Scholarship – Ph.D. in Electrical and Computer Engineering, McMaster University (2023–2027)
+        - 2ⁿᵈ Place – AIC Competition for Arabic Text Summerization, Military Technical College, Egypt
         - 1ˢᵗ Place Winner – Hacktrick AI Hackathon, Dell Technologies
     - year: 2022
       items:
@@ -150,7 +151,7 @@
     - year: 2015
       items:
         - Bronze Medal – Egyptian Olympiad in Informatics (EOI)
-        
+
 - title: Technical Skills
   type: nested_list
   contents:
