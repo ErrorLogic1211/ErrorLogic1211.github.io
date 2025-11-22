@@ -33,7 +33,7 @@
         - "Full Merit Scholarship"
         - "Graduation Project: <a href=\"https://www.nature.com/articles/s41598-024-71187-8\" target=\"_blank\">Federated learning system on autonomous vehicles for lane segmentation</a>"
         - "Advisor: <a href=\"https://nu.edu.eg/academic-staff/dr-mohamed-s-darweesh\" target=\"_blank\">Dr. Mohamed S. Darweesh</a>"
-        
+
 - title: Work Experience
   type: time_table
   contents:
@@ -135,16 +135,16 @@
         - TensorFlow, PyTorch, Keras, OpenCV, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn, TensorBoard
 
 
-- title: Selected Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/Adelsamir01/CyberLLMInstruct" target="_blank">CyberLLMInstruct</a>
-      year: 2025
-      description: A comprehensive dataset and framework for analysing safety of fine-tuned LLMs using cyber security data. Features include dataset creation pipeline, fine-tuning support for multiple LLMs (Phi-3, Mistral, Qwen, Llama, Gemma), and evaluation tools.
-    - title: <a href="https://github.com/Adelsamir01/prayer_times_extension" target="_blank">Canterbury Mosque Prayer Times Extension</a>
-      year: 2025
-      description: A Chrome extension that displays daily prayer times from Canterbury Mosque with notifications and adhan audio. Features include automatic updates, customisable notifications, and a user-friendly interface.
+# - title: Selected Projects
+#   type: time_table
+#   contents:
+#     - title: <a href="https://github.com/Adelsamir01/CyberLLMInstruct" target="_blank">CyberLLMInstruct</a>
+#       year: 2025
+#       description: A comprehensive dataset and framework for analysing safety of fine-tuned LLMs using cyber security data. Features include dataset creation pipeline, fine-tuning support for multiple LLMs (Phi-3, Mistral, Qwen, Llama, Gemma), and evaluation tools.
+#     - title: <a href="https://github.com/Adelsamir01/prayer_times_extension" target="_blank">Canterbury Mosque Prayer Times Extension</a>
+#       year: 2025
+#       description: A Chrome extension that displays daily prayer times from Canterbury Mosque with notifications and adhan audio. Features include automatic updates, customisable notifications, and a user-friendly interface.
 
-    - title: <a href="https://github.com/Adelsamir01/RPL-attacks" target="_blank">RPL Attack Implementations for Contiki-NG and COOJA</a>
-      year: 2024
-      description: A comprehensive implementation of RPL (Routing Protocol for Low-power and Lossy Networks) attacks using Contiki-NG and COOJA. Features include implementation of various attacks (Selective Forwarding, Sinkhole, Version Number, DIS Flooding, and Sybil attacks), simulation scripts, and analysis tools.
+#     - title: <a href="https://github.com/Adelsamir01/RPL-attacks" target="_blank">RPL Attack Implementations for Contiki-NG and COOJA</a>
+#       year: 2024
+#       description: A comprehensive implementation of RPL (Routing Protocol for Low-power and Lossy Networks) attacks using Contiki-NG and COOJA. Features include implementation of various attacks (Selective Forwarding, Sinkhole, Version Number, DIS Flooding, and Sybil attacks), simulation scripts, and analysis tools.
