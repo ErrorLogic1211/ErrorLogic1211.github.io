@@ -167,8 +167,8 @@
     - title: Artificial Intelligence
       items:
         - Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, 3D Vision
-        - Generative Models: Diffusion Models, Flow-based Models, GANs, VAEs
-        - 3D Representations: Neural Radiance Fields (NeRFs), 3D Gaussian Splatting
+        - "Generative Models: Diffusion Models, Flow-based Models, GANs, VAEs"
+        - "3D Representations: Neural Radiance Fields (NeRFs), 3D Gaussian Splatting"
         - CNNs, RNNs, Transformers, LSTMs, Attention Mechanisms
         - Time Series Analysis, Fine-tuning LLMs
         - Federated Learning, Federated Learning for IoT, Flower framework
