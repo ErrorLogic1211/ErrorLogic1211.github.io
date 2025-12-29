@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2025-12-10'
+  last_updated: '2025-12-29'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
     citations: 19
@@ -10,11 +10,11 @@ papers:
     title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
     year: '2022'
   CSkCecoAAAAJ:IjCSPb-OGe4C:
-    citations: 31
+    citations: 32
     title: NTIRE 2024 dense and non-homogeneous dehazing challenge report
     year: '2024'
   CSkCecoAAAAJ:Tyk-4Ss8FVUC:
-    citations: 17
+    citations: 19
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
   CSkCecoAAAAJ:d1gkVwhDpl0C:
