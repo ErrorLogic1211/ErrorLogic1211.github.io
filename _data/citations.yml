@@ -1,8 +1,8 @@
 metadata:
-  last_updated: '2026-01-23'
+  last_updated: '2026-02-02'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
-    citations: 21
+    citations: 22
     title: A generic ai-based technique for assessing student performance in conducting online virtual and remote controlled laboratories
     year: '2022'
   CSkCecoAAAAJ:9yKSN-GCB0IC:
@@ -10,11 +10,11 @@ papers:
     title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
     year: '2022'
   CSkCecoAAAAJ:IjCSPb-OGe4C:
-    citations: 33
+    citations: 34
     title: NTIRE 2024 dense and non-homogeneous dehazing challenge report
     year: '2024'
   CSkCecoAAAAJ:Tyk-4Ss8FVUC:
-    citations: 21
+    citations: 24
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
   CSkCecoAAAAJ:d1gkVwhDpl0C:
