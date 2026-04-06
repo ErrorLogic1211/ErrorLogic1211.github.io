@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-02-27'
+  last_updated: '2026-04-06'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
     citations: 22
@@ -17,6 +17,10 @@ papers:
     citations: 25
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
+  CSkCecoAAAAJ:_FxGoFyzp5QC:
+    citations: 0
+    title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration'
+    year: '2026'
   CSkCecoAAAAJ:d1gkVwhDpl0C:
     citations: 0
     title: "Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford\u2019s Stringency Index \u2026"
