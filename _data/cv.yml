@@ -74,11 +74,36 @@
 - title: Publications
   type: time_table
   contents:
-    - title: "RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration"
-      year: 2025
+    - title: "RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration"
+      year: 2026
       description:
-        - "Published in <a href='https://arxiv.org/abs/2508.04797' target='_blank'>arXiv</a>"
+        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
+        - "<u>M Kishawy</u>, J Chen"
+    - title: "RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration"
+      year: 2026
+      description:
+        - "Published in <a href='#' target='_blank'>Proceedings of the 28th International Conference on Pattern Recognition (ICPR)</a>"
         - "<u>M Kishawy</u>, AA Hussein, J Chen"
+    - title: "NTIRE 2026 Nighttime Image Dehazing Challenge Report"
+      year: 2026
+      description:
+        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
+        - "RP Ancuti, A Brateanu, FA Vasluianu, R Timofte, <u>M Kishawy</u>, et al."
+    - title: "NTIRE 2026 The Second Challenge on Day and Night Raindrop Removal for Dual-Focused Images: Methods and Results"
+      year: 2026
+      description:
+        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
+        - "X Li, Y Jin, S Yao, Z Wu, R Timofte, <u>M Kishawy</u>, J Chen, et al."
+    - title: "Low Light Image Enhancement Challenge at NTIRE 2026"
+      year: 2026
+      description:
+        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
+        - "G Ciubotariu, SMA Sharif, M Conde, R Timofte, <u>M Kishawy</u>, et al."
+    - title: "NTIRE 2026 Single Image Shadow Removal Challenge Report"
+      year: 2026
+      description:
+        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
+        - "FA Vasluianu, T Seizinger, Z Wu, R Timofte, <u>M Kishawy</u>, et al."
     - title: "NTIRE 2025 Challenge on Low Light Image Enhancement: Methods and Results"
       year: 2025
       description:
