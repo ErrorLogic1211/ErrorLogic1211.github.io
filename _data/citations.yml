@@ -1,8 +1,8 @@
 metadata:
-  last_updated: '2025-11-21'
+  last_updated: '2026-04-15'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
-    citations: 15
+    citations: 23
     title: A generic ai-based technique for assessing student performance in conducting online virtual and remote controlled laboratories
     year: '2022'
   CSkCecoAAAAJ:9yKSN-GCB0IC:
@@ -10,13 +10,17 @@ papers:
     title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
     year: '2022'
   CSkCecoAAAAJ:IjCSPb-OGe4C:
-    citations: 30
+    citations: 38
     title: NTIRE 2024 dense and non-homogeneous dehazing challenge report
     year: '2024'
   CSkCecoAAAAJ:Tyk-4Ss8FVUC:
-    citations: 14
+    citations: 25
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
+  CSkCecoAAAAJ:_FxGoFyzp5QC:
+    citations: 0
+    title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration'
+    year: '2026'
   CSkCecoAAAAJ:d1gkVwhDpl0C:
     citations: 0
     title: "Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford\u2019s Stringency Index \u2026"
@@ -26,7 +30,7 @@ papers:
     title: 'RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration'
     year: '2025'
   CSkCecoAAAAJ:u-x6o8ySG0sC:
-    citations: 5
+    citations: 6
     title: Modeling the effect of population density on controlling COVID-19 initial Spread with the use of MATLAB numerical methods and stringency index model
     year: '2020'
   CSkCecoAAAAJ:u5HHmVD_uO8C:
