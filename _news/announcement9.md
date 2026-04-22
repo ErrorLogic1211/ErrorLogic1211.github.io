@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-**RetinexDual** accepted to the [28th International Conference on Pattern Recognition (ICPR) 2026](https://www.icpr2026.fr/). See you in Lyon, France!
+**RetinexDual** accepted to the [28th International Conference on Pattern Recognition (ICPR) 2026](https://icpr2026.org/). See you in Lyon, France!
