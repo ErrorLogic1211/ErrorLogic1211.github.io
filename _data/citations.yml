@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-03'
+  last_updated: '2026-06-10'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
     citations: 26
@@ -10,20 +10,24 @@ papers:
     title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
     year: '2022'
   CSkCecoAAAAJ:IjCSPb-OGe4C:
-    citations: 41
+    citations: 42
     title: NTIRE 2024 dense and non-homogeneous dehazing challenge report
     year: '2024'
   CSkCecoAAAAJ:LkGwnXOMwfcC:
-    citations: 21
+    citations: 39
     title: 'NTIRE 2026 The Second Challenge on Day and Night Raindrop Removal for Dual-Focused Images: Methods and Results'
+    year: '2026'
+  CSkCecoAAAAJ:Se3iqnhoufwC:
+    citations: 42
+    title: Ntire 2026 nighttime image dehazing challenge report
     year: '2026'
   CSkCecoAAAAJ:Tyk-4Ss8FVUC:
     citations: 29
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
-  CSkCecoAAAAJ:_FxGoFyzp5QC:
-    citations: 0
-    title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration'
+  CSkCecoAAAAJ:UebtZRa9Y70C:
+    citations: 39
+    title: 'Advances in Single-Image Shadow Removal: Results from the NTIRE 2026 Challenge'
     year: '2026'
   CSkCecoAAAAJ:d1gkVwhDpl0C:
     citations: 0
@@ -33,8 +37,12 @@ papers:
     citations: 0
     title: 'RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration'
     year: '2025'
+  CSkCecoAAAAJ:hqOjcs7Dif8C:
+    citations: 0
+    title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration'
+    year: '2026'
   CSkCecoAAAAJ:roLk4NBRz8UC:
-    citations: 21
+    citations: 39
     title: Low Light Image Enhancement Challenge at NTIRE 2026
     year: '2026'
   CSkCecoAAAAJ:u-x6o8ySG0sC:
