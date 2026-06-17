@@ -1,8 +1,8 @@
 metadata:
-  last_updated: '2026-06-10'
+  last_updated: '2026-06-17'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
-    citations: 26
+    citations: 27
     title: A generic ai-based technique for assessing student performance in conducting online virtual and remote controlled laboratories
     year: '2022'
   CSkCecoAAAAJ:9yKSN-GCB0IC:
@@ -22,7 +22,7 @@ papers:
     title: Ntire 2026 nighttime image dehazing challenge report
     year: '2026'
   CSkCecoAAAAJ:Tyk-4Ss8FVUC:
-    citations: 29
+    citations: 31
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
   CSkCecoAAAAJ:UebtZRa9Y70C:
@@ -42,7 +42,7 @@ papers:
     title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration'
     year: '2026'
   CSkCecoAAAAJ:roLk4NBRz8UC:
-    citations: 39
+    citations: 40
     title: Low Light Image Enhancement Challenge at NTIRE 2026
     year: '2026'
   CSkCecoAAAAJ:u-x6o8ySG0sC:
