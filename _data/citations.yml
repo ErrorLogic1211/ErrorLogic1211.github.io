@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-29'
+  last_updated: '2026-07-06'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
     citations: 28
@@ -18,11 +18,11 @@ papers:
     title: 'NTIRE 2026 The Second Challenge on Day and Night Raindrop Removal for Dual-Focused Images: Methods and Results'
     year: '2026'
   CSkCecoAAAAJ:Se3iqnhoufwC:
-    citations: 43
+    citations: 44
     title: Ntire 2026 nighttime image dehazing challenge report
     year: '2026'
   CSkCecoAAAAJ:Tyk-4Ss8FVUC:
-    citations: 31
+    citations: 32
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
   CSkCecoAAAAJ:UebtZRa9Y70C:
@@ -42,7 +42,7 @@ papers:
     title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration'
     year: '2026'
   CSkCecoAAAAJ:roLk4NBRz8UC:
-    citations: 41
+    citations: 42
     title: Low Light Image Enhancement Challenge at NTIRE 2026
     year: '2026'
   CSkCecoAAAAJ:u-x6o8ySG0sC:
