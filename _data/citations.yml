@@ -1,8 +1,8 @@
 metadata:
-  last_updated: '2026-07-10'
+  last_updated: '2026-07-31'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
-    citations: 28
+    citations: 30
     title: A generic ai-based technique for assessing student performance in conducting online virtual and remote controlled laboratories
     year: '2022'
   CSkCecoAAAAJ:9yKSN-GCB0IC:
@@ -10,23 +10,23 @@ papers:
     title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
     year: '2022'
   CSkCecoAAAAJ:IjCSPb-OGe4C:
-    citations: 43
+    citations: 42
     title: NTIRE 2024 dense and non-homogeneous dehazing challenge report
     year: '2024'
   CSkCecoAAAAJ:LkGwnXOMwfcC:
-    citations: 40
+    citations: 39
     title: 'NTIRE 2026 The Second Challenge on Day and Night Raindrop Removal for Dual-Focused Images: Methods and Results'
     year: '2026'
   CSkCecoAAAAJ:Se3iqnhoufwC:
-    citations: 44
+    citations: 43
     title: Ntire 2026 nighttime image dehazing challenge report
     year: '2026'
   CSkCecoAAAAJ:Tyk-4Ss8FVUC:
-    citations: 32
+    citations: 31
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
   CSkCecoAAAAJ:UebtZRa9Y70C:
-    citations: 40
+    citations: 39
     title: 'Advances in Single-Image Shadow Removal: Results from the NTIRE 2026 Challenge'
     year: '2026'
   CSkCecoAAAAJ:d1gkVwhDpl0C:
