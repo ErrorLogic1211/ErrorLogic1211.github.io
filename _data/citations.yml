@@ -1,10 +1,18 @@
 metadata:
-  last_updated: '2026-08-07'
+  last_updated: '2026-08-14'
 papers:
   CSkCecoAAAAJ:2osOgNQ5qMEC:
     citations: 30
     title: A generic ai-based technique for assessing student performance in conducting online virtual and remote controlled laboratories
     year: '2022'
+  CSkCecoAAAAJ:3fE2CSJIrl8C:
+    citations: 0
+    title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration'
+    year: '2026'
+  CSkCecoAAAAJ:8k81kl-MbHgC:
+    citations: 0
+    title: 'RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration'
+    year: '2025'
   CSkCecoAAAAJ:9yKSN-GCB0IC:
     citations: 2
     title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
@@ -22,7 +30,7 @@ papers:
     title: Ntire 2026 nighttime image dehazing challenge report
     year: '2026'
   CSkCecoAAAAJ:Tyk-4Ss8FVUC:
-    citations: 31
+    citations: 32
     title: Federated learning system on autonomous vehicles for lane segmentation
     year: '2024'
   CSkCecoAAAAJ:UebtZRa9Y70C:
@@ -33,23 +41,15 @@ papers:
     citations: 0
     title: "Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford\u2019s Stringency Index \u2026"
     year: '2021'
-  CSkCecoAAAAJ:eQOLeE2rZwMC:
-    citations: 0
-    title: 'RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration'
-    year: '2025'
-  CSkCecoAAAAJ:hqOjcs7Dif8C:
-    citations: 0
-    title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration'
-    year: '2026'
   CSkCecoAAAAJ:roLk4NBRz8UC:
     citations: 43
     title: Low Light Image Enhancement Challenge at NTIRE 2026
     year: '2026'
   CSkCecoAAAAJ:u-x6o8ySG0sC:
     citations: 5
-    title: Modeling the effect of population density on controlling COVID-19 initial Spread with the use of MATLAB numerical methods and stringency index model
+    title: Modeling the effect of population density on controlling Covid-19 initial Spread with the use of MATLAB numerical methods and stringency index model
     year: '2020'
   CSkCecoAAAAJ:u5HHmVD_uO8C:
     citations: 2
     title: Using machine learning algorithms for breast cancer diagnosis
-    year: '2021'
+    year: '2023'
