@@ -1,0 +1,34 @@
+{%- comment -%}
+  Clickable "N more authors" toggle that reveals a slice of entry.author_array.
+  Parameters: offset (index of the first author in the slice), count (number of authors in the slice).
+{%- endcomment -%}
+{%- assign toggle_hide = include.count | append: ' more author' -%}
+{%- if include.count > 1 -%}
+  {%- assign toggle_hide = toggle_hide | append: 's' -%}
+{%- endif -%}
+{%- assign toggle_show = '' -%}
+{%- for author in entry.author_array offset: include.offset limit: include.count -%}
+  {%- assign toggle_show = toggle_show | append: author.first | append: ' ' | append: author.last -%}
+  {%- unless forloop.last -%}
+    {%- assign toggle_show = toggle_show | append: ', ' -%}
+  {%- endunless -%}
+{%- endfor -%}
+{%- assign toggle_show = toggle_show | regex_replace: '([*∗†‡§¶‖&^]+)', '<sup>\1</sup>' -%}
+<span
+  class="more-authors"
+  title="click to view {{ toggle_hide }}"
+  onclick="
+      var element = $(this);
+      element.attr('title', '');
+      var more_authors_text = element.text() == '{{ toggle_hide }}' ? '{{ toggle_show }}' : '{{ toggle_hide }}';
+      var cursorPosition = 0;
+      var textAdder = setInterval(function(){
+        element.html(more_authors_text.substring(0, cursorPosition + 1));
+        if (++cursorPosition == more_authors_text.length){
+          clearInterval(textAdder);
+        }
+    }, '{{ site.more_authors_animation_delay }}');
+  "
+>
+  {{- toggle_hide -}}
+</span>

@@ -1,9 +1,27 @@
-"AJP":
-  url: https://aapt.scitation.org/journal/ajp
-  color: "#00369f"
+"CVPRW":
+  url: https://cvpr.thecvf.com/
+  color: "#1f4e8c"
 
-"PhysRev":
-  url: https://journals.aps.org/
+"ICPR":
+  url: https://icpr2026.org/
+  color: "#6a3d9a"
 
-"Vision":
-  color: "#009f36"
+"Sci. Rep.":
+  url: https://www.nature.com/srep/
+  color: "#b03a2e"
+
+"IEEE Access":
+  url: https://ieeeaccess.ieee.org/
+  color: "#00629b"
+
+"CICN":
+  color: "#5f6b78"
+
+"IJAMC":
+  color: "#5f6b78"
+
+"Springer":
+  color: "#5f6b78"
+
+"NILES":
+  color: "#5f6b78"
