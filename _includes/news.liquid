@@ -20,6 +20,9 @@
             <td>
               {% if item.inline %}
                 {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+              {% elsif item.summary %}
+                {{ item.summary | markdownify | remove: '<p>' | remove: '</p>' | strip | emojify }}
+                <a class="news-title" href="{{ item.url | relative_url }}">Read&nbsp;more&nbsp;&rarr;</a>
               {% else %}
                 <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
               {% endif %}
