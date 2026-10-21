@@ -78,13 +78,9 @@
         - "International Conference on Pattern Recognition (ICPR), Lecture Notes in Computer Science, Springer, pp. 90–105, 2026. Poster, Lyon, France."
       linkitems:
         - linkname: Paper
-          link: https://doi.org/10.1007/978-3-032-31335-5_7
-        - linkname: arXiv
           link: https://arxiv.org/abs/2508.04797
         - linkname: Code
           link: https://github.com/ErrorLogic1211/RetinexDual
-        - linkname: Weights
-          link: https://huggingface.co/ErrorLogic/RetinexDual
     - title: "RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration"
       year: 2026
       description:
@@ -93,8 +89,6 @@
       linkitems:
         - linkname: Paper
           link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Kishawy_RetinexDualV2_Physically-Grounded_Dual_Retinex_for_Generalized_UHD_Image_Restoration_CVPRW_2026_paper.pdf
-        - linkname: arXiv
-          link: https://arxiv.org/abs/2603.27979
         - linkname: Code
           link: https://github.com/ErrorLogic1211/RetinexDual/tree/master/RetinexDualV2
     - title: Federated Learning System on Autonomous Vehicles for Lane Segmentation
@@ -105,8 +99,6 @@
       linkitems:
         - linkname: Paper
           link: https://doi.org/10.1038/s41598-024-71187-8
-        - linkname: PDF
-          link: https://www.nature.com/articles/s41598-024-71187-8.pdf
         - linkname: Code
           link: https://github.com/mohamedtarek10/FadLane
 
@@ -122,8 +114,6 @@
       linkitems:
         - linkname: Paper
           link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Li_NTIRE_2026_The_Second_Challenge_on_Day_and_Night_Raindrop_CVPRW_2026_paper.pdf
-        - linkname: arXiv
-          link: https://arxiv.org/abs/2604.10634
     - title: Low Light Image Enhancement Challenge at NTIRE 2026
       year: 2026
       description:
@@ -133,10 +123,6 @@
       linkitems:
         - linkname: Paper
           link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Ciubotariu_Low_Light_Image_Enhancement_Challenge_at_NTIRE_2026_CVPRW_2026_paper.pdf
-        - linkname: arXiv
-          link: https://arxiv.org/abs/2604.17669
-        - linkname: Supp
-          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/supplemental/Ciubotariu_Low_Light_Image_CVPRW_2026_supplemental.pdf
     - title: NTIRE 2026 Nighttime Image Dehazing Challenge Report
       year: 2026
       description:
@@ -155,8 +141,6 @@
       linkitems:
         - linkname: Paper
           link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Vasluianu_Advances_in_Single-Image_Shadow_Removal_Results_from_the_NTIRE_2026_CVPRW_2026_paper.pdf
-        - linkname: Supp
-          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/supplemental/Vasluianu_Advances_in_Single-Image_CVPRW_2026_supplemental.pdf
     - title: "NTIRE 2025 Challenge on Low Light Image Enhancement: Methods and Results"
       year: 2025
       description:
@@ -165,11 +149,7 @@
         - "<b>Our team (Imagine) placed 2nd overall, with the highest PSNR.</b>"
       linkitems:
         - linkname: Paper
-          link: https://doi.org/10.1109/CVPRW67362.2025.00114
-        - linkname: PDF
           link: https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf
-        - linkname: arXiv
-          link: https://arxiv.org/abs/2510.13670
     - title: NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge Report
       year: 2024
       description:
@@ -178,8 +158,6 @@
         - "<b>Our team (ITB Dehaze) placed 4th.</b>"
       linkitems:
         - linkname: Paper
-          link: https://doi.org/10.1109/CVPRW63382.2024.00646
-        - linkname: PDF
           link: https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf
 
     - title: A Generic AI-Based Technique for Assessing Student Performance in Conducting Online Virtual and Remote Controlled Laboratories
@@ -192,8 +170,6 @@
           link: https://doi.org/10.1109/ACCESS.2022.3227505
         - linkname: Code
           link: https://github.com/ErrorLogic1211/MouseDynamicsForRCL
-        - linkname: Data
-          link: https://github.com/ErrorLogic1211/MouseDynamicsDatasetForRCL
     - title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
       year: 2022
       description:
@@ -204,8 +180,6 @@
           link: https://doi.org/10.1109/CICN56167.2022.10008322
         - linkname: Code
           link: https://github.com/ErrorLogic1211/MouseDynamicsForRCL
-        - linkname: Data
-          link: https://github.com/ErrorLogic1211/MouseDynamicsDatasetForRCL
     - title: Using Machine Learning Algorithms for Breast Cancer Diagnosis
       year: 2021
       description:
@@ -215,8 +189,6 @@
       linkitems:
         - linkname: Paper
           link: https://doi.org/10.4018/ijamc.2021100107
-        - linkname: Reprint
-          link: https://doi.org/10.4018/978-1-6684-7136-4.ch041
     - title: "Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford's Stringency Index Model of Governmental Response in MATLAB"
       year: 2021
       description:
