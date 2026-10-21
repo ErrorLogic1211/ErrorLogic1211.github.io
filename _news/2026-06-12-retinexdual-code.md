@@ -1,5 +1,7 @@
 ---
 layout: post
+title: RetinexDual code and weights released
+sitemap: false
 date: 2026-06-12 09:00:00-0400
 inline: true
 related_posts: false

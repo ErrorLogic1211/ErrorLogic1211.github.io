@@ -4,6 +4,7 @@ title: RetinexDual accepted to ICPR 2026
 date: 2026-03-31 15:59:00-0400
 permalink: /news/retinexdual-icpr2026/
 inline: false
+description: RetinexDual, a Retinex-based dual-branch network for ultra-high-definition image restoration, is accepted to ICPR 2026.
 related_posts: false
 related_publications: true
 summary: "**RetinexDual** accepted to the [28th International Conference on Pattern Recognition (ICPR 2026)](https://icpr2026.org/) in Lyon, France."

@@ -1,9 +1,32 @@
 @unpublished{kishawy2026veilgs,
-  abbr   = {WIP},
-  title  = {{VeilGS}: Solving Darkness as a Veil of {2D} Basis Maps over Retinex {3DGS}},
-  author = {Kishawy, Mohab and Tang, Chengzhou and Shirani, Shahram and Chen, Jun},
-  note   = {Work in progress},
-  year   = {2026}
+  abbr     = {Under Review},
+  title    = {{VeilGS}: Solving Darkness as a Veil of {2D} Basis Maps over Retinex {3DGS}},
+  author   = {Kishawy, Mohab and Tang, Chengzhou and Shirani, Shahram and Chen, Jun},
+  note     = {Under review. Manuscript available on request},
+  year     = {2026},
+  selected = {true}
+}
+
+@inproceedings{kishawy2026retinexdual,
+  abbr        = {ICPR},
+  title       = {{RetinexDual}: Retinex-Based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration},
+  author      = {Kishawy, Mohab and Hussein, Ali Abdellatif and Chen, Jun},
+  booktitle   = {Proceedings of the 28th International Conference on Pattern Recognition ({ICPR})},
+  series      = {Lecture Notes in Computer Science},
+  publisher   = {Springer},
+  month       = aug,
+  year        = {2026},
+  pages       = {90--105},
+  doi         = {10.1007/978-3-032-31335-5_7},
+  abstract    = {Advancements in image sensing have elevated the importance of Ultra-High-Definition Image Restoration (UHD IR). Traditional methods, such as extreme downsampling or transformation from the spatial to the frequency domain, encounter significant drawbacks: downsampling induces irreversible information loss in UHD images, while our frequency analysis reveals that pure frequency-domain approaches are ineffective for spatially confined image artifacts, primarily due to the loss of degradation locality. To overcome these limitations, we present RetinexDual, a novel Retinex theory-based framework designed for generalized UHD IR tasks. RetinexDual leverages two complementary sub-networks: the Scale-Attentive maMBA (SAMBA) and the Frequency Illumination Adaptor (FIA). SAMBA, responsible for correcting the reflectance component, utilizes a coarse-to-fine mechanism to overcome the causal modeling of mamba, which effectively reduces artifacts and restores intricate details. On the other hand, FIA ensures precise correction of color and illumination distortions by operating in the frequency domain and leveraging the global context provided by it. Evaluating RetinexDual on four UHD IR tasks, namely deraining, deblurring, dehazing, and Low-Light Image Enhancement (LLIE), shows that it outperforms recent methods qualitatively and quantitatively. Ablation studies demonstrate the importance of employing distinct designs for each branch in RetinexDual, as well as the effectiveness of its various components.},
+  pdf         = {https://arxiv.org/pdf/2508.04797},
+  arxiv       = {2508.04797},
+  code        = {https://github.com/ErrorLogic1211/RetinexDual},
+  weights     = {https://huggingface.co/ErrorLogic/RetinexDual},
+  preview     = {retinexdual.png},
+  blog        = {/news/retinexdual-icpr2026/},
+  bibtex_show = {true},
+  selected    = {true}
 }
 
 @inproceedings{kishawy2026retinexdualv2,
@@ -22,27 +45,6 @@
   blog        = {/news/retinexdualv2-cvprw2026/},
   award_name  = {NTIRE 2026: 4th and 5th Place},
   award       = {RetinexDualV2 ranked **4th** in the NTIRE 2026 Day and Night Raindrop Removal Challenge and **5th** in the NTIRE 2026 Joint Denoising and Low-Light Image Enhancement (JDLLIE) track.},
-  bibtex_show = {true},
-  selected    = {true}
-}
-
-@inproceedings{kishawy2026retinexdual,
-  abbr        = {ICPR},
-  title       = {{RetinexDual}: Retinex-Based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration},
-  author      = {Kishawy, Mohab and Hussein, Ali Abdellatif and Chen, Jun},
-  booktitle   = {Proceedings of the 28th International Conference on Pattern Recognition ({ICPR})},
-  series      = {Lecture Notes in Computer Science},
-  publisher   = {Springer},
-  month       = aug,
-  year        = {2026},
-  pages       = {90--105},
-  doi         = {10.1007/978-3-032-31335-5_7},
-  abstract    = {Advancements in image sensing have elevated the importance of Ultra-High-Definition Image Restoration (UHD IR). Traditional methods, such as extreme downsampling or transformation from the spatial to the frequency domain, encounter significant drawbacks: downsampling induces irreversible information loss in UHD images, while our frequency analysis reveals that pure frequency-domain approaches are ineffective for spatially confined image artifacts, primarily due to the loss of degradation locality. To overcome these limitations, we present RetinexDual, a novel Retinex theory-based framework designed for generalized UHD IR tasks. RetinexDual leverages two complementary sub-networks: the Scale-Attentive maMBA (SAMBA) and the Frequency Illumination Adaptor (FIA). SAMBA, responsible for correcting the reflectance component, utilizes a coarse-to-fine mechanism to overcome the causal modeling of mamba, which effectively reduces artifacts and restores intricate details. On the other hand, FIA ensures precise correction of color and illumination distortions by operating in the frequency domain and leveraging the global context provided by it. Evaluating RetinexDual on four UHD IR tasks, namely deraining, deblurring, dehazing, and Low-Light Image Enhancement (LLIE), shows that it outperforms recent methods qualitatively and quantitatively. Ablation studies demonstrate the importance of employing distinct designs for each branch in RetinexDual, as well as the effectiveness of its various components.},
-  pdf         = {https://arxiv.org/pdf/2508.04797},
-  arxiv       = {2508.04797},
-  code        = {https://github.com/ErrorLogic1211/RetinexDual},
-  preview     = {retinexdual.png},
-  blog        = {/news/retinexdual-icpr2026/},
   bibtex_show = {true},
   selected    = {true}
 }
@@ -142,6 +144,7 @@
   doi         = {10.1038/s41598-024-71187-8},
   abstract    = {Autonomous Vehicles (AV) is one of the most evolving industries in the last decade. However, one of the bottlenecks of this evolution is providing data that contains different scenarios and scenes to improve the models without exposing the privacy and security of the edge vehicles. The authors of this research propose a secure and efficient novel solution for lane segmentation in AVs through the use of Federated Learning (FL). FedLane involves initial training of U-Net, ResUNet, and ResUNet++ models, followed by real-time inference in edge devices and the application of FL to update the server model using clients' data. The study found that FL has enhanced the performance of lane segmentation significantly over baseline, enabling decentralized privacy-preserving collaborative optimization with increased dice coef from 0.9429 to 0.9794 for U-Net, from 0.9291 to 0.9854 for ResUNet and from 0.9079 to 0.9675 for ResUNet++. Additionally, the models show increased stability over the training iterations, highlighting the potential of FL to play a significant role in the future of automation in the AV industry.},
   pdf         = {https://www.nature.com/articles/s41598-024-71187-8.pdf},
+  code        = {https://github.com/mohamedtarek10/FadLane},
   blog        = {/news/fedlane-scientific-reports/},
   bibtex_show = {true},
   selected    = {true}
@@ -173,8 +176,8 @@
   pages       = {128046--128065},
   year        = {2022},
   doi         = {10.1109/ACCESS.2022.3227505},
-  pdf         = {https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9973300},
   code        = {https://github.com/ErrorLogic1211/MouseDynamicsForRCL},
+  dataset     = {https://github.com/ErrorLogic1211/MouseDynamicsDatasetForRCL},
   bibtex_show = {true}
 }
 
@@ -188,6 +191,8 @@
   year        = {2022},
   pages       = {566--571},
   doi         = {10.1109/CICN56167.2022.10008322},
+  code        = {https://github.com/ErrorLogic1211/MouseDynamicsForRCL},
+  dataset     = {https://github.com/ErrorLogic1211/MouseDynamicsDatasetForRCL},
   bibtex_show = {true}
 }
 

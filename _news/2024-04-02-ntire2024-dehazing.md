@@ -4,9 +4,10 @@ title: 4th place in the NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge
 date: 2024-04-02 00:00:00-0400
 permalink: /news/ntire2024-dehazing/
 inline: false
+description: Our team, ITB Dehaze, placed 4th in the NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge at CVPR 2024.
 related_posts: false
 related_publications: true
-summary: Secured **4th place** in the [NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge](https://codalab.lisn.upsaclay.fr/competitions/17529) (team ITB Dehaze). The challenge report was published at [CVPRW 2024](https://doi.org/10.1109/CVPRW63382.2024.00646).
+summary: Secured **4th place** in the [NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge](https://cvlai.net/ntire/2024/) (team ITB Dehaze). The challenge report was published at [CVPRW 2024](https://doi.org/10.1109/CVPRW63382.2024.00646).
 tags: [challenge, dehazing]
 ---
 

@@ -3,213 +3,332 @@
   contents:
     - name: Full Name
       value: Mohab Kishawy
+    - name: Position
+      value: Ph.D. Candidate in Electrical and Computer Engineering, <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
+    - name: Seeking
+      value: Research scientist roles in computer vision and 3D vision, from January 2027 (onsite or remote)
     - name: Email
-      value: <a href="mailto:Kishawym@mcmaster.ca" target="_blank">Kishawym@mcmaster.ca</a>
+      value: <a href="mailto:kishawym@mcmaster.ca" target="_blank">kishawym@mcmaster.ca</a>
     - name: Languages
-      value: Arabic (Native), English (Fluent)
+      value: English (fluent), Arabic (native)
     - name: Summary
-      value: 3rd Year Ph.D Candidate in Electrical and Computer Engineering at McMaster University working on image restoration, enhancement, and 3D vision tasks.
+      value: Computer vision researcher working on physically grounded image restoration and 3D scene reconstruction, with first-author papers at ICPR 2026, the CVPR 2026 Workshops, and <i>Scientific Reports</i>, and four top-5 finishes in NTIRE challenges at CVPR (2024–2026).
     - name: Links
       value: <a href="https://www.linkedin.com/in/mohab-m-eid/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a> &nbsp;&nbsp; <a href="https://github.com/ErrorLogic1211" target="_blank"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp; <a href="https://scholar.google.com/citations?user=CSkCecoAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap fa-2x"></i></a>
 
 - title: Education
   type: time_table
   contents:
-    - title: Doctor of Philosophy in Engineering, Electrical and Computer Engineering
+    - title: Ph.D. in Electrical and Computer Engineering
       institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
       location: Canada
-      year: 9.2023 - 8.2026
+      year: 2023 – 2026
       description:
-        - "GPA (11.0/12.0)"
-        - "Full Merit Scholarship"
-        - "Focus on image restoration, enhancement, and 3D vision tasks."
+        - "Sep 2023 – Dec 2026 (expected)"
+        - "Thesis: <i>Modelling the Physics of Degradation: Retinex-Based Restoration from 2D Images to 3D Scenes</i>"
         - "Advisor: <a href=\"https://www.ece.mcmaster.ca/~junchen/\" target=\"_blank\">Prof. Jun Chen</a>"
-    - title: Bachelor's of Science in Computer Engineering
-      institution: <a href="https://nu.edu.eg/" target="_blank">Nile University (NU)</a>
+        - "GPA: 11.0/12.0 · Full scholarship"
+    - title: B.Sc. in Computer Engineering
+      institution: <a href="https://nu.edu.eg/" target="_blank">Nile University</a>
       location: Egypt
-      year: 9.2018 - 6.2023
+      year: 2018 – 2023
       description:
-        - "GPA (3.7/4.0) with Honors (Dean's List)"
-        - "Full Merit Scholarship"
-        - "Graduation Project: <a href=\"https://www.nature.com/articles/s41598-024-71187-8\" target=\"_blank\">Federated learning system on autonomous vehicles for lane segmentation</a>"
+        - "Sep 2018 – May 2023"
+        - "Thesis: <i>Federated Learning System on Autonomous Vehicles for Lane Segmentation</i> (published in <a href=\"https://www.nature.com/articles/s41598-024-71187-8\" target=\"_blank\"><i>Scientific Reports</i></a>)"
         - "Advisor: <a href=\"https://nu.edu.eg/academic-staff/dr-mohamed-s-darweesh\" target=\"_blank\">Dr. Mohamed S. Darweesh</a>"
+        - "GPA: 3.7/4.0 · Full scholarship"
 
-- title: Work Experience
+- title: Research Experience
   type: time_table
   contents:
-    - title: Research Assistant
-      institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
+    - title: Computer Vision Researcher
+      institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>, advised by <a href="https://www.ece.mcmaster.ca/~junchen/" target="_blank">Prof. Jun Chen</a>
       location: Canada
-      year: 9.2023 - now
+      year: 2023 – now
       description:
-        - "Low Vision: Designing unified image restoration and enhancement approaches."
-        - "3D Vision: Harnessing 3D representations as 3D Gaussian Splatting, Neural Radiance Fields (NeRFs) for 3D reconstruction, restoration, and editing using generative models as Diffusion and flow-based models."
-    
-    - title: Teaching Assistant
-      institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>
-      location: Canada
-      year: 9.2023 - now
-      description:
-        - Teaching assistant for undergraduate courses in Department of Electrical and Computer Engineering.
-        - Supporting students in programming, algorithms, and embedded systems courses.
-        - Conducting lab sessions and providing academic guidance.
-
-    - title: Machine Learning Engineer
-      institution: <a href="https://engh.helwan.edu.eg/en/faculties-en/electronics-and-communications-engineering" target="_blank">Electronics and Computer Engineering lab, Helwan University</a>
+        - "Physically grounded, Retinex-based restoration of ultra-high-definition images (Mamba, frequency-domain modelling) and of 3D scenes (3D Gaussian Splatting); released open-source code and pre-trained models."
+        - "Led team entries in five NTIRE challenges at CVPR (2024, 2026) and competed in a sixth (2025), with four top-5 finishes."
+    - title: Machine Learning Researcher
+      institution: Helwan University, Electronics and Computer Engineering Lab
       location: Egypt
-      year: 12.2021 - 12.2022
+      year: 2021 – 2022
       description:
-        - "Project: Designed an automated lab evaluation system using mouse tracking."
-        - "Optmization: Reduced grading time by 32 hours per academic term."
-        - "Impact: Co-authored a research article in IEEE Access and a conference paper presented at the 14th CICN."
-
+        - "Dec 2021 – Dec 2022"
+        - "Automated assessment of students in online labs from mouse-tracking data, saving 32 hours of grading per term."
     - title: Research Assistant
-      institution: <a href="https://winc.nu.edu.eg/" target="_blank">Wireless Intelligent Network Center, Nile University</a>
+      institution: <a href="https://winc.nu.edu.eg/" target="_blank">Nile University, Wireless Intelligent Network Center (WINC)</a>
       location: Egypt
-      year: 2.2021 - 8.2021
+      year: 2021
       description:
-        - "Agriculture: Developed a plant disease detection system using a modified CNN."
-        - "AVs: Researched and implemented a federated learning-based lane segmentation model for autonomous vehicles."
+        - "Feb 2021 – Aug 2021"
+        - "Plant-disease detection with a modified CNN; federated learning for lane segmentation on autonomous vehicles."
 
-- title: Publications
+- title: Selected Publications
   type: time_table
   contents:
+    - title: "VeilGS: Solving Darkness as a Veil of 2D Basis Maps over Retinex 3DGS"
+      year: 2026
+      description:
+        - "<b>M. Kishawy</b>, C. Tang, S. Shirani, J. Chen"
+        - "Under review. Manuscript available on request."
+    - title: "RetinexDual: Retinex-Based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration"
+      year: 2026
+      description:
+        - "<b>M. Kishawy</b>, A. A. Hussein, J. Chen"
+        - "International Conference on Pattern Recognition (ICPR), Lecture Notes in Computer Science, Springer, pp. 90–105, 2026. Poster, Lyon, France."
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.1007/978-3-032-31335-5_7
+        - linkname: arXiv
+          link: https://arxiv.org/abs/2508.04797
+        - linkname: Code
+          link: https://github.com/ErrorLogic1211/RetinexDual
+        - linkname: Weights
+          link: https://huggingface.co/ErrorLogic/RetinexDual
     - title: "RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration"
       year: 2026
       description:
-        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
-        - "<u>M Kishawy</u>, J Chen"
-    - title: "RetinexDual: Retinex-based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration"
-      year: 2026
-      description:
-        - "Published in <a href='#' target='_blank'>Proceedings of the 28th International Conference on Pattern Recognition (ICPR)</a>"
-        - "<u>M Kishawy</u>, AA Hussein, J Chen"
-    - title: "NTIRE 2026 Nighttime Image Dehazing Challenge Report"
-      year: 2026
-      description:
-        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
-        - "RP Ancuti, A Brateanu, FA Vasluianu, R Timofte, <u>M Kishawy</u>, et al."
-    - title: "NTIRE 2026 The Second Challenge on Day and Night Raindrop Removal for Dual-Focused Images: Methods and Results"
-      year: 2026
-      description:
-        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
-        - "X Li, Y Jin, S Yao, Z Wu, R Timofte, <u>M Kishawy</u>, J Chen, et al."
-    - title: "Low Light Image Enhancement Challenge at NTIRE 2026"
-      year: 2026
-      description:
-        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
-        - "G Ciubotariu, SMA Sharif, M Conde, R Timofte, <u>M Kishawy</u>, et al."
-    - title: "NTIRE 2026 Single Image Shadow Removal Challenge Report"
-      year: 2026
-      description:
-        - "Published in <a href='#' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops</a>"
-        - "FA Vasluianu, T Seizinger, Z Wu, R Timofte, <u>M Kishawy</u>, et al."
-    - title: "NTIRE 2025 Challenge on Low Light Image Enhancement: Methods and Results"
-      year: 2025
-      description:
-        - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
-        - "X Liu, Z Wu, FA Vasluianu, CO Ancuti, C Ancuti, R Timofte, ..., <u>M Kishawy</u>, J Chen, ..., C Yu, et al."
+        - "<b>M. Kishawy</b>, J. Chen"
+        - "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, pp. 1989–1998, 2026. Poster, NTIRE Workshop, Denver, CO, USA."
+      linkitems:
+        - linkname: Paper
+          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Kishawy_RetinexDualV2_Physically-Grounded_Dual_Retinex_for_Generalized_UHD_Image_Restoration_CVPRW_2026_paper.pdf
+        - linkname: arXiv
+          link: https://arxiv.org/abs/2603.27979
+        - linkname: Code
+          link: https://github.com/ErrorLogic1211/RetinexDual/tree/master/RetinexDualV2
     - title: Federated Learning System on Autonomous Vehicles for Lane Segmentation
       year: 2024
       description:
-        - "Published in <a href='https://www.nature.com/articles/s41598-024-71187-8' target='_blank'>Scientific Reports</a>"
-        - "<u>M Kishawy</u>, MT Abd El-Hafez, R Yousri, MS Darweesh"
+        - "<b>M. M. Eid Kishawy</b>, M. T. Abd El-Hafez, R. Yousri, M. S. Darweesh"
+        - "<i>Scientific Reports</i>, vol. 14, art. 25029, 2024."
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.1038/s41598-024-71187-8
+        - linkname: PDF
+          link: https://www.nature.com/articles/s41598-024-71187-8.pdf
+        - linkname: Code
+          link: https://github.com/mohamedtarek10/FadLane
+
+- title: Other Publications
+  type: time_table
+  contents:
+    - title: "NTIRE 2026 The Second Challenge on Day and Night Raindrop Removal for Dual-Focused Images: Methods and Results"
+      year: 2026
+      description:
+        - "X. Li, Y. Jin, S. Yao, …, <b>M. Kishawy</b>, J. Chen, … (98 authors)"
+        - "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, pp. 2054–2070, 2026."
+        - "<b>Our team (RetinexDualV2) placed 4th.</b>"
+      linkitems:
+        - linkname: Paper
+          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Li_NTIRE_2026_The_Second_Challenge_on_Day_and_Night_Raindrop_CVPRW_2026_paper.pdf
+        - linkname: arXiv
+          link: https://arxiv.org/abs/2604.10634
+    - title: Low Light Image Enhancement Challenge at NTIRE 2026
+      year: 2026
+      description:
+        - "G. Ciubotariu, S. S. M. A, …, <b>M. Kishawy</b>, J. Chen, … (91 authors)"
+        - "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, pp. 1741–1753, 2026."
+        - "<b>Our team (RetinexDualV2) placed 5th in Track 2: Joint Denoising and Low-Light Image Enhancement (JDLLIE).</b>"
+      linkitems:
+        - linkname: Paper
+          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Ciubotariu_Low_Light_Image_Enhancement_Challenge_at_NTIRE_2026_CVPRW_2026_paper.pdf
+        - linkname: arXiv
+          link: https://arxiv.org/abs/2604.17669
+        - linkname: Supp
+          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/supplemental/Ciubotariu_Low_Light_Image_CVPRW_2026_supplemental.pdf
+    - title: NTIRE 2026 Nighttime Image Dehazing Challenge Report
+      year: 2026
+      description:
+        - "R. P. Ancuti, A. Brateanu, …, <b>M. Kishawy</b>, … (89 authors)"
+        - "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, pp. 1608–1625, 2026."
+        - "Co-authored as a participating team (RetinexDualV2)."
+      linkitems:
+        - linkname: Paper
+          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Ancuti_NTIRE_2026_Nighttime_Image_Dehazing_Challenge_Report_CVPRW_2026_paper.pdf
+    - title: "Advances in Single-Image Shadow Removal: Results from the NTIRE 2026 Challenge"
+      year: 2026
+      description:
+        - "F.-A. Vasluianu, T. Seizinger, …, <b>M. Kishawy</b>, J. Chen, … (90 authors)"
+        - "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, pp. 2582–2595, 2026."
+        - "Co-authored as a participating team (RetinexDualV2)."
+      linkitems:
+        - linkname: Paper
+          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/papers/Vasluianu_Advances_in_Single-Image_Shadow_Removal_Results_from_the_NTIRE_2026_CVPRW_2026_paper.pdf
+        - linkname: Supp
+          link: https://openaccess.thecvf.com/content/CVPR2026W/NTIRE/supplemental/Vasluianu_Advances_in_Single-Image_CVPRW_2026_supplemental.pdf
+    - title: "NTIRE 2025 Challenge on Low Light Image Enhancement: Methods and Results"
+      year: 2025
+      description:
+        - "X. Liu, Z. Wu, F.-A. Vasluianu, …, <b>M. Kishawy</b>, J. Chen, … (105 authors)"
+        - "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, pp. 1196–1206, 2025."
+        - "<b>Our team (Imagine) placed 2nd overall, with the highest PSNR.</b>"
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.1109/CVPRW67362.2025.00114
+        - linkname: PDF
+          link: https://openaccess.thecvf.com/content/CVPR2025W/NTIRE/papers/Liu_NTIRE_2025_Challenge_on_Low_Light_Image_Enhancement_Methods_and_CVPRW_2025_paper.pdf
+        - linkname: arXiv
+          link: https://arxiv.org/abs/2510.13670
     - title: NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge Report
       year: 2024
       description:
-        - "Published in <a href='https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf' target='_blank'>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>"
-        - "CO Ancuti, C Ancuti, FA Vasluianu, R Timofte, Y Liu, X Wang, Y Zhu, G Shi, X Lu, X Fu, ZJ Zha, W Dong, H Zhou, R Wang, X Liu, G Zhai, J Chen, W Song, Y Gao, J Xiong, H Lin, X Li, D Li, <u>M Kishawy</u>, et al."
-    
+        - "C. O. Ancuti, C. Ancuti, …, <b>M. Kishawy</b>, … (68 authors)"
+        - "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops, pp. 6453–6468, 2024."
+        - "<b>Our team (ITB Dehaze) placed 4th.</b>"
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.1109/CVPRW63382.2024.00646
+        - linkname: PDF
+          link: https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Ancuti_NTIRE_2024_Dense_and_Non-Homogeneous_Dehazing_Challenge_Report_CVPRW_2024_paper.pdf
+
     - title: A Generic AI-Based Technique for Assessing Student Performance in Conducting Online Virtual and Remote Controlled Laboratories
       year: 2022
       description:
-        - "Published in <a href='https://ieeexplore.ieee.org/document/9973300' target='_blank'>IEEE Access</a>"
-        - "AM Abd El-Haleem, <u>M Kishawy</u>, MM Elmesalawy, HAH Hosny"
+        - "A. M. Abd El-Haleem, <b>M. M. Eid</b>, M. M. Elmesalawy, H. A. H. Hosny"
+        - "<i>IEEE Access</i>, vol. 10, pp. 128046–128065, 2022."
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.1109/ACCESS.2022.3227505
+        - linkname: Code
+          link: https://github.com/ErrorLogic1211/MouseDynamicsForRCL
+        - linkname: Data
+          link: https://github.com/ErrorLogic1211/MouseDynamicsDatasetForRCL
     - title: A New Intelligent System for Evaluating and Assisting Students in Laboratory Learning Management System
       year: 2022
       description:
-        - "Published in <a href='https://ieeexplore.ieee.org/document/10012057' target='_blank'>2022 14th International Conference on Computational Intelligence and Communication Networks (CICN)</a>"
-        - "HA Hassan, <u>M Kishawy</u>, MM Elmesalawy, AM Abd El-Haleem"
+        - "H. A. Hassan, <b>M. M. Eid</b>, M. M. Elmesalawy, A. M. Abd El-Haleem"
+        - "14th International Conference on Computational Intelligence and Communication Networks (CICN), pp. 566–571, 2022."
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.1109/CICN56167.2022.10008322
+        - linkname: Code
+          link: https://github.com/ErrorLogic1211/MouseDynamicsForRCL
+        - linkname: Data
+          link: https://github.com/ErrorLogic1211/MouseDynamicsDatasetForRCL
     - title: Using Machine Learning Algorithms for Breast Cancer Diagnosis
       year: 2021
       description:
-        - "Published in <a href='https://www.igi-global.com/article/using-machine-learning-algorithms-for-breast-cancer-diagnosis/288550' target='_blank'>International Journal of Applied Metaheuristic Computing (IJAMC)</a>"
-        - "MM El-Lamey, <u>M Kishawy</u>, M Gamal, NEM Bishady, AW Mohamed"
-    - title: Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford’s Stringency Index Model in MATLAB
+        - "M. M. El-Lamey, <b>M. M. Eid</b>, M. Gamal, N. M. Bishady, A. W. Mohamed"
+        - "<i>International Journal of Applied Metaheuristic Computing</i>, vol. 12, no. 4, pp. 117–137, 2021."
+        - "Reprinted in <i>Research Anthology on Medical Informatics in Breast and Cervical Cancer</i>, IGI Global, pp. 768–791, 2022."
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.4018/ijamc.2021100107
+        - linkname: Reprint
+          link: https://doi.org/10.4018/978-1-6684-7136-4.ch041
+    - title: "Modelling and Analysis the Population Density Effect on the Infectiousness Rate of COVID-19 Novel Virus and the Mortality Rate Percentage Regarding Oxford's Stringency Index Model of Governmental Response in MATLAB"
       year: 2021
       description:
-        - "Published in <a href='https://link.springer.com/chapter/10.1007/978-3-030-69744-0_25' target='_blank'>Artificial Intelligence for COVID-19</a>"
-        - "AM Ibrahim, NEHM Bishady, SH Elghalban, NN Mostafa, <u>M Kishawy</u> et al."
+        - "A. M. Ibrahim, N. E. M. Bishady, S. H. Elghalban, N. N. Mostafa, <b>M. M. Eid</b>, K. M. Abdelhamid"
+        - "In <i>Artificial Intelligence for COVID-19</i>, Studies in Systems, Decision and Control, Springer, pp. 437–462, 2021."
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.1007/978-3-030-69744-0_25
     - title: Modeling the Effect of Population Density on Controlling COVID-19 Initial Spread with the Use of MATLAB Numerical Methods and Stringency Index Model
       year: 2020
       description:
-        - "Published in <a href='https://ieeexplore.ieee.org/document/9257960' target='_blank'>2020 2nd Novel Intelligent and Leading Emerging Sciences Conference (NILES)</a>"
-        - "AM Ibrahim, <u>M Kishawy</u>, NN Mostafa, NEHM Bishady, SH Elghalban"
+        - "A. M. Ibrahim, <b>M. M. Eid</b>, N. N. Mostafa, N. E. M. Bishady, S. H. Elghalban"
+        - "2nd Novel Intelligent and Leading Emerging Sciences Conference (NILES), pp. 612–617, 2020."
+      linkitems:
+        - linkname: Paper
+          link: https://doi.org/10.1109/NILES50944.2020.9257960
 
 - title: Honors and Awards
   type: time_table
   contents:
+    - year: 2026
+      items:
+        - 4ᵗʰ Place, NTIRE 2026 Day and Night Raindrop Removal Challenge, CVPR 2026
+        - 5ᵗʰ Place, NTIRE 2026 Joint Denoising and Low-Light Image Enhancement track, CVPR 2026
     - year: 2025
       items:
-        - 2ⁿᵈ Place – NTIRE 2025 Challenge on Low-Light Image Enhancement, CVPR Workshops
+        - 2ⁿᵈ Place, NTIRE 2025 Low Light Image Enhancement Challenge, CVPR 2025 (highest PSNR)
     - year: 2024
       items:
-        - 4ᵗʰ Place – NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge, CVPR Workshops
+        - 4ᵗʰ Place, NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge, CVPR 2024
     - year: 2023
       items:
-        - Full Scholarship – Ph.D. in Electrical and Computer Engineering, McMaster University (2023–2027)
-        - 2ⁿᵈ Place – AIC Competition for Arabic Text Summerization, Military Technical College, Egypt
-        - 1ˢᵗ Place Winner – Hacktrick AI Hackathon, Dell Technologies
+        - 1ˢᵗ Place, Hacktrick AI Hackathon, Dell Technologies
+        - 2ⁿᵈ Place, AIC Competition for Arabic Text Summarization, Military Technical College, Egypt
+        - Full Ph.D. Scholarship, McMaster University (2023–2026)
     - year: 2022
       items:
-        - Best Solution Challenge Chapter (Global) – Google Developer Student Clubs
-        - Shield of Contribution – School of Engineering & Applied Sciences, Nile University
+        - Best Solution Challenge Chapter (Global), Google Developer Student Clubs
+        - Shield of Contribution, School of Engineering and Applied Sciences, Nile University
     - year: 2021
       items:
-        - Dean’s Honor List (GPA > 3.75/4.00) – Fall & Spring semesters, Nile University
+        - Dean's Honor List (GPA above 3.75/4.00), Fall and Spring, Nile University
     - year: 2018
       items:
-        - Full Scholarship – B.Sc. in Computer Engineering, Nile University (2018–2023)
+        - Full B.Sc. Scholarship, Nile University (2018–2023)
     - year: 2017
       items:
-        - 3ʳᵈ Place (Embedded Systems) – Intel International Science and Engineering Fair (ISEF)
+        - 3ʳᵈ Place (Embedded Systems), Intel International Science and Engineering Fair (ISEF)
     - year: 2015
       items:
-        - Bronze Medal – Egyptian Olympiad in Informatics (EOI)
+        - Bronze Medal, Egyptian Olympiad in Informatics
 
-- title: Technical Skills
+- title: Presentations
+  type: time_table
+  contents:
+    - year: 2026
+      items:
+        - Poster, <i>RetinexDual</i>, ICPR 2026, Lyon, France (Aug 2026)
+        - Poster, <i>RetinexDualV2</i>, CVPR 2026 NTIRE Workshop, Denver, CO, USA (Jun 2026)
+
+- title: Teaching
+  type: time_table
+  contents:
+    - title: Teaching Assistant
+      institution: <a href="https://www.mcmaster.ca/" target="_blank">McMaster University</a>, Department of Electrical and Computer Engineering
+      location: Canada
+      year: 2023 – now
+      description:
+        - "COMPENG 2SH4: Principles of Programming (Fall 2025, Fall 2026)"
+        - "COMPENG 3SM4: Algorithm Design and Analysis (Winter 2024, 2025, 2026)"
+        - "ELECENG 3TQ3: Advanced Probability and Random Processes (Fall 2024)"
+        - "COMPENG 4DM4: Computer Architecture (Fall 2023)"
+
+- title: Academic Service
+  type: list
+  contents:
+    - "<b>Reviewer</b>: AAAI Conference on Artificial Intelligence (AAAI 2025); <i>IEEE Access</i> (6 reviews, 2022–2023); <i>Entropy</i> (2026)"
+
+- title: Skills
   type: nested_list
   contents:
-    - title: Development & Tools
+    - title: Programming
       items:
-        - Python, C\C++, Java, MATLAB, Shell, HTML, CSS, JavaScript
-        - VSCode, Cursor, Terminal, XCode, PyCharm
-        - Google Colab, Kaggle, Hugging Face
-        - LaTex, Markdown, Word, Excel, PowerPoint, PDF, Overleaf
-        - Git, GitHub, GitLab, Jupyter Notebook
-        - Linux, Windows, MacOS
-        - Data Science, Data Engineering, Data Analysis, Data Visualization
-    - title: Artificial Intelligence
+        - Python, C/C++, MATLAB, Java, Bash
+    - title: Deep Learning
       items:
-        - Machine Learning, Deep Learning, Computer Vision, Natural Language Processing, 3D Vision
-        - "Generative Models: Diffusion Models, Flow-based Models, GANs, VAEs"
-        - "3D Representations: Neural Radiance Fields (NeRFs), 3D Gaussian Splatting"
-        - CNNs, RNNs, Transformers, LSTMs, Attention Mechanisms
-        - Time Series Analysis, Fine-tuning LLMs
-        - Federated Learning, Federated Learning for IoT, Flower framework
-        - TensorFlow, PyTorch, Keras, OpenCV, Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn, TensorBoard
+        - PyTorch, CUDA, TensorFlow/Keras, Hugging Face, timm, BasicSR, mamba-ssm, Weights & Biases, multi-GPU training
+    - title: Vision and 3D
+      items:
+        - Image restoration and enhancement, 3D Gaussian Splatting, NeRF, OpenCV, segmentation (U-Net), YOLO, SAM
+    - title: Other
+      items:
+        - Federated learning (Flower), NVIDIA Jetson/TensorRT, Git, Linux, LaTeX
 
-
-# - title: Selected Projects
-#   type: time_table
-#   contents:
-#     - title: <a href="https://github.com/Adelsamir01/CyberLLMInstruct" target="_blank">CyberLLMInstruct</a>
-#       year: 2025
-#       description: A comprehensive dataset and framework for analysing safety of fine-tuned LLMs using cyber security data. Features include dataset creation pipeline, fine-tuning support for multiple LLMs (Phi-3, Mistral, Qwen, Llama, Gemma), and evaluation tools.
-#     - title: <a href="https://github.com/Adelsamir01/prayer_times_extension" target="_blank">Canterbury Mosque Prayer Times Extension</a>
-#       year: 2025
-#       description: A Chrome extension that displays daily prayer times from Canterbury Mosque with notifications and adhan audio. Features include automatic updates, customisable notifications, and a user-friendly interface.
-
-#     - title: <a href="https://github.com/Adelsamir01/RPL-attacks" target="_blank">RPL Attack Implementations for Contiki-NG and COOJA</a>
-#       year: 2024
-#       description: A comprehensive implementation of RPL (Routing Protocol for Low-power and Lossy Networks) attacks using Contiki-NG and COOJA. Features include implementation of various attacks (Selective Forwarding, Sinkhole, Version Number, DIS Flooding, and Sybil attacks), simulation scripts, and analysis tools.
+- title: Leadership and Outreach
+  type: time_table
+  contents:
+    - title: Lead, Google Developer Student Clubs
+      institution: Nile University
+      year: 2021 – 2022
+      description:
+        - Led 500+ students; organized workshops and hackathons with the Google community.
+    - title: Deep Learning Instructor, Root Student Club
+      institution: Nile University
+      year: 2021
+      description:
+        - Designed and taught a 6-month deep learning bootcamp for 120+ students.
+    - title: Senator, Nile University Student Union
+      institution: Nile University
+      year: 2019 – 2021
+    - title: Instructor, ICPC Training
+      institution: Nile University
+      year: 2019 – 2020
+      description:
+        - Trained competitive-programming teams in algorithms and problem solving.

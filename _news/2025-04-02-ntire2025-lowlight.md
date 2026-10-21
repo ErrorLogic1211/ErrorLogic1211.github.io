@@ -4,9 +4,10 @@ title: 2nd place in the NTIRE 2025 Low Light Image Enhancement Challenge
 date: 2025-04-02 00:00:00-0400
 permalink: /news/ntire2025-lowlight/
 inline: false
+description: Our team, Imagine, placed 2nd with the highest PSNR in the NTIRE 2025 Low Light Image Enhancement Challenge at CVPR 2025.
 related_posts: false
 related_publications: true
-summary: Secured **2nd place** in the [NTIRE 2025 Low Light Image Enhancement Challenge](https://codalab.lisn.upsaclay.fr/competitions/21636) (team Imagine), with the highest PSNR among all teams. The challenge report was published at [CVPRW 2025](https://doi.org/10.1109/CVPRW67362.2025.00114).
+summary: Secured **2nd place** in the [NTIRE 2025 Low Light Image Enhancement Challenge](https://cvlai.net/ntire/2025/) (team Imagine), with the highest PSNR among all teams. The challenge report was published at [CVPRW 2025](https://doi.org/10.1109/CVPRW67362.2025.00114).
 tags: [challenge, low-light]
 ---
 

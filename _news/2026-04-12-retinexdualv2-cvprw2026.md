@@ -4,6 +4,7 @@ title: RetinexDualV2 accepted to CVPR 2026 Workshops
 date: 2026-04-12 15:59:00-0400
 permalink: /news/retinexdualv2-cvprw2026/
 inline: false
+description: RetinexDualV2, a physically grounded dual Retinex network for UHD image restoration, is accepted to the CVPR 2026 Workshops.
 related_posts: false
 related_publications: true
 summary: "**RetinexDualV2**: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration accepted to the [CVPR 2026 Workshops](https://cvpr.thecvf.com/Conferences/2026) (NTIRE)."
