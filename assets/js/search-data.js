@@ -11,7 +11,7 @@ ninja.data = [{
     },
   },{id: "nav-publications",
           title: "Publications",
-          description: "",
+          description: "Peer-reviewed papers, NTIRE challenge reports, and work under review. Earlier work appears under the name Mohab M. Eid.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/publications/";
@@ -30,87 +30,52 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "books-the-godfather",
-          title: 'The Godfather',
+        },{id: "news-started-my-direct-ph-d-in-electrical-and-computer-engineering-at-mcmaster-university-canada-under-the-supervision-of-prof-jun-chen",
+          title: 'Started my direct Ph.D. in Electrical and Computer Engineering at McMaster University, Canada,...',
           description: "",
-          section: "Books",handler: () => {
-              window.location.href = "/books/the_godfather/";
-            },},{id: "news-started-my-direct-ph-d-in-electrical-and-computer-engineering-mcmaster-university-canada",
-          title: 'Started My Direct Ph.D. in Electrical and Computer Engineering @ McMaster University, Canada...',
+          section: "News",},{id: "news-4th-place-in-the-ntire-2024-dense-and-non-homogeneous-dehazing-challenge",
+          title: '4th place in the NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge',
+          description: "Our team, ITB Dehaze, placed 4th in the NTIRE 2024 Dense and Non-Homogeneous Dehazing Challenge at CVPR 2024.",
+          section: "News",handler: () => {
+              window.location.href = "/news/ntire2024-dehazing/";
+            },},{id: "news-fedlane-published-in-scientific-reports",
+          title: 'FedLane published in Scientific Reports',
+          description: "FedLane, a federated learning system for lane segmentation on autonomous vehicles, is published in Scientific Reports.",
+          section: "News",handler: () => {
+              window.location.href = "/news/fedlane-scientific-reports/";
+            },},{id: "news-2nd-place-in-the-ntire-2025-low-light-image-enhancement-challenge",
+          title: '2nd place in the NTIRE 2025 Low Light Image Enhancement Challenge',
+          description: "Our team, Imagine, placed 2nd with the highest PSNR in the NTIRE 2025 Low Light Image Enhancement Challenge at CVPR 2025.",
+          section: "News",handler: () => {
+              window.location.href = "/news/ntire2025-lowlight/";
+            },},{id: "news-passed-my-ph-d-comprehensive-examination-at-mcmaster-university",
+          title: 'Passed my Ph.D. comprehensive examination at McMaster University.',
           description: "",
-          section: "News",},{id: "news-secured-4th-place-in-ntire-2024-dense-and-nonhomogeneous-dehazing-challenge-under-team-name-itb-dehaze-work-was-publsihed-in-cvprw-2024",
-          title: 'Secured 4th Place in NTIRE 2024 Dense and NonHomogeneous Dehazing Challenge under team...',
+          section: "News",},{id: "news-4th-and-5th-place-at-the-ntire-2026-challenges",
+          title: '4th and 5th place at the NTIRE 2026 challenges',
+          description: "RetinexDualV2 placed 4th in the NTIRE 2026 Raindrop Removal Challenge and 5th in the joint denoising and low-light enhancement track.",
+          section: "News",handler: () => {
+              window.location.href = "/news/ntire2026-results/";
+            },},{id: "news-retinexdual-accepted-to-icpr-2026",
+          title: 'RetinexDual accepted to ICPR 2026',
+          description: "RetinexDual, a Retinex-based dual-branch network for ultra-high-definition image restoration, is accepted to ICPR 2026.",
+          section: "News",handler: () => {
+              window.location.href = "/news/retinexdual-icpr2026/";
+            },},{id: "news-retinexdualv2-accepted-to-cvpr-2026-workshops",
+          title: 'RetinexDualV2 accepted to CVPR 2026 Workshops',
+          description: "RetinexDualV2, a physically grounded dual Retinex network for UHD image restoration, is accepted to the CVPR 2026 Workshops.",
+          section: "News",handler: () => {
+              window.location.href = "/news/retinexdualv2-cvprw2026/";
+            },},{id: "news-presented-retinexdualv2-as-a-poster-at-the-cvpr-2026-ntire-workshop-in-denver-colorado",
+          title: 'Presented RetinexDualV2 as a poster at the CVPR 2026 NTIRE Workshop in Denver,...',
           description: "",
-          section: "News",},{id: "news-my-paper-federated-learning-system-on-autonomous-vehicles-for-lane-segmentation-is-published-in-scietific-reports",
-          title: 'My Paper “Federated learning system on autonomous vehicles for lane segmentation” is published...',
+          section: "News",},{id: "news-released-the-retinexdual-code-and-pre-trained-weights-for-all-four-uhd-restoration-tasks",
+          title: 'Released the RetinexDual code and pre-trained weights for all four UHD restoration tasks....',
           description: "",
-          section: "News",},{id: "news-finished-my-1st-ph-d-supervisory-committee-meeting-in-2024",
-          title: 'Finished my 1st Ph.D. Supervisory Committee Meeting in 2024.',
+          section: "News",},{id: "news-presented-retinexdual-as-a-poster-at-icpr-2026-in-lyon-france-the-paper-is-now-available-in-the-proceedings-springer-lncs",
+          title: 'Presented RetinexDual as a poster at ICPR 2026 in Lyon, France. The paper...',
           description: "",
-          section: "News",},{id: "news-secured-2nd-place-in-ntire-2025-low-light-image-enhancement-challenge-under-team-name-imagine-work-was-publsihed-in-cvprw-2025",
-          title: 'Secured 2nd Place in NTIRE 2025 Low Light Image Enhancement Challenge under team...',
-          description: "",
-          section: "News",},{id: "news-i-ve-successfully-passed-my-comprehensive-phd-examination-at-mcmaster-university",
-          title: 'I’ve successfully passed my comprehensive PhD examination at McMaster University!',
-          description: "",
-          section: "News",},{id: "news-finished-my-2nd-ph-d-supervisory-committee-meeting-in-2025",
-          title: 'Finished my 2nd Ph.D. Supervisory Committee Meeting in 2025.',
-          description: "",
-          section: "News",},{id: "news-secured-4th-place-in-ntire-2026-the-second-challenge-on-day-and-night-raindrop-removal-for-dual-focused-images-and-5th-place-in-ntire-2026-joint-denoising-and-low-light-image-enhancement-challenge-work-published-in-cvprw-2026",
-          title: 'Secured 4th Place in NTIRE 2026 The Second Challenge on Day and Night...',
-          description: "",
-          section: "News",},{id: "news-retinexdual-accepted-to-the-28th-international-conference-on-pattern-recognition-icpr-2026-see-you-in-lyon-france",
-          title: 'RetinexDual accepted to the 28th International Conference on Pattern Recognition (ICPR) 2026. See...',
-          description: "",
-          section: "News",},{id: "news-retinexdualv2-physically-grounded-dual-retinex-for-generalized-uhd-image-restoration-accepted-to-cvpr-2026-workshops",
-          title: 'RetinexDualV2: Physically-Grounded Dual Retinex for Generalized UHD Image Restoration accepted to CVPR 2026...',
-          description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project/";
-            },},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/2_project/";
-            },},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/3_project/";
-            },},{id: "projects-project-4",
-          title: 'project 4',
-          description: "another without an image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/4_project/";
-            },},{id: "projects-project-5",
-          title: 'project 5',
-          description: "a project with a background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/5_project/";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/6_project/";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/7_project/";
-            },},{id: "projects-project-8",
-          title: 'project 8',
-          description: "an other project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/8_project/";
-            },},{id: "projects-project-9",
-          title: 'project 9',
-          description: "another project with an image 🎉",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/9_project/";
-            },},{
+          section: "News",},{
       id: 'light-theme',
       title: 'Change theme to light',
       description: 'Change the theme of the site to Light',
