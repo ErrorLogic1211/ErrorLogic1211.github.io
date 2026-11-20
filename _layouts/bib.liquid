@@ -25,7 +25,49 @@
           <abbr class="badge rounded w-100">{{ entry.abbr }}</abbr>
         {% endif %}
       {% endif %}
-      {% if entry.preview %}
+      {% if entry.preview_video %}
+        {% assign pp = '/assets/img/publication_preview/' %}
+        <video
+          class="preview z-depth-1 rounded hover-play"
+          src="{{ entry.preview_video | prepend: pp | relative_url }}"
+          poster="{{ entry.preview | prepend: pp | relative_url }}"
+          data-loop-start="{{ entry.preview_video_loop | default: 0 }}"
+          width="100%"
+          muted
+          playsinline
+          preload="none"
+          aria-label="{{ entry.title | strip_html | escape }}: hover to play"
+        ></video>
+        <script>
+          if (!window.__hoverPlay) {
+            window.__hoverPlay = true;
+            (function () {
+              function reset(v) { v.pause(); v.currentTime = 0; v.load(); }
+              function start(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+              function canHover() { return window.matchMedia('(hover: hover)').matches; }
+              document.addEventListener('mouseover', function (e) {
+                if (!canHover()) return;
+                var v = e.target.closest && e.target.closest('video.hover-play');
+                if (v && v.paused) start(v);
+              });
+              document.addEventListener('mouseout', function (e) {
+                if (!canHover()) return;
+                var v = e.target.closest && e.target.closest('video.hover-play');
+                if (v && !v.contains(e.relatedTarget)) reset(v);
+              });
+              document.addEventListener('click', function (e) {
+                var v = e.target.closest && e.target.closest('video.hover-play');
+                if (!v || canHover()) return;
+                if (v.paused) start(v); else reset(v);
+              });
+              document.addEventListener('ended', function (e) {
+                var v = e.target;
+                if (v.matches && v.matches('video.hover-play')) { v.currentTime = parseFloat(v.dataset.loopStart) || 0; start(v); }
+              }, true);
+            })();
+          }
+        </script>
+      {% elsif entry.preview %}
         {% if entry.preview contains '://' %}
           <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
         {% elsif entry.preview contains '.gif' %}
