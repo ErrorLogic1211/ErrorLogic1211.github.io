@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeilGS: Solving Darkness as a Veil of 2D Basis Maps over Retinex 3DGS</title>
+<meta name="description" content="VeilGS treats low-light degradation as a veil drawn over a well-lit 3D Gaussian scene: a spatially varying gain solved from each view, followed by a global tone curve.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VeilGS: Solving Darkness as a Veil of 2D Basis Maps over Retinex 3DGS">
+<meta property="og:description" content="VeilGS treats low-light degradation as a veil drawn over a well-lit 3D Gaussian scene: a spatially varying gain solved from each view, followed by a global tone curve.">
+<meta property="og:url" content="https://errorlogic1211.github.io/VeilGS/">
+<meta property="og:image" content="https://errorlogic1211.github.io/VeilGS/assets/img/social_preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VeilGS: Solving Darkness as a Veil of 2D Basis Maps over Retinex 3DGS">
+<meta name="twitter:description" content="VeilGS treats low-light degradation as a veil drawn over a well-lit 3D Gaussian scene: a spatially varying gain solved from each view, followed by a global tone curve.">
+<meta name="twitter:image" content="https://errorlogic1211.github.io/VeilGS/assets/img/social_preview.jpg">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+/* Project-page layout in the style of the Nerfies template (white sections alternating with light
+   grey bands, centred titles, a 960px reading column), written without Bulma or any other library. */
+:root {
+  --text: #4a4a4a;
+  --strong: #363636;
+  --light: #f5f5f5;
+  --border: #dbdbdb;
+  --dark: #363636;
+  --link: hsl(204, 86%, 53%);
+  --first: #f5b3b3;
+  --second: #fdeba0;
+  --sans: "Google Sans", "Noto Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --body: "Noto Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --math: "Cambria Math", "Latin Modern Math", "STIX Two Math", "Times New Roman", serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; font: 16px/1.5 var(--body); color: var(--text); background: #fff; }
+img, video { max-width: 100%; height: auto; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+sup, sub { line-height: 0; }
+i.m { font-family: var(--math); font-style: italic; font-size: 1.05em; }
+.veilgs { font-weight: inherit; }
+.sc { text-transform: uppercase; font-size: 0.82em; letter-spacing: 0.04em; }
+
+/* Bulma-like scaffolding */
+.navbar { display: flex; justify-content: center; gap: 4px; padding: 6px 12px; position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.96); border-bottom: 1px solid #eee; flex-wrap: wrap; }
+.navbar a { font-family: var(--sans); color: var(--text); padding: 6px 12px; border-radius: 4px; }
+.navbar a:hover { background: #fafafa; color: var(--link); text-decoration: none; }
+.hero-body { padding: 3rem 1.5rem; }
+.hero.is-light { background: var(--light); }
+.hero.is-small .hero-body { padding: 1.5rem; }
+.section { padding: 3rem 1.5rem; }
+.container { margin: 0 auto; max-width: 1152px; width: 100%; }
+.container.is-max-desktop { max-width: 960px; }
+.has-text-centered { text-align: center; }
+.has-text-justified { text-align: justify; }
+.title { color: var(--strong); font-family: var(--sans); font-weight: 600; line-height: 1.125; margin: 0 0 1.5rem; }
+.title.is-1 { font-size: 3rem; }
+.title.is-3 { font-size: 2rem; }
+.title.is-4 { font-size: 1.5rem; }
+.title.is-5 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+.subtitle { color: var(--text); font-family: var(--sans); font-size: 1.25rem; font-weight: 400; line-height: 1.35; margin: 0; }
+.content p { margin: 0 0 1em; }
+.content p:last-child { margin-bottom: 0; }
+.columns { display: flex; gap: 1.5rem; }
+.columns > .column { flex: 1 1 0; min-width: 0; }
+.columns.is-vcentered { align-items: center; }
+.column.is-7 { flex: 0 0 calc(58.333% - 0.75rem); }
+.column.is-5 { flex: 0 0 calc(41.667% - 0.75rem); }
+.narrow { max-width: 80%; margin: 0 auto; }
+.button { display: inline-flex; align-items: center; gap: 0.4em; font-family: var(--sans); font-size: 0.75rem; line-height: 1.5; padding: calc(0.5em - 1px) 1em; border: 1px solid var(--border); border-radius: 9999px; background: #fff; color: var(--strong); cursor: pointer; }
+.button:hover { border-color: #b5b5b5; }
+.button.is-dark { background: var(--dark); border-color: transparent; color: #fff; }
+.button:focus-visible, .compare-frame:focus-visible, .tab:focus-visible, figure[tabindex]:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.buttons.has-addons { display: inline-flex; }
+.buttons.has-addons .button { border-radius: 0; margin-left: -1px; }
+.buttons.has-addons .button:first-child { border-radius: 4px 0 0 4px; margin-left: 0; }
+.buttons.has-addons .button:last-child { border-radius: 0 4px 4px 0; }
+.publication-title { font-family: var(--sans); }
+.publication-note { font-family: var(--sans); font-size: 1.15rem; color: var(--text); margin-top: -0.5rem; }
+.publication-links { margin-top: 1.25rem; }
+.button.is-link-button { font-size: 1rem; padding: calc(0.5em - 1px) 1.25em; text-decoration: none; }
+.button.is-link-button .icon { width: 1em; height: 1em; }
+.publication-links { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+.publication-authors { font-family: var(--sans); font-size: 1.25rem; margin-top: 0.25rem; }
+.publication-authors .author-block { display: inline-block; margin: 0 0.35rem; }
+.publication-authors a { color: var(--link); text-decoration: none; }
+.publication-authors a:hover { text-decoration: underline; }
+.publication-affils { font-family: var(--sans); font-size: 1.05rem; color: var(--text); margin-top: 0.4rem; }
+.publication-affils span { display: inline-block; margin: 0 0.5rem; }
+.publication-corr { font-family: var(--sans); font-size: 0.95rem; color: #7a7a7a; margin-top: 0.35rem; }
+.publication-corr a { color: inherit; }
+.button.is-disabled { opacity: 0.55; cursor: default; pointer-events: none; }
+.button .size { opacity: 0.7; font-size: 0.8em; }
+.bibtex-wrap { position: relative; }
+.bibtex-wrap pre { background: #f5f5f5; border-radius: 6px; padding: 1.1rem 1.25rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.45; margin: 0; }
+.copy-btn { position: absolute; top: 0.5rem; right: 0.5rem; font-size: 0.75rem; }
+.footer a { color: #5a5a5a; }
+.footer p { margin: 0.35rem 0; }
+
+/* teaser */
+.teaser .hero-body { padding-top: 0; padding-bottom: 3rem; }
+.teaser-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; align-items: end; }
+.teaser-grid img { width: 100%; display: block; border-radius: 3px; aspect-ratio: 600 / 446; object-fit: cover; background: #ececec; cursor: zoom-in; }
+.grid-label { font-family: var(--sans); font-size: 0.8rem; text-align: center; line-height: 1.2; padding-bottom: 2px; }
+.teaser .subtitle { margin-top: 1.5rem; }
+.panel-label { font-family: var(--sans); font-size: 0.85rem; text-align: center; color: #555; margin-top: 4px; }
+
+/* carousel */
+.carousel { position: relative; }
+.carousel-title { margin-bottom: 1rem; }
+.carousel { --per: 3; }
+.carousel-viewport { overflow: hidden; padding: 5px 0; touch-action: pan-y; }
+.carousel-track { display: flex; transition: transform 0.45s ease; will-change: transform; }
+.carousel .item { flex: 0 0 calc(100% / var(--per)); padding: 0 5px; }
+.carousel .card { border: 1px solid #bbb; border-radius: 10px; overflow: hidden; background: #fff; }
+@media (prefers-reduced-motion: reduce) { .carousel-track { transition: none; } }
+.carousel video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #000; }
+.carousel-caption { font-family: var(--sans); font-size: 0.9rem; text-align: center; padding: 4px 0; margin: 0; }
+.carousel-nav { position: absolute; z-index: 2; top: calc(50% - 1.6rem); width: 40px; height: 40px; border-radius: 50%; border: 0; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.3); cursor: pointer; font-size: 20px; color: var(--strong); display: grid; place-items: center; }
+.carousel-nav.prev { left: -14px; }
+.carousel-nav.next { right: -14px; }
+.carousel-dots { display: flex; justify-content: center; gap: 8px; padding-top: 0.75rem; }
+.carousel-dots button { width: 10px; height: 10px; border-radius: 50%; border: 0; padding: 0; background: #b5b5b5; cursor: pointer; }
+.carousel-dots button[aria-current="true"] { background: #4a4a4a; }
+
+/* method */
+.method-figure { width: 100%; margin-bottom: 1rem; aspect-ratio: 1800 / 753; cursor: zoom-in; }
+.method-card { background: var(--light); border-radius: 10px; padding: 1.25rem; height: 100%; }
+
+/* decomposition */
+.tabs { display: flex; justify-content: center; margin-bottom: 1rem; }
+.tab { font-family: var(--sans); font-size: 0.85rem; padding: 0.35em 1em; border: 1px solid var(--border); background: #fff; color: var(--text); cursor: pointer; margin-left: -1px; }
+.tab:first-child { border-radius: 4px 0 0 4px; margin-left: 0; }
+.tab:last-child { border-radius: 0 4px 4px 0; }
+.tab[aria-selected="true"] { background: var(--link); border-color: var(--link); color: #fff; }
+.decomp-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; grid-auto-flow: dense; gap: 8px; align-items: start; }
+.decomp-grid figure { margin: 0; text-align: center; }
+.decomp-grid img { width: 100%; display: block; border-radius: 5px; aspect-ratio: 1000 / 741; object-fit: cover; background: #ececec; cursor: zoom-in; }
+.decomp-grid figure.is-wide { grid-column: 1; grid-row: 1 / span 2; }
+.decomp-grid figcaption { font-family: var(--sans); font-size: 0.85rem; color: #444; margin-top: 2px; }
+
+/* comparison widgets */
+.compare-hint { margin: 0 auto 1.25rem; max-width: 46rem; }
+.compare-bar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem 1.5rem; margin-bottom: 0.75rem; }
+.compare-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; align-items: center; }
+.compare-controls-label { font-family: var(--sans); color: #555; margin-right: 0.25rem; }
+.compare-frame { position: relative; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 10px; border: 1px solid #bbb; cursor: ew-resize; user-select: none; -webkit-user-select: none; touch-action: pan-y; background: #000; }
+.compare-frame img, .compare-frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; display: block; }
+.compare-frame .compare-left { clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0); }
+.compare-handle { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 4px rgba(0,0,0,0.6); pointer-events: none; }
+.compare-handle::after { content: "\2039 \203A"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; line-height: 32px; border-radius: 50%; background: #fff; color: #333; font-size: 20px; text-align: center; box-shadow: 0 0 6px rgba(0,0,0,0.5); }
+.compare-tag { position: absolute; top: 10px; padding: 2px 10px; border-radius: 4px; background: rgba(0,0,0,0.6); color: #fff; font-family: var(--sans); font-size: 0.9rem; pointer-events: none; }
+.compare-tag.left { left: 10px; }
+.compare-tag.right { right: 10px; }
+.compare-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 6px; margin-top: 0.75rem; }
+.compare-thumbs figure { margin: 0; cursor: pointer; text-align: center; font-family: var(--sans); font-size: 0.8rem; opacity: 0.6; transition: opacity 0.15s; }
+.compare-thumbs figure:hover, .compare-thumbs figure.is-active { opacity: 1; }
+.compare-thumbs img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border-radius: 5px; border: 2px solid transparent; }
+.compare-thumbs figure.is-active img { border-color: var(--link); }
+#dk-thumbs { grid-template-columns: repeat(6, 1fr); }
+
+/* Gaussian-DK side-by-side rows */
+.dk-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.dk-row figure { margin: 0; text-align: center; }
+.dk-row .frame { border-radius: 6px; overflow: hidden; background: #000; aspect-ratio: 1000 / 740; cursor: zoom-in; border: 2px solid transparent; }
+.dk-row figure.ours .frame { border-color: var(--link); }
+.dk-row video { width: 100%; height: 100%; object-fit: contain; display: block; }
+.dk-row figcaption { font-family: var(--sans); font-size: 0.85rem; color: var(--strong); margin-top: 3px; line-height: 1.25; }
+.dk-row figure.ours figcaption { font-weight: 700; }
+.dk-row .mos { display: block; color: #7a7a7a; font-size: 0.78rem; font-variant-numeric: tabular-nums; }
+.player { display: flex; gap: 10px; align-items: center; justify-content: center; margin-top: 0.6rem; font-family: var(--sans); font-size: 0.85rem; }
+.player input[type=range] { flex: 1; max-width: 420px; accent-color: var(--dark); }
+.player .time { color: #7a7a7a; font-variant-numeric: tabular-nums; min-width: 8ch; }
+.dk-caption { font-size: 0.9rem; color: #555; margin-top: 0.6rem; text-align: center; }
+
+/* tables */
+.table-container { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; font-variant-numeric: tabular-nums; color: var(--strong); }
+th, td { padding: 0.25em 0.5em; border-bottom: 1px solid var(--border); text-align: center; white-space: nowrap; }
+th:first-child, td:first-child, tbody th { text-align: left; }
+th { font-family: var(--sans); font-weight: 600; }
+caption { caption-side: top; text-align: left; font-size: 0.85rem; color: #666; padding-bottom: 0.4rem; }
+.results-table tr.ours td { font-weight: bold; border-top: 2px solid #999; }
+.results-table th { white-space: normal; }
+.rank-first, td.r1, th.r1 { background: var(--first) !important; }
+.rank-second, td.r2, th.r2 { background: var(--second) !important; }
+span.rank-first, span.rank-second { padding: 0 4px; border-radius: 3px; }
+.table-note { font-size: 0.8rem; color: #666; margin: 0.4rem 0 1.5rem; }
+tbody:not(:first-of-type) tr:first-child > * { border-top: 2px solid #999; }
+th[data-ours] { font-weight: 700; }
+.table-wrap { overflow-x: auto; margin-bottom: 1.5rem; }
+/* The 14-column MOS table fits the reading column: smaller type, tight cells, wrapping headers. */
+table.fit { font-size: 0.8rem; }
+table.fit th, table.fit td { padding: 0.3em 0.25em; }
+table.fit thead th { white-space: normal; line-height: 1.15; vertical-align: bottom; }
+table.fit thead th .sc { letter-spacing: 0; }
+table.fit tbody th { white-space: normal; }
+.study-figure { width: 100%; display: block; margin: 0.5rem 0 0.25rem; cursor: zoom-in; }
+
+.footer { background: #fafafa; padding: 2rem 1.5rem 3rem; font-size: 0.9rem; color: #7a7a7a; }
+
+/* enlarged view */
+.lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(10,10,12,0.92); display: grid; grid-template-rows: auto 1fr auto; gap: 10px; padding: 14px; }
+.lightbox .bar { display: flex; gap: 10px; align-items: center; color: #fff; flex-wrap: wrap; font-family: var(--sans); }
+.lightbox .bar .hint { color: #b9bcc2; font-size: 0.85rem; }
+.lightbox .spacer { flex: 1; }
+.lightbox .view { position: relative; min-height: 0; display: grid; place-items: center; overflow: hidden; }
+.lightbox .view img, .lightbox .view video { max-width: 100%; max-height: 100%; object-fit: contain; }
+.lightbox .button { background: #26282d; color: #fff; border-color: #55585f; font-size: 0.85rem; }
+.lightbox .button.is-dark { background: #fff; color: #111; }
+.lightbox .nav { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+
+@media screen and (max-width: 768px) {
+  .columns { flex-direction: column; }
+  .column.is-7, .column.is-5 { flex-basis: auto; }
+  .title.is-1 { font-size: 2rem; }
+  .narrow { max-width: 100%; }
+  .teaser-grid .grid-label { font-size: 0.65rem; }
+  .decomp-grid { grid-template-columns: repeat(3, 1fr); }
+  .decomp-grid figure.is-wide { grid-column: 1 / -1; grid-row: auto; }
+  .dk-row { grid-template-columns: repeat(2, 1fr); }
+  #dk-thumbs { grid-template-columns: repeat(4, 1fr); }
+  .carousel-nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar" aria-label="Sections">
+  <a href="#abstract">Abstract</a>
+  <a href="#method">Method</a>
+  <a href="#results">Gaussian-DK</a>
+  <a href="#lom">LOM</a>
+  <a href="#limitations">Limitations</a>
+  <a href="#numbers">Results</a>
+  <a href="#bibtex">BibTeX</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-1 publication-title"><span class="veilgs">VeilGS</span>: Solving Darkness as a Veil of 2D Basis Maps over Retinex 3DGS</h1>
+      <div class="publication-authors">
+        <span class="author-block"><a href="https://errorlogic1211.github.io/">Mohab Kishawy</a><sup>1,&dagger;</sup>,</span>
+        <span class="author-block"><a href="https://spins-lab.github.io/">Chengzhou Tang</a><sup>2</sup>,</span>
+        <span class="author-block"><a href="https://sshirani.com/">Shahram Shirani</a><sup>1</sup>,</span>
+        <span class="author-block"><a href="https://www.ece.mcmaster.ca/~junchen/">Jun Chen</a><sup>1</sup></span>
+      </div>
+      <div class="publication-affils">
+        <span><sup>1</sup>Department of Electrical &amp; Computer Engineering, McMaster University</span>
+        <span><sup>2</sup>Department of Computer Science, University of Manitoba</span>
+      </div>
+      <div class="publication-corr"><sup>&dagger;</sup>Corresponding author: <a href="mailto:kishawym@mcmaster.ca">kishawym@mcmaster.ca</a></div>
+      <div class="publication-links">
+        <a class="button is-dark is-link-button" href="https://arxiv.org/pdf/ARXIV_ID"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1h5l4 4v10H4z M9 1v4h4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Paper</a>
+        <a class="button is-dark is-link-button" href="https://arxiv.org/abs/ARXIV_ID"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2l10 12M13 2L3 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>arXiv</a>
+        <a class="button is-dark is-link-button" href="paper/VeilGS_full_quality.pdf" title="Same paper with the figures at their original resolution"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1h5l4 4v10H4z M9 1v4h4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Paper (full quality)&nbsp;<span class="size">80&nbsp;MB</span></a>
+        <span class="button is-dark is-link-button is-disabled" aria-disabled="true"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Code (coming soon)</span>
+        <a class="button is-dark is-link-button" href="user_study/index.html"><svg class="icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l8 5-8 5z" fill="currentColor"/></svg>User study</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-vcentered">
+        <div class="column is-7">
+          <div class="teaser-grid" id="teaser-grid">
+            <span class="grid-label">Input</span>
+            <span class="grid-label">Veil <i class="m">α</i> (ours)</span>
+            <span class="grid-label">VeilGS (ours)</span>
+            <span class="grid-label">Gaussian-DK</span>
+          </div>
+          <p class="panel-label">(a) Held-out views of Gaussian-DK</p>
+        </div>
+        <div class="column is-5">
+          <img src="assets/img/radar.webp" width="1100" height="627" alt="Radar chart of mean scores, efficiency and user-study MOS on Gaussian-DK and LOM; outward is better." id="radar" style="cursor: zoom-in">
+          <p class="panel-label">(b) Mean scores, efficiency and user-study MOS; outward is better</p>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        <span class="veilgs">VeilGS</span> treats low-light degradation as a <i>veil</i> drawn over a well-lit scene.
+        The solved veil is high where light falls and low in shadow; rendering without it gives the restored scene.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="subtitle has-text-centered carousel-title">
+        Novel views rendered by <span class="veilgs">VeilGS</span> from night captures of Gaussian-DK.
+      </h2>
+      <div class="carousel" id="carousel">
+        <button class="carousel-nav prev" type="button" aria-label="Previous">&#8249;</button>
+        <div class="carousel-viewport" id="carousel-viewport"><div class="carousel-track" id="carousel-track"></div></div>
+        <button class="carousel-nav next" type="button" aria-label="Next">&#8250;</button>
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="narrow has-text-centered">
+      <h2 class="title is-3">Abstract</h2>
+      <div class="content has-text-justified">
+        <p>In a dark capture, the darkness is not uniform. How much light reaches a surface depends on where it lies
+          relative to the few light sources, and the camera compresses what remains with a tone curve. Most low-light 3D
+          reconstruction methods either apply one curve to every pixel of a view, so a dark object beside a lamp and a
+          bright one in an unlit corner receive the same correction, or store the darkness in the 3D representation, where
+          it can absorb scene detail.</p>
+        <p>We present <span class="veilgs">VeilGS</span>, a 3D Gaussian Splatting method for low-light novel view
+          synthesis that treats the degradation as a veil drawn over a clear scene. Each Gaussian carries an albedo and a
+          shading latent instead of spherical harmonics, separating surface colour from illumination. Each view is darkened
+          by a spatially varying gain followed by a global tone curve, and rendering without this veil gives the restored
+          scene. A small network predicts a coarse basis for the gain from the observation, and its coefficients are solved
+          for each view rather than learned. Training through this solve discourages the Gaussians from absorbing what the
+          veil can explain.</p>
+        <p><span class="veilgs">VeilGS</span> needs no paired normal-light supervision and stores no per-view parameters.
+          On Gaussian-DK, its restored renders score best on no-reference NIQE and CLIP-IQA and are rated highest in a blind
+          user study with 55&nbsp;participants. On LOM, it achieves results competitive with the state of the art.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <div class="has-text-centered">
+      <h2 class="title is-3">Method</h2>
+      <img src="assets/img/overview.webp" class="method-figure" id="overview" alt="Overview of VeilGS: albedo–shading Gaussians render a clean radiance J; a basis network and a per-view rank-one solve give the veil alpha; the tone curve of alpha times J predicts the observation.">
+      <div class="content has-text-justified">
+        <p>The Gaussians render a clean radiance <i class="m">J</i>, the restored view. A basis network reads the
+          observation <i class="m">I</i> and proposes coarse basis maps, and a solve finds the coefficients under which the
+          low-light model applied to <i class="m">J</i> best explains <i class="m">I</i>, giving the veil
+          <i class="m">α</i> and the prediction <i class="m">Î</i>. The reconstruction loss is back-propagated through
+          the solve. No normal-light image is used.</p>
+      </div>
+    </div>
+    <div class="columns" style="margin-top: 1.5rem;">
+      <div class="column"><div class="content method-card">
+        <h3 class="title is-5">Retinex Gaussians</h3>
+        <p>Each Gaussian replaces its spherical harmonics with an albedo <i class="m">a<sub>i</sub></i> and a shading
+          latent <i class="m">z<sub>i</sub></i>. A small shared MLP <i class="m">f<sub>θ</sub></i> turns the latent and the
+          viewing direction into a shading <i class="m">s<sub>i</sub></i>, and the colour is
+          <i class="m">c<sub>i</sub></i>&nbsp;=&nbsp;<i class="m">a<sub>i</sub></i>&nbsp;⊙&nbsp;<i class="m">s<sub>i</sub></i>,
+          so surface colour is kept apart from the light that falls on it.</p>
+      </div></div>
+      <div class="column"><div class="content method-card">
+        <h3 class="title is-5">The veil</h3>
+        <p>A view is the clean render darkened by a spatially varying gain and a global tone curve,
+          <i class="m">Î</i>&nbsp;=&nbsp;(<i class="m">α</i>&nbsp;⊙&nbsp;<i class="m">J</i>)<sup>1/<i class="m">γ</i></sup>.
+          The gain <i class="m">α</i>&nbsp;=&nbsp;<i class="m">b<sub>α</sub>e<sup>m</sup></i> is spanned by a rank-one
+          product of coarse basis maps predicted from the observation, too coarse to copy the scene's texture.</p>
+      </div></div>
+      <div class="column"><div class="content method-card">
+        <h3 class="title is-5">Solved, not learned</h3>
+        <p>The nine numbers of each view's veil are solved by a damped least-squares fit in the log domain and never
+          stored. Training through the solve discourages the Gaussians from absorbing what the veil can explain, and the
+          damping keeps the veil from absorbing the scene.</p>
+      </div></div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <h3 class="title is-4">What <span class="veilgs">VeilGS</span> recovers</h3>
+      <div class="content has-text-justified">
+        <p>From dark observations alone, <span class="veilgs">VeilGS</span> separates albedo from shading, solves the veil
+          that darkens each view, and renders the restored scene without it. Applying the veil to the clean render
+          reproduces the observation, at 26.2&nbsp;dB PSNR on this view of <span class="sc">flower</span> and 29.3&nbsp;dB on
+          <span class="sc">livingroom</span>.</p>
+      </div>
+      <div class="tabs" role="tablist" id="decomp-tabs">
+        <button class="tab" role="tab" aria-selected="true" data-scene="flower_IMG_6241">Flower</button>
+        <button class="tab" role="tab" aria-selected="false" data-scene="livingroom_IMG_6938">Living room</button>
+      </div>
+      <div class="decomp-grid" id="decomp-grid"></div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small" id="results">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Comparison on Gaussian-DK</h2>
+      <p class="has-text-centered compare-hint">
+        Novel-view videos of all twelve scenes: restored renders along a camera path between two held-out views, with no
+        normal-light reference, played in sync. Show all
+        methods side by side, or drag the slider to compare <span class="veilgs">VeilGS</span> (right) with another method (left).
+      </p>
+      <div class="compare-bar">
+        <div class="buttons has-addons" role="group" aria-label="View">
+          <button class="button is-dark" data-mode="row" type="button">Side by side</button>
+          <button class="button" data-mode="slider" type="button">Slider</button>
+        </div>
+        <div class="compare-controls" id="dk-methods" hidden><span class="compare-controls-label">Compare with:</span></div>
+      </div>
+      <div id="dk-stage"></div>
+      <div class="player">
+        <button class="button" id="dk-play" type="button">Pause</button>
+        <button class="button" id="dk-speed" type="button" title="Playback speed">1×</button>
+        <input type="range" id="dk-seek" min="0" max="1000" value="0" aria-label="Position in the video">
+        <span class="time" id="dk-time">0.0 / 8.9 s</span>
+      </div>
+      <p class="dk-caption" id="dk-caption"></p>
+      <div class="compare-thumbs" id="dk-thumbs"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="lom">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Comparison on LOM</h2>
+    <p class="has-text-centered compare-hint">
+      Restored renders of test views against a normal-light reference. The first option shows
+      the low-light input (lower left) and the normal-light frame (upper right).
+    </p>
+    <div id="lom-widget"></div>
+  </div>
+</section>
+
+<section class="hero is-light is-small" id="limitations"><div class="hero-body">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Limitations</h2>
+    <div class="content has-text-justified">
+      <p>The veil is a single achromatic gain, so it cannot remove colour casts from coloured light sources. Training
+        through the solve can also become unstable on low-texture scenes. Finally, the albedo–shading decomposition is
+        imperfect and can leave a green cast in the albedo, mostly in dark regions.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="section" id="numbers"><div>
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Quantitative results</h2>
+    <p class="has-text-centered compare-hint">Mean scores; <span class="rank-first">red</span>: best,
+      <span class="rank-second">yellow</span>: second best. Per-scene results are in the paper and its appendix.</p>
+    <div class="columns">
+      <div class="column">
+        <h3 class="title is-5 has-text-centered">Gaussian-DK restoration</h3>
+        <div class="table-container"><table class="results-table"><thead><tr><th>Method</th><th>NIQE↓</th><th>MUSIQ↑</th><th>CLIP-IQA↑</th><th>MOS↑</th></tr></thead><tbody><tr><td>3DGS</td><td class="rank-second">3.71</td><td>63.14</td><td>0.445</td><td>2.68</td></tr><tr><td>LITA-GS</td><td>3.80</td><td>49.18</td><td>0.322</td><td>2.45</td></tr><tr><td>Luminance-GS</td><td>3.83</td><td>62.62</td><td>0.348</td><td>2.31</td></tr><tr><td>Gaussian-DK</td><td>4.15</td><td class="rank-first">68.84</td><td class="rank-second">0.487</td><td class="rank-second">3.44</td></tr><tr class="ours"><td>VeilGS (ours)</td><td class="rank-first">2.63</td><td class="rank-second">68.37</td><td class="rank-first">0.518</td><td class="rank-first">4.15</td></tr></tbody></table></div><p class="table-note">Mean over the twelve scenes of the no-reference scores of the restored render and the user-study MOS (1–5).</p>
+      </div>
+      <div class="column">
+        <h3 class="title is-5 has-text-centered">Gaussian-DK reconstruction</h3>
+        <div class="table-container"><table class="results-table"><thead><tr><th>Method</th><th>PSNR↑</th><th>SSIM↑</th><th>LPIPS↓</th></tr></thead><tbody><tr><td>3DGS</td><td>18.39</td><td>0.606</td><td>0.209</td></tr><tr><td>Luminance-GS</td><td>18.88</td><td>0.611</td><td>0.219</td></tr><tr><td>LITA-GS</td><td>20.20</td><td>0.641</td><td>0.198</td></tr><tr><td>NeRF-W<sup>†</sup></td><td>23.32</td><td>0.730</td><td>0.221</td></tr><tr><td>Gaussian-DK</td><td>24.72</td><td>0.810</td><td>0.119</td></tr><tr><td>RestorGS<sup>†</sup></td><td class="rank-second">25.04</td><td class="rank-second">0.817</td><td class="rank-second">0.112</td></tr><tr class="ours"><td>VeilGS (ours)</td><td class="rank-first">26.36</td><td class="rank-first">0.839</td><td class="rank-first">0.103</td></tr></tbody></table></div><p class="table-note">Each held-out dark view against its dark rendering, mean over the eleven scenes that all methods report; VeilGS solves the veil of that view. †: reported by Gaussian-DK or RestorGS.</p>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <h3 class="title is-5 has-text-centered">LOM restoration</h3>
+        <div class="table-container"><table class="results-table"><thead><tr><th>Method</th><th>PSNR↑</th><th>SSIM↑</th><th>LPIPS↓</th><th>MOS↑</th></tr></thead><tbody><tr><td>Luminance-GS</td><td>18.34</td><td>0.800</td><td>0.294</td><td>2.23</td></tr><tr><td>Aleth-NeRF</td><td>19.87</td><td>0.754</td><td>0.417</td><td>3.27</td></tr><tr><td>LITA-GS</td><td>21.14</td><td class="rank-first">0.829</td><td class="rank-second">0.233</td><td>3.11</td></tr><tr><td>I<sup>2</sup>-NeRF</td><td class="rank-second">22.87</td><td>0.806</td><td>0.249</td><td class="rank-second">3.38</td></tr><tr class="ours"><td>VeilGS (ours)</td><td class="rank-first">22.96</td><td class="rank-second">0.828</td><td class="rank-first">0.220</td><td class="rank-first">3.57</td></tr></tbody></table></div><p class="table-note">Restored render against the normal-light frames, mean over the five scenes, and the user-study MOS.</p>
+      </div>
+      <div class="column" style="flex: 0 0 34%;">
+        <h3 class="title is-5 has-text-centered">Efficiency on LOM</h3>
+        <div class="table-container"><table class="results-table"><thead><tr><th>Method</th><th>Training (min)↓</th><th>FPS↑</th></tr></thead><tbody><tr><td>Luminance-GS</td><td class="rank-first">5.1</td><td class="rank-second">397</td></tr><tr><td>LITA-GS</td><td class="rank-second">18.6</td><td>72</td></tr><tr><td>I<sup>2</sup>-NeRF</td><td>32.1</td><td>0.57</td></tr><tr class="ours"><td>VeilGS (ours)</td><td>20.7</td><td class="rank-first">407</td></tr></tbody></table></div><p class="table-note">Mean training time per scene and rendering speed, on one NVIDIA H100 at 500×375.</p>
+      </div>
+    </div>
+    <h3 class="title is-5 has-text-centered" style="margin-top: 1rem;">User study</h3>
+    <div class="content has-text-justified">
+      <p>55 participants rated the restored renders of five methods per scene, blind and shuffled, from 1 (Bad) to
+        5 (Excellent): looping videos of the twelve Gaussian-DK scenes and still images of the five LOM scenes. On
+        Gaussian-DK, <span class="veilgs">VeilGS</span> has a MOS of 4.15 against 3.44 for Gaussian-DK, and 51 of the 55
+        participants rate it higher (two-sided Wilcoxon signed-rank test, <i class="m">p</i>&nbsp;&lt;&nbsp;10<sup>−9</sup>).
+        On LOM it has 3.57 against 3.38 for I<sup>2</sup>-NeRF (<i class="m">p</i>&nbsp;=&nbsp;0.001).</p>
+      <p>The button below opens an offline copy of the study as participants saw it, with the same questions, instructions
+        and layout; it records nothing. In the study, the videos and images were served under encoded file names, so the page
+        never revealed which method was behind a version, and the methods were shuffled to the letters A–E for every
+        participant.</p>
+    </div>
+    <p class="has-text-centered" style="margin: 0.5rem 0 1rem;"><a class="button is-dark is-link-button" href="user_study/index.html">&#9655;&nbsp; Try the user study interface</a></p>
+    <img class="study-figure" id="violin" src="assets/img/user_study_violin.webp" alt="Violin plots of the per-participant average score of each method on Gaussian-DK and on LOM.">
+    <p class="table-note">Each violin shows, for one method, the average score that each participant gave it over the
+      scenes of a benchmark.</p>
+    <div class="table-wrap"><table class="fit"><caption>Mean opinion score on Gaussian-DK per scene (1–5), with the 95% confidence interval of the mean over participants. Red: best; yellow: second best.</caption><thead><tr><th>Method</th><th><span class="sc">alley</span></th><th><span class="sc">bicycle</span></th><th><span class="sc">dormitory</span></th><th><span class="sc">fence</span></th><th><span class="sc">flower</span></th><th><span class="sc">kitchen</span></th><th><span class="sc">livingroom</span></th><th><span class="sc">piano</span></th><th><span class="sc">snowman</span></th><th><span class="sc">staircase</span></th><th><span class="sc">street</span></th><th><span class="sc">tree</span></th><th>Mean ± 95% CI</th></tr></thead><tbody><tr><th scope="row">3DGS</th><td>2.47</td><td>2.44</td><td>2.84</td><td>2.31</td><td class="r2">3.36</td><td class="r2">3.20</td><td>3.07</td><td>1.82</td><td class="r2">3.16</td><td>2.20</td><td>2.33</td><td>2.98</td><td>2.68 ± 0.27</td></tr><tr><th scope="row">Luminance-GS</th><td>2.80</td><td>1.95</td><td>2.62</td><td>2.33</td><td>2.45</td><td>2.69</td><td class="r2">3.31</td><td>1.82</td><td>1.98</td><td>1.80</td><td>2.11</td><td>1.87</td><td>2.31 ± 0.20</td></tr><tr><th scope="row">LITA-GS</th><td>2.65</td><td>2.58</td><td>1.95</td><td>2.07</td><td>2.71</td><td>2.47</td><td>2.96</td><td>2.24</td><td>2.00</td><td>2.29</td><td>2.96</td><td>2.51</td><td>2.45 ± 0.22</td></tr><tr><th scope="row">Gaussian-DK</th><td class="r2">3.60</td><td class="r2">3.84</td><td class="r2">3.29</td><td class="r2">3.53</td><td>2.24</td><td>2.40</td><td>3.18</td><td class="r1">4.13</td><td class="r1">4.45</td><td class="r2">3.36</td><td class="r2">3.73</td><td class="r2">3.56</td><td class="r2">3.44 ± 0.17</td></tr></tbody><tbody><tr><th scope="row" data-ours>VeilGS (ours)</th><td class="r1">4.65</td><td class="r1">3.95</td><td class="r1">4.45</td><td class="r1">4.24</td><td class="r1">4.13</td><td class="r1">4.78</td><td class="r1">4.60</td><td class="r2">3.51</td><td>2.98</td><td class="r1">3.95</td><td class="r1">4.29</td><td class="r1">4.25</td><td class="r1">4.15 ± 0.12</td></tr></tbody></table></div>
+    <div class="table-wrap"><table><caption>Mean opinion score on LOM per scene. Red: best; yellow: second best.</caption>
+<thead>
+<tr>
+<th>Method</th>
+<th><span class="sc">bike</span></th>
+<th><span class="sc">buu</span></th>
+<th><span class="sc">chair</span></th>
+<th><span class="sc">shrub</span></th>
+<th><span class="sc">sofa</span></th>
+<th>Mean ± 95% CI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row">Luminance-GS</th>
+<td>1.82</td>
+<td>2.76</td>
+<td>2.24</td>
+<td>1.91</td>
+<td>2.42</td>
+<td>2.23 ± 0.25</td>
+</tr>
+<tr>
+<th scope="row">LITA-GS</th>
+<td>2.71</td>
+<td>2.95</td>
+<td class="r2">3.55</td>
+<td>2.35</td>
+<td class="r2">4.00</td>
+<td>3.11 ± 0.22</td>
+</tr>
+<tr>
+<th scope="row">Aleth-NeRF</th>
+<td>2.22</td>
+<td class="r1">3.64</td>
+<td>2.95</td>
+<td class="r2">3.42</td>
+<td class="r1">4.13</td>
+<td>3.27 ± 0.19</td>
+</tr>
+<tr>
+<th scope="row">I<sup>2</sup>-NeRF</th>
+<td class="r2">3.82</td>
+<td class="r2">3.60</td>
+<td>2.84</td>
+<td class="r1">4.00</td>
+<td>2.65</td>
+<td class="r2">3.38 ± 0.20</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<th scope="row" data-ours="">VeilGS (ours)</th>
+<td class="r1">4.05</td>
+<td>3.42</td>
+<td class="r1">3.85</td>
+<td>2.78</td>
+<td>3.75</td>
+<td class="r1">3.57 ± 0.18</td>
+</tr>
+</tbody>
+</table></div>
+  </div>
+</div></section>
+
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">BibTeX</h2>
+    <div class="bibtex-wrap">
+      <button class="button copy-btn" id="copy-bibtex" type="button">Copy</button>
+      <pre><code id="bibtex-code">@misc{kishawy2026veilgs,
+  title         = {VeilGS: Solving Darkness as a Veil of 2D Basis Maps over Retinex 3DGS},
+  author        = {Kishawy, Mohab and Tang, Chengzhou and Shirani, Shahram and Chen, Jun},
+  year          = {2026},
+  eprint        = {ARXIV_ID},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/ARXIV_ID}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container is-max-desktop has-text-centered">
+    <p>Gaussian-DK scenes from <a href="https://github.com/yec22/Gaussian-DK">Gaussian in the Dark</a> (Ye et al., 2024);
+      LOM scenes from <a href="https://github.com/cuiziteng/Aleth-NeRF">Aleth-NeRF</a> (Cui et al., 2024).
+      The Aleth-NeRF and I<sup>2</sup>-NeRF images are the renders released by their authors; the other baselines are our runs of their official code.</p>
+    <p>This website is adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies project page template</a>
+      and is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Enlarged view">
+  <div class="bar">
+    <strong id="lb-title"></strong>
+    <span class="hint">← → switch · scroll or + − to zoom · drag to pan · Esc to close</span>
+    <span class="spacer"></span>
+    <button class="button" id="lb-zoom" type="button">Zoom 1×</button>
+    <button class="button" id="lb-close" type="button">Close</button>
+  </div>
+  <div class="view" id="lb-view"></div>
+  <div class="nav" id="lb-nav"></div>
+</div>
+
+<script>
+"use strict";
+const IMG = "assets/img/";
+const vsrc = (scene, m) => `assets/video/${scene}_${m}.mp4`;
+const DK_METRICS = {"alley":{"3dgs":[2.98,64.73,0.384,2.47],"lita":[2.99,52.25,0.227,2.65],"lum":[2.96,65.56,0.274,2.8],"gdk":[3.06,65.56,0.357,3.6],"ours":[2.21,67.22,0.442,4.65]},"bicycle":{"3dgs":[4.27,61.82,0.423,2.44],"lita":[4.42,45.68,0.28,2.58],"lum":[4.43,56.77,0.23,1.95],"gdk":[4.91,69.29,0.472,3.84],"ours":[2.94,69.64,0.492,3.95]},"dormitory":{"3dgs":[4.44,69.03,0.45,2.84],"lita":[4.1,50.55,0.329,1.95],"lum":[4.58,69.66,0.372,2.62],"gdk":[4.95,73.56,0.439,3.29],"ours":[3.01,72.58,0.525,4.45]},"fence":{"3dgs":[2.93,55.45,0.494,2.31],"lita":[3.54,45.41,0.376,2.07],"lum":[3.18,59.58,0.436,2.33],"gdk":[3.39,65.47,0.541,3.53],"ours":[2.34,64.77,0.555,4.24]},"flower":{"3dgs":[2.67,72.2,0.583,3.36],"lita":[3.49,58.25,0.436,2.71],"lum":[3.21,70.0,0.504,2.45],"gdk":[3.82,74.31,0.583,2.24],"ours":[2.48,69.25,0.6,4.13]},"kitchen":{"3dgs":[3.9,70.3,0.422,3.2],"lita":[3.94,53.23,0.292,2.47],"lum":[4.2,69.34,0.389,2.69],"gdk":[5.18,73.86,0.454,2.4],"ours":[2.58,72.37,0.521,4.78]},"livingroom":{"3dgs":[3.32,65.92,0.403,3.07],"lita":[3.51,52.79,0.294,2.96],"lum":[3.51,63.01,0.318,3.31],"gdk":[3.56,69.76,0.368,3.18],"ours":[2.65,69.14,0.473,4.6]},"piano":{"3dgs":[4.73,52.72,0.441,1.82],"lita":[4.65,42.54,0.299,2.24],"lum":[5.11,49.11,0.278,1.82],"gdk":[5.44,62.18,0.528,4.13],"ours":[2.64,65.69,0.542,3.51]},"snowman":{"3dgs":[4.19,57.17,0.417,3.16],"lita":[4.44,46.62,0.371,2.0],"lum":[4.28,62.79,0.402,1.98],"gdk":[4.66,62.03,0.447,4.45],"ours":[3.13,64.12,0.464,2.98]},"staircase":{"3dgs":[5.41,58.56,0.384,2.2],"lita":[3.85,39.37,0.307,2.29],"lum":[4.21,60.65,0.279,1.8],"gdk":[4.74,69.51,0.526,3.36],"ours":[2.92,69.55,0.546,3.95]},"street":{"3dgs":[2.48,64.76,0.411,2.33],"lita":[3.3,48.08,0.284,2.96],"lum":[2.78,61.01,0.334,2.11],"gdk":[3.06,72.19,0.541,3.73],"ours":[1.95,66.71,0.491,4.29]},"tree":{"3dgs":[3.24,64.96,0.523,2.98],"lita":[3.39,55.35,0.365,2.51],"lum":[3.44,64.02,0.363,1.87],"gdk":[3.05,68.4,0.585,3.56],"ours":[2.69,69.35,0.565,4.25]}};   // scene -> method -> [NIQE, MUSIQ, CLIP-IQA, MOS]
+const $ = id => document.getElementById(id);
+function el(tag, attrs, kids) {
+  const e = document.createElement(tag);
+  for (const k in attrs || {}) {
+    if (k === "text") e.textContent = attrs[k];
+    else if (k === "html") e.innerHTML = attrs[k];
+    else if (k === "class") e.className = attrs[k];
+    else e.setAttribute(k, attrs[k]);
+  }
+  (kids || []).forEach(c => c && e.appendChild(c));
+  return e;
+}
+const NAMES = {livingroom: "Living room"};
+const nice = s => NAMES[s] || s.charAt(0).toUpperCase() + s.slice(1);
+// Display order of the scenes.
+const DK_SCENES = [
+  "dormitory", "kitchen", "street", "tree", "piano", "alley", "livingroom", "fence", "bicycle", "flower", "snowman", "staircase"
+];
+const DK_METHODS = [
+  {k: "3dgs", n: "3DGS"}, {k: "lum", n: "Luminance-GS"}, {k: "lita", n: "LITA-GS"},
+  {k: "gdk", n: "Gaussian-DK"}, {k: "ours", n: "VeilGS (ours)", ours: true}
+];
+
+/* ---------- enlarged view ---------- */
+const LB = {items: [], i: 0, zoom: 1, x: 0, y: 0, video: null, onClose: null, startTime: 0};
+function openLightbox(title, items, i, opts) {
+  opts = opts || {};
+  Object.assign(LB, {items, i, zoom: 1, x: 0, y: 0, onClose: opts.onClose || null, startTime: opts.time || 0});
+  $("lb-title").textContent = title;
+  $("lightbox").hidden = false;
+  document.body.style.overflow = "hidden";
+  drawLightbox();
+  $("lb-close").focus();
+}
+function dropVideo() {
+  if (!LB.video) return 0;
+  const t = LB.video.currentTime;
+  LB.video.pause(); LB.video.removeAttribute("src"); LB.video.load(); LB.video = null;
+  return t;
+}
+function closeLightbox() {
+  dropVideo();
+  $("lb-view").innerHTML = "";
+  $("lightbox").hidden = true;
+  document.body.style.overflow = "";
+  if (LB.onClose) LB.onClose();
+}
+function zoomTo(z) {
+  LB.zoom = Math.max(1, Math.min(4, z));
+  if (LB.zoom === 1) LB.x = LB.y = 0;
+  const m = $("lb-view").firstElementChild;
+  if (m) m.style.transform = LB.zoom === 1 ? "" : `translate(${LB.x}px, ${LB.y}px) scale(${LB.zoom})`;
+  $("lb-zoom").textContent = "Zoom " + LB.zoom + "×";
+}
+function drawLightbox() {
+  const it = LB.items[LB.i], view = $("lb-view");
+  const t = LB.video ? dropVideo() : LB.startTime;
+  view.innerHTML = "";
+  if (it.video) {
+    const v = el("video", {muted: "", loop: "", playsinline: "", src: it.src});
+    v.muted = true;
+    v.loop = true;
+    v.addEventListener("loadedmetadata", () => { v.currentTime = Math.min(t, v.duration - 0.05); v.play().catch(() => {}); }, {once: true});
+    view.appendChild(v);
+    LB.video = v;
+  } else {
+    view.appendChild(el("img", {src: it.src, alt: it.alt || it.n}));
+  }
+  zoomTo(LB.zoom);
+  const nav = $("lb-nav");
+  nav.innerHTML = "";
+  if (LB.items.length > 1) LB.items.forEach((x, j) => {
+    const b = el("button", {class: "button" + (j === LB.i ? " is-dark" : ""), type: "button", html: x.n});
+    b.addEventListener("click", () => { LB.i = j; drawLightbox(); });
+    nav.appendChild(b);
+  });
+}
+$("lb-close").addEventListener("click", closeLightbox);
+$("lb-zoom").addEventListener("click", () => zoomTo(LB.zoom >= 4 ? 1 : LB.zoom * 2));
+$("lb-view").addEventListener("wheel", e => { e.preventDefault(); zoomTo(e.deltaY < 0 ? LB.zoom * 2 : LB.zoom / 2); }, {passive: false});
+(function () {
+  let down = null;
+  const v = $("lb-view");
+  v.addEventListener("pointerdown", e => { if (LB.zoom > 1) { down = {x: e.clientX - LB.x, y: e.clientY - LB.y}; v.setPointerCapture(e.pointerId); } });
+  v.addEventListener("pointermove", e => { if (down) { LB.x = e.clientX - down.x; LB.y = e.clientY - down.y; zoomTo(LB.zoom); } });
+  v.addEventListener("pointerup", () => { down = null; });
+})();
+document.addEventListener("keydown", e => {
+  if ($("lightbox").hidden) return;
+  if (e.key === "Escape") closeLightbox();
+  else if (e.key === "ArrowRight" && LB.items.length > 1) { LB.i = (LB.i + 1) % LB.items.length; drawLightbox(); }
+  else if (e.key === "ArrowLeft" && LB.items.length > 1) { LB.i = (LB.i - 1 + LB.items.length) % LB.items.length; drawLightbox(); }
+  else if (e.key === "+" || e.key === "=") zoomTo(LB.zoom * 2);
+  else if (e.key === "-") zoomTo(LB.zoom / 2);
+});
+function zoomable(node, title, items, i) {
+  node.tabIndex = 0;
+  node.setAttribute("role", "button");
+  const open = () => openLightbox(title, items, i);
+  node.addEventListener("click", open);
+  node.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+}
+
+/* ---------- teaser, figures ---------- */
+(function teaser() {
+  const grid = $("teaser-grid");
+  ["kitchen", "bicycle"].forEach(s => {
+    const items = [["input", "Input"], ["veil", "Veil <i class='m'>α</i> (ours)"], ["ours", "VeilGS (ours)"], ["gdk", "Gaussian-DK"]]
+      .map(([k, n]) => ({n, src: `${IMG}teaser/${s}_${k}.webp`, alt: `${nice(s)}: ${n.replace(/<[^>]+>/g, "")}`}));
+    items.forEach((it, i) => {
+      const img = el("img", {src: it.src, alt: it.alt});
+      zoomable(img, nice(s) + ", held-out view", items, i);
+      grid.appendChild(img);
+    });
+  });
+  zoomable($("radar"), "Mean scores and user-study MOS", [{n: "Radar", src: $("radar").src}], 0);
+  zoomable($("overview"), "Overview of VeilGS", [{n: "Overview", src: $("overview").src}], 0);
+  zoomable($("violin"), "Scores of the user study", [{n: "User study", src: $("violin").src}], 0);
+})();
+
+(function decomposition() {
+  const parts = [["clean", "Restored scene <i class='m'>J</i>", true], ["input", "Dark input <i class='m'>I</i>"], ["alpha", "Veil <i class='m'>α</i>"],
+    ["albedo", "Albedo"], ["shading", "Shading"], ["pred", "Prediction <i class='m'>Î</i>"], ["depth", "Inverse depth"]];
+  const grid = $("decomp-grid");
+  function show(scene) {
+    document.querySelectorAll("#decomp-tabs .tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.scene === scene)));
+    grid.innerHTML = "";
+    const items = parts.map(([k, n]) => ({n, src: `${IMG}decomposition/${scene}_${k}.webp`}));
+    parts.forEach(([k, n, wide], i) => {
+      const img = el("img", {src: items[i].src, alt: n.replace(/<[^>]+>/g, ""), loading: "lazy"});
+      zoomable(img, nice(scene.split("_")[0]) + ", training view", items, i);
+      grid.appendChild(el("figure", {class: wide ? "is-wide" : ""}, [img, el("figcaption", {html: n})]));
+    });
+  }
+  document.querySelectorAll("#decomp-tabs .tab").forEach(t => t.addEventListener("click", () => show(t.dataset.scene)));
+  show("flower_IMG_6241");
+})();
+
+/* ---------- carousel of VeilGS novel views: loops in both directions ---------- */
+(function carousel() {
+  const root = $("carousel"), viewport = $("carousel-viewport"), track = $("carousel-track"), dots = $("carousel-dots");
+  const scenes = ["kitchen", "bicycle", "dormitory", "street", "tree", "alley", "fence", "flower", "livingroom", "piano", "snowman", "staircase"];
+  const n = scenes.length;
+  const perPage = () => window.matchMedia("(max-width: 768px)").matches ? 1 : 3;
+  let per = 0, idx = 0, busy = false, vids = [], io = null, onScreen = false, settleTimer = 0;
+  const inView = new Set();
+  const apply = () => vids.forEach(v => (onScreen && inView.has(v)) ? v.play().catch(() => {}) : v.pause());
+  function item(s) {
+    const v = el("video", {muted: "", loop: "", playsinline: "", preload: "none", poster: `${IMG}thumbs/${s}.webp`, src: vsrc(s, "ours"), "aria-label": nice(s) + ", VeilGS novel view"});
+    v.muted = true;
+    v.loop = true;
+    return el("div", {class: "item"}, [el("div", {class: "card"}, [v, el("p", {class: "carousel-caption", text: nice(s)})])]);
+  }
+  // The track holds the scenes with copies of the last and first page at either end, so the strip can always move on.
+  function build() {
+    per = perPage();
+    root.style.setProperty("--per", per);
+    track.innerHTML = "";
+    scenes.slice(-per).concat(scenes, scenes.slice(0, per)).forEach(s => track.appendChild(item(s)));
+    vids = [...track.querySelectorAll("video")];
+    if (io) io.disconnect();
+    inView.clear();
+    io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? inView.add(e.target) : inView.delete(e.target)); apply(); }, {root: viewport, threshold: 0.6});
+    vids.forEach(v => io.observe(v));
+    dots.innerHTML = "";
+    scenes.forEach((s, k) => {
+      const b = el("button", {type: "button", "aria-label": nice(s)});
+      b.addEventListener("click", () => go(k));
+      dots.appendChild(b);
+    });
+    place(idx, false);
+  }
+  function place(i, animate) {
+    idx = i;
+    track.style.transition = animate ? "" : "none";
+    track.style.transform = `translateX(${-(i + per) * 100 / per}%)`;
+    if (!animate) { void track.offsetWidth; track.style.transition = ""; }
+    [...dots.children].forEach((b, k) => b.setAttribute("aria-current", String(k === ((idx % n) + n) % n)));
+  }
+  // After moving onto a copy, jump to the matching original without animation, carrying the playback time over.
+  function settle() {
+    clearTimeout(settleTimer);
+    busy = false;
+    if (idx >= 0 && idx < n) return;
+    const shift = idx >= n ? -n : n;
+    for (let k = 0; k < per; k++) {
+      const from = vids[idx + per + k], to = vids[idx + shift + per + k];
+      if (from && to && from.readyState >= 1) { try { to.currentTime = from.currentTime; } catch (e) {} }
+    }
+    place(idx + shift, false);
+  }
+  function go(i) {
+    if (busy) return;
+    busy = true;
+    place(i, true);
+    settleTimer = setTimeout(settle, 700);
+  }
+  track.addEventListener("transitionend", e => { if (e.target === track) settle(); });
+  root.querySelector(".prev").addEventListener("click", () => go(idx - 1));
+  root.querySelector(".next").addEventListener("click", () => go(idx + 1));
+  let downX = null;
+  viewport.addEventListener("pointerdown", e => { downX = e.clientX; });
+  viewport.addEventListener("pointerup", e => {
+    if (downX === null) return;
+    const dx = e.clientX - downX;
+    downX = null;
+    if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+  });
+  window.addEventListener("resize", () => { if (perPage() !== per) build(); });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(es => { onScreen = es[0].isIntersecting; apply(); }, {threshold: 0.2}).observe(viewport);
+  }
+  build();
+})();
+
+/* ---------- Gaussian-DK videos: side by side, or slider ---------- */
+const DK = {scene: "dormitory", mode: "row", method: "gdk", videos: [], master: null, playing: true, rate: 1, seeking: false, raf: 0, onScreen: true};
+function dkFree() {
+  cancelAnimationFrame(DK.raf);
+  DK.videos.forEach(v => { v.pause(); v.removeAttribute("src"); v.load(); });
+  DK.videos = []; DK.master = null;
+}
+function dkVideo(scene, m, cls) {
+  const v = el("video", {muted: "", loop: "", playsinline: "", preload: "auto", src: vsrc(scene, m), class: cls || ""});
+  v.muted = true;
+  v.loop = true;
+  v.playbackRate = DK.rate;
+  return v;
+}
+function dkPlayAll() { if (DK.playing && DK.onScreen) DK.videos.forEach(v => v.play().catch(() => {})); }
+function dkSync() {
+  const m = DK.master;
+  if (!m) return;
+  const t = m.currentTime, d = m.duration || 8.93;
+  if (!DK.seeking) {
+    $("dk-seek").value = String(Math.round(t / d * 1000));
+    $("dk-time").textContent = t.toFixed(1) + " / " + d.toFixed(1) + " s";
+  }
+  for (const v of DK.videos) {
+    if (v === m || v.readyState < 2 || v.seeking) continue;
+    let diff = v.currentTime - t;
+    if (diff > d / 2) diff -= d; else if (diff < -d / 2) diff += d;
+    if (m.paused || Math.abs(diff) > 0.25) { if (Math.abs(diff) > 0.02) v.currentTime = t; v.playbackRate = DK.rate; }
+    else if (Math.abs(diff) > 0.03) v.playbackRate = DK.rate * (diff > 0 ? 0.92 : 1.08);
+    else v.playbackRate = DK.rate;
+    if (!m.paused && v.paused) v.play().catch(() => {});
+  }
+  DK.raf = requestAnimationFrame(dkSync);
+}
+function dkRender() {
+  const t = DK.master ? DK.master.currentTime : 0;
+  dkFree();
+  const stage = $("dk-stage");
+  stage.innerHTML = "";
+  $("dk-methods").hidden = DK.mode !== "slider";
+  document.querySelectorAll("#results [data-mode]").forEach(b => b.classList.toggle("is-dark", b.dataset.mode === DK.mode));
+  document.querySelectorAll("#dk-methods .button").forEach(b => b.classList.toggle("is-dark", b.dataset.method === DK.method));
+  document.querySelectorAll("#dk-thumbs figure").forEach(f => f.classList.toggle("is-active", f.dataset.scene === DK.scene));
+  const met = DK_METRICS[DK.scene];
+  if (DK.mode === "row") {
+    const row = el("div", {class: "dk-row"});
+    const items = DK_METHODS.map(m => ({n: m.n, src: vsrc(DK.scene, m.k), video: true}));
+    DK_METHODS.forEach((m, i) => {
+      const v = dkVideo(DK.scene, m.k);
+      DK.videos.push(v);
+      const frame = el("div", {class: "frame", tabindex: "0", role: "button", "aria-label": "Enlarge " + m.n}, [v]);
+      const open = () => {
+        const at = DK.master ? DK.master.currentTime : 0;
+        DK.videos.forEach(x => x.pause());
+        openLightbox(nice(DK.scene), items, i, {time: at, onClose: dkPlayAll});
+      };
+      frame.addEventListener("click", open);
+      frame.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+      row.appendChild(el("figure", {class: m.ours ? "ours" : ""}, [frame,
+        el("figcaption", {}, [document.createTextNode(m.n), el("span", {class: "mos", text: `MOS ${met[m.k][3].toFixed(2)} · NIQE ${met[m.k][0].toFixed(2)}`})])]));
+    });
+    stage.appendChild(row);
+    $("dk-caption").innerHTML = `<b>${nice(DK.scene)}</b>. Under each video: its user-study MOS (1–5) and NIQE↓ on this scene. Click a video to enlarge it; the arrow keys then switch methods.`;
+  } else {
+    const label = DK_METHODS.find(m => m.k === DK.method).n;
+    const right = dkVideo(DK.scene, "ours", "compare-right"), left = dkVideo(DK.scene, DK.method, "compare-left");
+    DK.videos.push(left, right);
+    stage.appendChild(sliderFrame(left, right, label));
+    $("dk-caption").innerHTML = `<b>${nice(DK.scene)}</b>. MOS on this scene: VeilGS ${met.ours[3].toFixed(2)}, ${label} ${met[DK.method][3].toFixed(2)}. Drag the slider or use the arrow keys.`;
+  }
+  DK.master = DK.videos[DK.videos.length - 1];
+  let ready = 0;
+  DK.videos.forEach(v => {
+    v.addEventListener("loadedmetadata", () => { v.currentTime = Math.min(t, (v.duration || 9) - 0.05); }, {once: true});
+    v.addEventListener("loadeddata", () => { if (++ready === DK.videos.length) dkPlayAll(); }, {once: true});
+  });
+  DK.raf = requestAnimationFrame(dkSync);
+}
+
+/* slider frame shared by the video and image widgets */
+function sliderFrame(left, right, leftLabel) {
+  const frame = el("div", {class: "compare-frame", tabindex: "0", role: "slider", "aria-label": "Comparison split", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": "50"});
+  left.classList.add("compare-left"); right.classList.add("compare-right");
+  frame.append(right, left, el("div", {class: "compare-handle"}), el("span", {class: "compare-tag left", html: leftLabel}), el("span", {class: "compare-tag right", text: "VeilGS (ours)"}));
+  let pos = 50, dragging = false;
+  const set = p => { pos = Math.max(0, Math.min(100, p)); frame.style.setProperty("--pos", pos + "%"); frame.setAttribute("aria-valuenow", String(Math.round(pos))); };
+  const fromEvent = e => { const r = frame.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); };
+  frame.addEventListener("pointerdown", e => { dragging = true; frame.setPointerCapture(e.pointerId); fromEvent(e); });
+  frame.addEventListener("pointermove", e => { if (dragging || e.pointerType === "mouse") fromEvent(e); });
+  frame.addEventListener("pointerup", () => { dragging = false; });
+  frame.addEventListener("pointercancel", () => { dragging = false; });
+  frame.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") { set(pos - 5); e.preventDefault(); }
+    if (e.key === "ArrowRight") { set(pos + 5); e.preventDefault(); }
+  });
+  set(50);
+  return frame;
+}
+
+(function initDK() {
+  const methods = $("dk-methods");
+  DK_METHODS.filter(m => !m.ours).forEach(m => {
+    const b = el("button", {class: "button is-rounded", type: "button", "data-method": m.k, text: m.n});
+    b.addEventListener("click", () => { DK.method = m.k; dkRender(); });
+    methods.appendChild(b);
+  });
+  document.querySelectorAll("#results [data-mode]").forEach(b => b.addEventListener("click", () => { DK.mode = b.dataset.mode; dkRender(); }));
+  const thumbs = $("dk-thumbs");
+  DK_SCENES.forEach(s => {
+    const f = el("figure", {"data-scene": s, tabindex: "0", role: "button", "aria-label": nice(s)}, [
+      el("img", {src: `${IMG}thumbs/${s}.webp`, alt: "", loading: "lazy"}),
+      el("figcaption", {text: nice(s)})]);
+    const pick = () => { DK.scene = s; dkRender(); };
+    f.addEventListener("click", pick);
+    f.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+    thumbs.appendChild(f);
+  });
+  $("dk-play").addEventListener("click", () => {
+    DK.playing = !DK.playing;
+    $("dk-play").textContent = DK.playing ? "Pause" : "Play";
+    DK.playing ? dkPlayAll() : DK.videos.forEach(v => v.pause());
+  });
+  $("dk-speed").addEventListener("click", () => {
+    DK.rate = DK.rate === 1 ? 0.5 : DK.rate === 0.5 ? 0.25 : 1;
+    $("dk-speed").textContent = DK.rate + "×";
+    DK.videos.forEach(v => { v.playbackRate = DK.rate; });
+  });
+  const seek = $("dk-seek");
+  seek.addEventListener("input", () => {
+    DK.seeking = true;
+    const d = (DK.master && DK.master.duration) || 8.93, t = seek.value / 1000 * d;
+    DK.videos.forEach(v => { v.currentTime = Math.min(t, d - 0.04); });
+    $("dk-time").textContent = t.toFixed(1) + " / " + d.toFixed(1) + " s";
+  });
+  seek.addEventListener("change", () => { DK.seeking = false; });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(es => {
+      DK.onScreen = es[0].isIntersecting;
+      DK.onScreen ? dkPlayAll() : DK.videos.forEach(v => v.pause());
+    }, {threshold: 0.05}).observe($("results"));
+  }
+  dkRender();
+})();
+
+/* ---------- LOM image slider ---------- */
+(function lom() {
+  const root = $("lom-widget");
+  const scenes = [["bike_1", "Bike"], ["sofa_24", "Sofa"], ["buu_1", "Buu"], ["chair_17", "Chair"]];
+  const methods = [["LowNormal", "Low / normal light"], ["LuminanceGS", "Luminance-GS"], ["AlethNeRF", "Aleth-NeRF"], ["LITAGS", "LITA-GS"], ["I2NeRF", "I&sup2;-NeRF"]];
+  const st = {scene: scenes[0][0], method: "LowNormal"};
+  const src = (m, s) => `${IMG}comparison_lom/${s || st.scene}_${m}.png`;
+  const bar = el("div", {class: "compare-bar"});
+  const controls = el("div", {class: "compare-controls"}, [el("span", {class: "compare-controls-label", text: "Compare with:"})]);
+  methods.forEach(([k, n]) => {
+    const b = el("button", {class: "button", type: "button", "data-method": k, html: n});
+    b.addEventListener("click", () => { st.method = k; draw(); });
+    controls.appendChild(b);
+  });
+  bar.appendChild(controls);
+  const left = el("img", {alt: ""}), right = el("img", {alt: ""});
+  const frame = sliderFrame(left, right, "");
+  const thumbs = el("div", {class: "compare-thumbs"});
+  scenes.forEach(([k, n]) => {
+    const f = el("figure", {"data-scene": k, tabindex: "0", role: "button", "aria-label": n}, [el("img", {src: src("VeilGS", k), alt: "", loading: "lazy"}), el("figcaption", {text: n})]);
+    const pick = () => { st.scene = k; draw(); };
+    f.addEventListener("click", pick);
+    f.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+    thumbs.appendChild(f);
+  });
+  root.append(bar, frame, thumbs);
+  frame.style.aspectRatio = "500 / 375";
+  function draw() {
+    const name = methods.find(m => m[0] === st.method)[1];
+    right.src = src("VeilGS"); right.alt = "VeilGS (ours)";
+    left.src = src(st.method); left.alt = name.replace(/&sup2;/, "²");
+    frame.querySelector(".compare-tag.left").innerHTML = name;
+    controls.querySelectorAll(".button").forEach(b => b.classList.toggle("is-dark", b.dataset.method === st.method));
+    thumbs.querySelectorAll("figure").forEach(f => f.classList.toggle("is-active", f.dataset.scene === st.scene));
+  }
+  draw();
+})();
+/* ---------- BibTeX copy ---------- */
+(function () {
+  const btn = document.getElementById("copy-bibtex");
+  if (!btn) return;
+  btn.addEventListener("click", function () {
+    const text = document.getElementById("bibtex-code").textContent;
+    const done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1500); };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text); done(); });
+    } else { fallback(text); done(); }
+  });
+  function fallback(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+})();
+</script>
+</body>
+</html>
