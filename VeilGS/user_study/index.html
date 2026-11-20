@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Low-Light Novel View Synthesis Evaluation</title>
+<style>
+/* Layout: an online-assessment shell. A navy top bar carries the question count and save status, a
+   question navigator sits on the left, and each question is a white card on a pale grey page.
+   Media sits on a neutral dark tile so every version is judged against the same surround. */
+:root {
+  --page: #f3f5f8;
+  --card: #ffffff;
+  --ink: #1f2933;
+  --ink-2: #4b5866;
+  --muted: #7b8794;
+  --line: #dde3ea;
+  --navy: #0e1726;
+  --navy-2: #1b2a3f;
+  --green: #1b9e55;
+  --green-dark: #157f44;
+  --green-tint: #e7f6ed;
+  --stage: #1d1f22;
+  --font-ui: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-code: "Source Code Pro", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 16px/1.55 var(--font-ui); }
+h1, h2, h3 { margin: 0; line-height: 1.25; text-wrap: balance; color: var(--ink); }
+h1 { font-size: 1.75rem; font-weight: 700; }
+h2 { font-size: 1.3rem; font-weight: 700; }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p { margin: 0; max-width: 70ch; }
+.muted { color: var(--muted); }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+
+/* Top bar */
+.topbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--navy); color: #e8edf3; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--navy); }
+.topbar-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 8px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: #fff; min-width: 0; }
+.brand-mark {
+  width: 28px; height: 28px; border-radius: 6px; flex: none; background: var(--green); color: #fff;
+  display: grid; place-items: center; font-family: var(--font-code); font-size: 0.85rem; font-weight: 600;
+}
+.brand span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.top-meta { display: flex; align-items: center; gap: 14px; font-size: 0.92rem; }
+.pill { display: inline-flex; align-items: center; gap: 6px; background: var(--navy-2); border-radius: 999px; padding: 4px 12px; white-space: nowrap; }
+.pill b { font-family: var(--font-code); font-weight: 600; color: #fff; }
+.top-tabs { display: flex; gap: 6px; }
+.top-tabs button {
+  background: transparent; color: #c7d0db; border: 1px solid #33445c; border-radius: 6px;
+  padding: 5px 12px; font: inherit; font-size: 0.88rem; cursor: pointer;
+}
+.top-tabs button[aria-selected="true"] { background: var(--navy-2); color: #fff; border-color: #4a5d78; }
+
+/* Shell */
+.shell {
+  max-width: 1480px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 48px;
+}
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
+.layout.with-nav { grid-template-columns: 220px minmax(0, 1fr); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 24px; }
+.narrow { max-width: 860px; margin: 0 auto; width: 100%; }
+
+/* Buttons */
+button { font: inherit; cursor: pointer; }
+.btn { border-radius: 6px; padding: 9px 18px; font-weight: 600; font-size: 0.95rem; border: 1px solid var(--line); background: var(--card); color: var(--ink); }
+.btn:hover:not(:disabled) { border-color: var(--muted); }
+.btn-primary { background: var(--green); border-color: var(--green); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--green-dark); border-color: var(--green-dark); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+/* Landing */
+.details { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.details div { padding: 14px 16px; border-right: 1px solid var(--line); }
+.details div:last-child { border-right: 0; }
+.details b { display: block; font-size: 1.25rem; font-family: var(--font-code); font-weight: 600; }
+.rules { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; color: var(--ink-2); }
+.scale { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.scale div { display: grid; grid-template-columns: 3em 7em 1fr; gap: 10px; padding: 8px 14px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.scale div:last-child { border-bottom: 0; }
+.scale b { font-family: var(--font-code); color: var(--green-dark); }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.fields label { display: flex; flex-direction: column; gap: 6px; font-size: 0.92rem; color: var(--ink-2); }
+select, textarea { font: inherit; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; }
+textarea { width: 100%; min-height: 96px; font-family: var(--font-code); font-size: 0.8rem; }
+.agree { display: flex; gap: 10px; align-items: flex-start; color: var(--ink-2); }
+.agree input { margin-top: 4px; width: 16px; height: 16px; accent-color: var(--green); flex: none; }
+.device-note { font-size: 0.95rem; color: #5c4400; background: #fff6db; border: 1px solid #f0d78c; border-radius: 6px; padding: 10px 14px; max-width: none; }
+.offline-strip { background: #fff6db; color: #5c4400; border-bottom: 1px solid #f0d78c; text-align: center; font-size: 0.9rem; padding: 6px 16px; }
+.offline-strip a { color: inherit; font-weight: 600; }
+.note { font-size: 0.9rem; color: var(--ink-2); background: var(--green-tint); border-radius: 6px; padding: 10px 14px; max-width: none; }
+
+/* Question navigator */
+.qnav { position: sticky; top: calc(76px + env(safe-area-inset-top, 0px)); padding: 16px 0; }
+.qnav h3 { padding: 0 16px 6px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 600; }
+.qnav ol { list-style: none; margin: 0 0 12px; padding: 0; }
+.qnav li button {
+  width: 100%; display: flex; align-items: center; gap: 10px; text-align: left; border: 0;
+  border-left: 3px solid transparent; background: transparent; color: var(--ink-2); padding: 6px 14px; font-size: 0.93rem;
+}
+.qnav li button:disabled { cursor: default; color: var(--muted); }
+.qnav li button:hover:not(:disabled) { background: var(--page); }
+.qnav li button[aria-current="step"] { border-left-color: var(--green); background: var(--green-tint); color: var(--ink); font-weight: 600; }
+.qdot {
+  width: 22px; height: 22px; border-radius: 50%; flex: none; display: grid; place-items: center;
+  font-family: var(--font-code); font-size: 0.72rem; border: 1px solid var(--line); background: #fff; color: var(--ink-2);
+}
+.qnav li.done .qdot { background: var(--green); border-color: var(--green); color: #fff; }
+.qcount { padding: 0 16px; font-size: 0.85rem; color: var(--muted); }
+
+/* Question card */
+#screen-trial { padding: 18px 20px; }
+.qhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.qtag { font-family: var(--font-code); font-size: 0.85rem; color: var(--muted); }
+.qbar { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; margin: 12px 0 4px; }
+.qbar > div { height: 100%; background: var(--green); width: 0; transition: width 0.25s; }
+.legend { font-family: var(--font-code); font-size: 0.82rem; color: var(--muted); }
+.grid5 { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
+.tile {
+  flex: 0 0 calc((100% - 24px) / 3); min-width: 0; border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px; background: #fff; display: flex; flex-direction: column; gap: 8px;
+}
+.tile.rated { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+.tile-head { display: flex; justify-content: space-between; align-items: center; padding: 0 2px; font-size: 0.9rem; }
+.tile-head b { font-family: var(--font-code); font-weight: 600; }
+.tile-head span { color: var(--green-dark); font-weight: 600; }
+.stage {
+  position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: max(160px, calc((100vh - 450px) / 2));
+  background: var(--stage); border-radius: 6px; overflow: hidden; cursor: zoom-in;
+}
+.stage video, .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+.stage .loading { position: absolute; inset: 0; display: grid; place-items: center; color: #9aa5b1; font-size: 0.9rem; }
+.seg { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.seg button { padding: 6px 0; border-radius: 6px; border: 1px solid var(--line); background: #fff; color: var(--ink); font-family: var(--font-code); font-size: 0.95rem; }
+.seg button:hover:not(:disabled) { border-color: var(--green); }
+.seg button.picked { background: var(--green); border-color: var(--green); color: #fff; font-weight: 600; }
+.seg button:disabled { opacity: 0.45; cursor: not-allowed; }
+.watch { height: 3px; margin-top: 12px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.watch > div { height: 100%; width: 0; background: var(--muted); }
+.qfoot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+.qfoot .hint { color: var(--ink-2); font-size: 0.92rem; }
+
+/* Zoom */
+.zoom {
+  position: fixed; inset: 0; z-index: 30; background: rgba(8, 12, 18, 0.9); display: grid; place-items: center;
+  padding: calc(16px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.zoom-inner { width: min(1200px, 100%); display: flex; flex-direction: column; gap: 10px; }
+.zoom-stage {
+  position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: calc(100vh - 150px);
+  background: var(--stage); border-radius: 8px; overflow: hidden; touch-action: pan-y;
+}
+.zoom-media, .zoom-media video, .zoom-media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.zoom-media video, .zoom-media img { object-fit: contain; }
+.zoom-tag {
+  position: absolute; top: 10px; left: 10px; padding: 3px 10px; border-radius: 4px;
+  background: rgba(0, 0, 0, 0.6); color: #fff; font-family: var(--font-code); font-size: 0.95rem;
+}
+.zoom-side {
+  position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%;
+  border: 0; background: rgba(255, 255, 255, 0.92); color: var(--ink); font-size: 2rem; line-height: 1;
+  display: grid; place-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+.zoom-side:hover { background: #fff; }
+.zoom-side.left { left: 12px; }
+.zoom-side.right { right: 12px; }
+.zoom-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.zoom-chips { display: flex; gap: 6px; }
+.zoom-chips button {
+  min-width: 40px; padding: 6px 10px; border-radius: 6px; border: 1px solid #4a5d78; background: transparent;
+  color: #dbe3ec; font-family: var(--font-code); font-weight: 600;
+}
+.zoom-chips button[aria-selected="true"] { background: #fff; color: var(--ink); border-color: #fff; }
+.zoom-chips button.rated::after { content: " \2713"; color: var(--green); }
+.zoom-rate-label { color: #c7d0db; font-size: 0.9rem; }
+.zoom-seg { width: 230px; }
+.zoom-seg button { background: #fff; }
+.zoom-hint { color: #9aa5b1; font-size: 0.82rem; text-align: center; margin: 0 auto; }
+.qnav li.partial .qdot { border-color: var(--green); color: var(--green-dark); background: var(--green-tint); }
+
+.check { width: 56px; height: 56px; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; font-size: 1.6rem; }
+
+/* Results */
+.summary { display: flex; flex-wrap: wrap; gap: 32px; }
+.summary div { display: flex; flex-direction: column; }
+.summary .num { font-family: var(--font-code); font-size: 1.6rem; font-weight: 600; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.93rem; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+td.num { font-family: var(--font-code); font-variant-numeric: tabular-nums; }
+tr.best td { color: var(--green-dark); font-weight: 600; }
+.bar-cell { width: 38%; min-width: 160px; }
+.mos-bar { position: relative; height: 14px; background: var(--page); border: 1px solid var(--line); border-radius: 3px; }
+.mos-bar .fill { position: absolute; left: 0; top: 0; bottom: 0; background: #9aa5b1; border-radius: 2px; }
+tr.best .mos-bar .fill { background: var(--green); }
+.mos-bar .ci { position: absolute; top: 2px; bottom: 2px; border-left: 2px solid var(--ink); border-right: 2px solid var(--ink); }
+.mos-bar .ci::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px solid var(--ink); }
+.axis { font-family: var(--font-code); font-size: 0.75rem; color: var(--muted); }
+
+.toast {
+  position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+  background: var(--navy); color: #fff; padding: 8px 14px; border-radius: 6px; font-size: 0.9rem; z-index: 40;
+}
+@media (max-width: 980px) {
+  .layout.with-nav { grid-template-columns: minmax(0, 1fr); }
+  .qnav { position: static; padding: 12px; }
+  .qnav ol { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+  .qnav li button { padding: 4px; border-left: 0; width: auto; }
+  .qnav li button .qlabel { display: none; }
+  .qnav li button[aria-current="step"] .qdot { box-shadow: 0 0 0 2px var(--green); }
+  .tile { flex-basis: calc((100% - 12px) / 2); }
+}
+@media (max-width: 560px) {
+  .pill.optional { display: none; }
+  .card { padding: 16px; }
+  .tile { flex-basis: 100%; }
+  .stage { max-height: none; }
+  .scale div { grid-template-columns: 2.4em 6em 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .qbar > div { transition: none; } }
+</style>
+</head>
+<body>
+
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><div class="brand-mark">LL</div><span>Low-Light Novel View Synthesis Evaluation</span></div>
+    <div class="top-meta">
+      <span class="pill optional" id="pill-q" hidden>Question <b id="top-q">1/17</b></span>
+      <span class="pill" id="pill-save" hidden><b id="save-state">Saved</b></span>
+    </div>
+  </div>
+  <div class="offline-strip">Offline copy of the user study, as participants saw it; your ratings are not recorded.
+    In the study, the videos and images were served under encoded file names, so the page never revealed which method was behind a version.
+    <a href="../index.html">Back to the results</a></div>
+</header>
+
+<div class="shell">
+  <div id="view-study" class="layout">
+    <aside class="card qnav" id="qnav" hidden aria-label="Questions"></aside>
+    <main class="stack" style="min-width: 0;">
+
+      <section id="screen-welcome" class="stack narrow">
+        <div class="card stack">
+          <span class="eyebrow">Assessment</span>
+          <h1>Low-Light Novel View Synthesis Evaluation</h1>
+          <p class="muted">Scenes were captured in the dark and reconstructed by different 3D methods. You will rate how good each result looks.</p>
+          <p class="device-note"><b>Before you start:</b> please do this study on a laptop or desktop computer connected to Wi-Fi. The videos are large and need a big screen to judge fairly.</p>
+          <div class="details">
+            <div><span class="muted">Duration</span><b>~10 min</b></div>
+            <div><span class="muted">Questions</span><b id="d-questions">17</b></div>
+            <div><span class="muted">Sections</span><b>2</b></div>
+            <div><span class="muted">Scale</span><b>1&#x2013;5</b></div>
+          </div>
+        </div>
+        <div class="card stack">
+          <h2>Instructions</h2>
+          <ol class="rules">
+            <li>Each question shows five versions of the same scene, labelled A to E. The methods behind the letters are hidden and shuffled on every question.</li>
+            <li>Rate every version for overall visual quality: is the scene clearly visible, do colours and brightness look natural, and is it free of haze, blur, noise, floating blobs or flicker?</li>
+            <li id="rule-sections">Section 1 has looping videos that play in sync. Section 2 has still images.</li>
+            <li>Click any video or image to view it larger; in the large view, the arrow keys switch between versions. You can give several versions the same score.</li>
+            <li>Move between questions in any order: use Previous and Next, or click a question in the list on the left. Submit the assessment once every version is rated.</li>
+            <li>Each rating is saved as soon as you click it, so you can close the page and continue later. Please keep your screen at full brightness.</li>
+          </ol>
+          <h3>Rating scale</h3>
+          <div class="scale">
+            <div><b>5</b><span>Excellent</span><span class="muted">Looks like a clean, well-lit photo or video.</span></div>
+            <div><b>4</b><span>Good</span><span class="muted">Minor flaws you have to look for.</span></div>
+            <div><b>3</b><span>Fair</span><span class="muted">Noticeable flaws, but the scene is clear.</span></div>
+            <div><b>2</b><span>Poor</span><span class="muted">Obvious flaws that get in the way.</span></div>
+            <div><b>1</b><span>Bad</span><span class="muted">Hard to make out the scene.</span></div>
+          </div>
+        </div>
+        <div class="card stack">
+          <h2>About you <span class="muted" style="font-weight: 400; font-size: 1rem;">(optional)</span></h2>
+          <div class="fields">
+            <label for="q-exp">Experience with images, graphics or vision
+              <select id="q-exp">
+                <option value="">Prefer not to say</option>
+                <option value="expert">I work in the field</option>
+                <option value="some">Some experience</option>
+                <option value="none">None</option>
+              </select>
+            </label>
+            <label for="q-display">Screen you are using
+              <select id="q-display">
+                <option value="">Prefer not to say</option>
+                <option value="desktop">Desktop monitor</option>
+                <option value="laptop">Laptop</option>
+                <option value="tablet">Tablet</option>
+                <option value="phone">Phone</option>
+              </select>
+            </label>
+          </div>
+          <p class="note" id="storage-note">Checking how your answers will be saved&#x2026;</p>
+          <label class="agree" for="agree"><input type="checkbox" id="agree"> I have read the instructions and agree that my anonymous ratings may be used for research.</label>
+          <div class="row">
+            <button class="btn btn-primary" id="btn-start" disabled>Start assessment</button>
+            <span class="muted" id="resume-note"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-trial" class="card" hidden>
+        <div class="qhead">
+          <div class="stack" style="gap: 2px;">
+            <span class="qtag" id="q-tag">Section 1 &#xb7; Question 1</span>
+            <h2 id="q-title">Rate each version of this scene</h2>
+          </div>
+          <span class="legend">1 Bad &#xb7; 2 Poor &#xb7; 3 Fair &#xb7; 4 Good &#xb7; 5 Excellent</span>
+        </div>
+        <div class="qbar"><div id="q-progress"></div></div>
+        <div class="grid5" id="trial-grid"></div>
+        <div class="watch"><div id="watch-bar"></div></div>
+        <div class="qfoot">
+          <button class="btn" id="btn-prev">&#x2190; Previous</button>
+          <span class="hint" id="hint"></span>
+          <div class="row">
+            <button class="btn" id="btn-next">Next &#x2192;</button>
+            <button class="btn btn-primary" id="btn-submit" disabled>Submit assessment</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-done" class="card stack narrow" hidden>
+        <div class="check" aria-hidden="true">&#x2713;</div>
+        <h1>Assessment submitted</h1>
+        <p id="done-msg">Thank you. Your ratings are saved.</p>
+        <div class="stack" id="code-card" hidden>
+          <h3>Send this completion code</h3>
+          <p class="muted" id="code-why">Some ratings have not reached the study server yet. Keep this page open for a minute so it can retry, or copy this code and send it to the researcher.</p>
+          <textarea id="code-text" readonly></textarea>
+          <div class="row">
+            <button class="btn" id="btn-copy-code">Copy code</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+</div>
+
+<div class="zoom" id="zoom" hidden role="dialog" aria-modal="true" aria-label="Enlarged version" tabindex="-1">
+  <div class="zoom-inner">
+    <div class="zoom-stage" id="zoom-stage-wrap">
+      <div class="zoom-media" id="zoom-stage"></div>
+      <span class="zoom-tag" id="zoom-label">Version A</span>
+      <button class="zoom-side left" id="btn-zoom-prev" aria-label="Previous version">&#x2039;</button>
+      <button class="zoom-side right" id="btn-zoom-next" aria-label="Next version">&#x203a;</button>
+    </div>
+    <div class="zoom-bar">
+      <div class="zoom-chips" id="zoom-chips" role="tablist" aria-label="Versions"></div>
+      <div class="row">
+        <span class="zoom-rate-label">Rating</span>
+        <div class="seg zoom-seg" id="zoom-seg" role="radiogroup" aria-label="Rating for this version"></div>
+      </div>
+      <button class="btn" id="btn-zoom-close">Close</button>
+    </div>
+    <p class="zoom-hint">Click the arrows or a letter, swipe, or use &#x2190; &#x2192; to switch version &#xb7; 1&#x2013;5 to rate &#xb7; Esc to close</p>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const TRIALS = [{"id":"ra01bb0e3","ds":"lom","scene":"bike","file":"../assets/img/comparison_lom/bike_1_LuminanceGS.png"},{"id":"r6323c1fc","ds":"lom","scene":"sofa","file":"../assets/img/comparison_lom/sofa_24_LuminanceGS.png"},{"id":"r4b71fdcf","ds":"lom","scene":"shrub","file":"media/shrub_I2NeRF.png"},{"id":"rc0445bc6","ds":"dk","scene":"piano","file":"../assets/video/piano_lum.mp4"},{"id":"r6182558f","ds":"dk","scene":"bicycle","file":"../assets/video/bicycle_ours.mp4"},{"id":"r6b87ff41","ds":"dk","scene":"dormitory","file":"../assets/video/dormitory_ours.mp4"},{"id":"rc323c5fc","ds":"dk","scene":"street","file":"../assets/video/street_lita.mp4"},{"id":"r18294a3d","ds":"dk","scene":"dormitory","file":"../assets/video/dormitory_lum.mp4"},{"id":"r2f539cd3","ds":"lom","scene":"sofa","file":"../assets/img/comparison_lom/sofa_24_AlethNeRF.png"},{"id":"r11a0eebb","ds":"lom","scene":"chair","file":"../assets/img/comparison_lom/chair_17_I2NeRF.png"},{"id":"r42a809a9","ds":"dk","scene":"dormitory","file":"../assets/video/dormitory_lita.mp4"},{"id":"r8ee30551","ds":"dk","scene":"flower","file":"../assets/video/flower_3dgs.mp4"},{"id":"r727f7809","ds":"dk","scene":"tree","file":"../assets/video/tree_gdk.mp4"},{"id":"r087842d2","ds":"dk","scene":"tree","file":"../assets/video/tree_3dgs.mp4"},{"id":"r24e2ca8f","ds":"dk","scene":"kitchen","file":"../assets/video/kitchen_gdk.mp4"},{"id":"rd4cb981c","ds":"dk","scene":"fence","file":"../assets/video/fence_lita.mp4"},{"id":"ra4689e6a","ds":"dk","scene":"bicycle","file":"../assets/video/bicycle_lum.mp4"},{"id":"r0a0887bb","ds":"dk","scene":"livingroom","file":"../assets/video/livingroom_3dgs.mp4"},{"id":"r6bcdf352","ds":"lom","scene":"buu","file":"../assets/img/comparison_lom/buu_1_I2NeRF.png"},{"id":"re138a589","ds":"dk","scene":"bicycle","file":"../assets/video/bicycle_lita.mp4"},{"id":"r09305891","ds":"dk","scene":"livingroom","file":"../assets/video/livingroom_lita.mp4"},{"id":"r40a84d19","ds":"dk","scene":"kitchen","file":"../assets/video/kitchen_3dgs.mp4"},{"id":"ref392f92","ds":"dk","scene":"snowman","file":"../assets/video/snowman_ours.mp4"},{"id":"rad67ba0e","ds":"dk","scene":"tree","file":"../assets/video/tree_ours.mp4"},{"id":"rc851721a","ds":"dk","scene":"alley","file":"../assets/video/alley_ours.mp4"},{"id":"ra792995d","ds":"dk","scene":"fence","file":"../assets/video/fence_ours.mp4"},{"id":"r7b691b76","ds":"dk","scene":"street","file":"../assets/video/street_3dgs.mp4"},{"id":"r4d7c8b10","ds":"dk","scene":"fence","file":"../assets/video/fence_gdk.mp4"},{"id":"r918dc36c","ds":"dk","scene":"bicycle","file":"../assets/video/bicycle_3dgs.mp4"},{"id":"r3020f28c","ds":"lom","scene":"shrub","file":"media/shrub_VeilGS.png"},{"id":"r128ad7bc","ds":"dk","scene":"street","file":"../assets/video/street_lum.mp4"},{"id":"r33fa3d69","ds":"dk","scene":"staircase","file":"../assets/video/staircase_lum.mp4"},{"id":"rcdec15e8","ds":"lom","scene":"buu","file":"../assets/img/comparison_lom/buu_1_AlethNeRF.png"},{"id":"r1a79806d","ds":"dk","scene":"fence","file":"../assets/video/fence_3dgs.mp4"},{"id":"r0f60872c","ds":"dk","scene":"tree","file":"../assets/video/tree_lum.mp4"},{"id":"r5b5a5c39","ds":"dk","scene":"kitchen","file":"../assets/video/kitchen_ours.mp4"},{"id":"rdc7fca85","ds":"lom","scene":"shrub","file":"media/shrub_LITAGS.png"},{"id":"r6ca03567","ds":"dk","scene":"flower","file":"../assets/video/flower_lum.mp4"},{"id":"rda3df9c6","ds":"dk","scene":"dormitory","file":"../assets/video/dormitory_3dgs.mp4"},{"id":"r23117277","ds":"lom","scene":"bike","file":"../assets/img/comparison_lom/bike_1_I2NeRF.png"},{"id":"r81ef9f3a","ds":"dk","scene":"flower","file":"../assets/video/flower_lita.mp4"},{"id":"r22a057b2","ds":"lom","scene":"shrub","file":"media/shrub_AlethNeRF.png"},{"id":"r0f3b5e9e","ds":"dk","scene":"street","file":"../assets/video/street_gdk.mp4"},{"id":"rea398561","ds":"dk","scene":"alley","file":"../assets/video/alley_lum.mp4"},{"id":"raa77f295","ds":"dk","scene":"staircase","file":"../assets/video/staircase_gdk.mp4"},{"id":"r4387f9a9","ds":"lom","scene":"bike","file":"../assets/img/comparison_lom/bike_1_AlethNeRF.png"},{"id":"ra82ac38d","ds":"dk","scene":"livingroom","file":"../assets/video/livingroom_ours.mp4"},{"id":"rc50f6512","ds":"dk","scene":"snowman","file":"../assets/video/snowman_lum.mp4"},{"id":"r9d693994","ds":"dk","scene":"dormitory","file":"../assets/video/dormitory_gdk.mp4"},{"id":"r3c511380","ds":"dk","scene":"tree","file":"../assets/video/tree_lita.mp4"},{"id":"r36711b4e","ds":"dk","scene":"piano","file":"../assets/video/piano_ours.mp4"},{"id":"re2cb9228","ds":"dk","scene":"kitchen","file":"../assets/video/kitchen_lum.mp4"},{"id":"rfd9eba85","ds":"lom","scene":"sofa","file":"../assets/img/comparison_lom/sofa_24_LITAGS.png"},{"id":"r22d3ac27","ds":"dk","scene":"staircase","file":"../assets/video/staircase_ours.mp4"},{"id":"rc758fbfe","ds":"dk","scene":"piano","file":"../assets/video/piano_gdk.mp4"},{"id":"r06652ded","ds":"lom","scene":"sofa","file":"../assets/img/comparison_lom/sofa_24_I2NeRF.png"},{"id":"r75237ff4","ds":"dk","scene":"staircase","file":"../assets/video/staircase_3dgs.mp4"},{"id":"r58956365","ds":"dk","scene":"street","file":"../assets/video/street_ours.mp4"},{"id":"r12267f9c","ds":"lom","scene":"buu","file":"../assets/img/comparison_lom/buu_1_VeilGS.png"},{"id":"r42a77c4f","ds":"dk","scene":"staircase","file":"../assets/video/staircase_lita.mp4"},{"id":"r6af99d11","ds":"dk","scene":"alley","file":"../assets/video/alley_gdk.mp4"},{"id":"rff6fe2a2","ds":"lom","scene":"chair","file":"../assets/img/comparison_lom/chair_17_AlethNeRF.png"},{"id":"racbd23be","ds":"lom","scene":"bike","file":"../assets/img/comparison_lom/bike_1_LITAGS.png"},{"id":"r9fb08ca1","ds":"dk","scene":"snowman","file":"../assets/video/snowman_3dgs.mp4"},{"id":"rce3afd6d","ds":"lom","scene":"bike","file":"../assets/img/comparison_lom/bike_1_VeilGS.png"},{"id":"r95f6de23","ds":"dk","scene":"fence","file":"../assets/video/fence_lum.mp4"},{"id":"r86076a86","ds":"dk","scene":"bicycle","file":"../assets/video/bicycle_gdk.mp4"},{"id":"r701f7cfb","ds":"dk","scene":"livingroom","file":"../assets/video/livingroom_gdk.mp4"},{"id":"r54b618b3","ds":"lom","scene":"shrub","file":"media/shrub_LuminanceGS.png"},{"id":"r0b9f3d11","ds":"dk","scene":"piano","file":"../assets/video/piano_lita.mp4"},{"id":"rc70d78f6","ds":"dk","scene":"flower","file":"../assets/video/flower_ours.mp4"},{"id":"rab29b2f6","ds":"dk","scene":"alley","file":"../assets/video/alley_lita.mp4"},{"id":"rec1c2043","ds":"lom","scene":"chair","file":"../assets/img/comparison_lom/chair_17_VeilGS.png"},{"id":"rd52d4e5f","ds":"lom","scene":"chair","file":"../assets/img/comparison_lom/chair_17_LITAGS.png"},{"id":"r862a0f6b","ds":"dk","scene":"livingroom","file":"../assets/video/livingroom_lum.mp4"},{"id":"r2af04548","ds":"dk","scene":"snowman","file":"../assets/video/snowman_lita.mp4"},{"id":"r1c4a2ffe","ds":"dk","scene":"kitchen","file":"../assets/video/kitchen_lita.mp4"},{"id":"r9c532661","ds":"lom","scene":"buu","file":"../assets/img/comparison_lom/buu_1_LITAGS.png"},{"id":"rc48adc6a","ds":"dk","scene":"piano","file":"../assets/video/piano_3dgs.mp4"},{"id":"r4300f543","ds":"lom","scene":"sofa","file":"../assets/img/comparison_lom/sofa_24_VeilGS.png"},{"id":"r45d35b5d","ds":"dk","scene":"alley","file":"../assets/video/alley_3dgs.mp4"},{"id":"r92cbd209","ds":"dk","scene":"flower","file":"../assets/video/flower_gdk.mp4"},{"id":"r16cae9cb","ds":"lom","scene":"buu","file":"../assets/img/comparison_lom/buu_1_LuminanceGS.png"},{"id":"r90b7a9de","ds":"dk","scene":"snowman","file":"../assets/video/snowman_gdk.mp4"},{"id":"rec810378","ds":"lom","scene":"chair","file":"../assets/img/comparison_lom/chair_17_LuminanceGS.png"}];
+const STUDY_VERSION = 3;
+const SCORE_LABELS = {1: "Bad", 2: "Poor", 3: "Fair", 4: "Good", 5: "Excellent"};
+// Renders carry opaque ids only. The id -> method key lives in the study store, readable by the owner alone.
+const DATASETS = {dk: {media: "video", section: 1}, lom: {media: "image", section: 2}};
+const LETTERS = ["A", "B", "C", "D", "E", "F"];
+const byId = Object.fromEntries(TRIALS.map(t => [t.id, t]));
+const $ = id => document.getElementById(id);
+
+/* ---------- helpers ---------- */
+function toast(msg) {
+  const el = $("toast");
+  el.textContent = msg;
+  el.hidden = false;
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => { el.hidden = true; }, 2600);
+}
+function randomId() {
+  const b = new Uint8Array(8);
+  crypto.getRandomValues(b);
+  return Array.from(b, x => x.toString(16).padStart(2, "0")).join("");
+}
+function lsGet(k) { try { return JSON.parse(localStorage.getItem(k) || "null"); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+async function copyText(text, fallbackEl) {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast("Copied");
+  } catch (e) {
+    if (fallbackEl) { fallbackEl.focus(); fallbackEl.select(); }
+    toast("Press Ctrl+C or Cmd+C to copy the selected text");
+  }
+}
+function scenesOf(ds) { return [...new Set(TRIALS.filter(t => t.ds === ds).map(t => t.scene))]; }
+function shuffle(list) {
+  const a = list.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+const SECTION_COUNTS = {dk: scenesOf("dk").length, lom: scenesOf("lom").length};
+const TOTAL_Q = SECTION_COUNTS.dk + SECTION_COUNTS.lom;
+
+/* ---------- media cache: videos as blobs, images decoded ahead ---------- */
+// Every device gets the same full-size files. Download progress per id feeds the
+// "Loading… n%" label on each tile.
+const media = {}, progress = {};
+function fetchVideo(t) {
+  return fetch(t.file).then(r => {
+    if (!r.ok) throw new Error(r.status);
+    const total = +r.headers.get("Content-Length") || 0;
+    if (!r.body || !total) return r.blob();
+    const reader = r.body.getReader(), chunks = [], pr = progress[t.id] = {got: 0, total: total};
+    return (function pump() {
+      return reader.read().then(res => {
+        if (res.done) return new Blob(chunks, {type: "video/mp4"});
+        chunks.push(res.value);
+        pr.got += res.value.length;
+        return pump();
+      });
+    })();
+  });
+}
+function loadMedia(t) {
+  if (media[t.id]) return media[t.id];
+  const p = t.file.endsWith(".mp4")
+    ? Promise.resolve(t.file)
+    : new Promise((res, rej) => {
+        const img = new Image();
+        img.onload = () => (img.decode ? img.decode() : Promise.resolve()).catch(() => {}).then(() => res(t.file));
+        img.onerror = rej;
+        img.src = t.file;
+      });
+  media[t.id] = p;
+  p.catch(() => { delete media[t.id]; });
+  return p;
+}
+
+/* ---------- session state ---------- */
+const LS_KEY = "nrq-offline-v" + STUDY_VERSION;
+// Ratings post to the study's Google Apps Script endpoint (set in config.js). Each rating is
+// kept in this browser until the server confirms it, and unsent ratings are retried.
+const ENDPOINT = "";   // offline copy: ratings are kept in this browser only
+let session = null;
+let flushTimer = null;
+let flushing = false;
+let retryDelay = 2000;
+
+function newSession() {
+  const s = {
+    v: STUDY_VERSION,
+    id: "p" + randomId(),
+    startedAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    order: {dk: [], lom: []},
+    layout: {},
+    ratings: {},
+    pending: {},
+    pendingSubmit: false,
+    info: {},
+    done: false,
+  };
+  migrate(s);
+  return s;
+}
+// Scene order and the A..E layout are shuffled per participant. Scenes added to the study after
+// someone started are appended to their order, so their earlier answers stay valid.
+function migrate(s) {
+  let changed = false;
+  for (const ds of Object.keys(DATASETS)) {
+    s.order[ds] = (s.order[ds] || []).filter(sc => scenesOf(ds).includes(sc));
+    const missing = shuffle(scenesOf(ds).filter(sc => !s.order[ds].includes(sc)));
+    if (missing.length) { s.order[ds] = s.order[ds].concat(missing); changed = true; }
+    for (const sc of scenesOf(ds)) {
+      const key = ds + "-" + sc;
+      const ids = TRIALS.filter(t => t.ds === ds && t.scene === sc).map(t => t.id);
+      const have = (s.layout[key] || []).filter(id => ids.includes(id));
+      if (have.length !== ids.length) { s.layout[key] = have.concat(shuffle(ids.filter(id => !have.includes(id)))); changed = true; }
+    }
+  }
+  if (changed && s.done) s.done = false;
+  return changed;
+}
+
+function setSaveState(text) {
+  $("pill-save").hidden = !ENDPOINT || $("screen-welcome").hidden === false;
+  $("save-state").textContent = text;
+}
+function unsentCount() { return Object.keys(session.pending || {}).length + (session.pendingSubmit ? 1 : 0); }
+
+function persist(fields) {
+  session.updatedAt = new Date().toISOString();
+  session.pending = session.pending || {};
+  if (fields && fields.ratings) Object.assign(session.pending, fields.ratings);
+  if (fields && fields.submitted) session.pendingSubmit = true;
+  lsSet(LS_KEY, session);
+  scheduleFlush(600);
+}
+function scheduleFlush(delay) {
+  clearTimeout(flushTimer);
+  flushTimer = setTimeout(flush, delay);
+}
+async function flush() {
+  if (!ENDPOINT || flushing || !session) return;
+  const ids = Object.keys(session.pending || {}).slice(0, 40);
+  const submitting = session.pendingSubmit && Object.keys(session.pending || {}).length <= 40;
+  if (!ids.length && !submitting) { setSaveState("Saved \u2713"); return; }
+  flushing = true;
+  setSaveState("Saving\u2026");
+  const sent = {};
+  ids.forEach(id => { sent[id] = session.pending[id]; });
+  const body = {
+    v: STUDY_VERSION,
+    participant: session.id,
+    event: submitting ? "submit" : "rate",
+    info: session.info || {},
+    ratings: ids.map(id => Object.assign({id: id}, sent[id])),
+  };
+  // The script can take a while to wake up, but a request that never answers must not block retries.
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 25000);
+  try {
+    const r = await fetch(ENDPOINT, {method: "POST", headers: {"Content-Type": "text/plain;charset=utf-8"}, body: JSON.stringify(body), signal: ctl.signal});
+    const j = await r.json();
+    clearTimeout(timer);
+    if (!j || !j.ok) throw new Error((j && j.error) || "not saved");
+    ids.forEach(id => { if (session.pending[id] === sent[id]) delete session.pending[id]; });
+    if (submitting) session.pendingSubmit = false;
+    lsSet(LS_KEY, session);
+    retryDelay = 2000;
+    flushing = false;
+    if (unsentCount()) scheduleFlush(50); else setSaveState("Saved \u2713");
+  } catch (e) {
+    clearTimeout(timer);
+    flushing = false;
+    setSaveState("Offline \u00b7 retrying");
+    scheduleFlush(retryDelay);
+    retryDelay = Math.min(retryDelay * 2, 30000);
+  }
+}
+window.addEventListener("online", () => scheduleFlush(100));
+document.addEventListener("visibilitychange", () => {
+  // A last best-effort send when the tab is hidden or closed; unconfirmed ratings stay queued.
+  if (document.visibilityState !== "hidden" || !ENDPOINT || !session || !unsentCount()) return;
+  const ids = Object.keys(session.pending || {}).slice(0, 40);
+  const body = {v: STUDY_VERSION, participant: session.id, event: "rate", info: session.info || {}, ratings: ids.map(id => Object.assign({id: id}, session.pending[id]))};
+  try { navigator.sendBeacon(ENDPOINT, new Blob([JSON.stringify(body)], {type: "text/plain;charset=utf-8"})); } catch (e) {}
+});
+
+/* ---------- screens, navigator, timer ---------- */
+let block = "dk";
+let index = 0;
+let screenStart = 0;
+let watched = false;
+let picks = {};
+let screenToken = 0;
+let screenVideos = [];
+
+function show(id) {
+  for (const s of ["screen-welcome", "screen-trial", "screen-done"]) $(s).hidden = s !== id;
+  const inTest = id === "screen-trial";
+  $("qnav").hidden = !inTest;
+  $("view-study").classList.toggle("with-nav", inTest);
+  $("pill-q").hidden = id !== "screen-trial";
+  $("pill-save").hidden = !ENDPOINT || id === "screen-welcome";
+  window.scrollTo(0, 0);
+}
+function qNumber(ds, i) { return ds === "dk" ? i + 1 : SECTION_COUNTS.dk + i + 1; }
+function screenIds(ds, i) { return session.layout[ds + "-" + session.order[ds][i]]; }
+function screenDone(ds, i) { return screenIds(ds, i).every(id => session.ratings[id]); }
+function firstOpen() {
+  for (const ds of ["dk", "lom"]) {
+    const i = session.order[ds].findIndex((sc, k) => !screenDone(ds, k));
+    if (i >= 0) return {ds, i};
+  }
+  return null;
+}
+function renderNav() {
+  const nav = $("qnav");
+  nav.innerHTML = "";
+  let answered = 0;
+  for (const ds of ["dk", "lom"]) {
+    const h = document.createElement("h3");
+    h.textContent = "Section " + DATASETS[ds].section + " \u00b7 " + (ds === "dk" ? "Videos" : "Images");
+    nav.appendChild(h);
+    const ol = document.createElement("ol");
+    session.order[ds].forEach((sc, i) => {
+      const done = screenDone(ds, i);
+      if (done) answered++;
+      const partial = !done && screenIds(ds, i).some(id => session.ratings[id]);
+      const li = document.createElement("li");
+      li.className = done ? "done" : (partial ? "partial" : "");
+      const b = document.createElement("button");
+      b.dataset.ds = ds;
+      b.dataset.i = i;
+      if (ds === block && i === index && !$("screen-trial").hidden) b.setAttribute("aria-current", "step");
+      const n = qNumber(ds, i);
+      b.innerHTML = '<span class="qdot">' + (done ? "\u2713" : n) + '</span><span class="qlabel"></span>';
+      b.querySelector(".qlabel").textContent = "Question " + n;
+      b.setAttribute("aria-label", "Question " + n + (done ? ", answered" : partial ? ", partly answered" : ""));
+      li.appendChild(b);
+      ol.appendChild(li);
+    });
+    nav.appendChild(ol);
+  }
+  const c = document.createElement("p");
+  c.className = "qcount";
+  c.textContent = answered + " of " + TOTAL_Q + " answered";
+  nav.appendChild(c);
+}
+$("qnav").addEventListener("click", e => {
+  const b = e.target.closest("button[data-ds]");
+  if (!b || b.disabled) return;
+  block = b.dataset.ds;
+  index = Number(b.dataset.i);
+  runScreen();
+});
+/* ---------- question flow ---------- */
+// All videos on a question follow one shared clock, so a video that was paused while scrolled
+// out of view rejoins in sync when it comes back.
+let clockStart = 0;
+let clockDur = 0;
+let visibleVideos = new Set();
+let screenIO = null;
+function screenClock() { return clockDur ? ((performance.now() - clockStart) / 1000) % clockDur : 0; }
+// Keep a video on the shared clock. Small drift is absorbed by playing slightly faster or slower,
+// which is smooth on phones; only a large gap (a video coming back into view) jumps.
+function nudge(v, c) {
+  if (v.readyState < 2 || v.seeking) return;
+  let d = v.currentTime - c;
+  if (d > clockDur / 2) d -= clockDur;
+  else if (d < -clockDur / 2) d += clockDur;
+  if (Math.abs(d) > 0.6) { v.currentTime = c; v.playbackRate = 1; }
+  else if (Math.abs(d) > 0.06) v.playbackRate = d > 0 ? 0.9 : 1.1;
+  else if (v.playbackRate !== 1) v.playbackRate = 1;
+}
+function pauseScreen() { screenVideos.forEach(v => v.pause()); }
+function playScreen() { screenVideos.forEach(v => { if (visibleVideos.has(v)) v.play().catch(() => {}); }); }
+function seq() {
+  // All questions in display order: section 1 then section 2.
+  return ["dk", "lom"].flatMap(ds => session.order[ds].map((sc, i) => ({ds, i})));
+}
+function seqPos() { return seq().findIndex(q => q.ds === block && q.i === index); }
+function goTo(q) { block = q.ds; index = q.i; runScreen(); }
+function goToOpen() {
+  const open = firstOpen();
+  goTo(open || {ds: "dk", i: 0});
+}
+function remaining() { return TRIALS.filter(t => !session.ratings[t.id]).length; }
+function updateNext() {
+  const ids = screenIds(block, index);
+  const left = ids.filter(id => !picks[id]).length;
+  const pos = seqPos(), all = seq();
+  $("btn-prev").disabled = pos <= 0;
+  $("btn-next").disabled = pos >= all.length - 1;
+  $("btn-submit").disabled = remaining() > 0;
+  const openQs = all.filter(q => !screenDone(q.ds, q.i)).length;
+  if (!watched) $("hint").textContent = "Loading\u2026";
+  else if (left) $("hint").textContent = left + " of " + ids.length + " versions still to rate here.";
+  else $("hint").textContent = openQs ? "Saved. " + openQs + (openQs === 1 ? " question" : " questions") + " still open." : "Everything is rated. You can submit.";
+}
+
+async function runScreen() {
+  const token = ++screenToken;
+  pauseScreen();
+  screenVideos = [];
+  const ids = screenIds(block, index);
+  const n = qNumber(block, index);
+  show("screen-trial");
+  $("q-tag").textContent = "Section " + DATASETS[block].section + " \u00b7 Question " + n + " of " + TOTAL_Q;
+  $("q-title").textContent = block === "dk" ? "Rate each version of this video" : "Rate each version of this image";
+  $("top-q").textContent = n + "/" + TOTAL_Q;
+  $("q-progress").style.width = ((n - 1) / TOTAL_Q * 100) + "%";
+  watched = false;
+  $("watch-bar").style.width = "0";
+  picks = {};
+  ids.forEach(id => { if (session.ratings[id]) picks[id] = session.ratings[id].s; });
+  renderNav();
+
+  const grid = $("trial-grid");
+  grid.innerHTML = "";
+  const stages = ids.map((id, k) => {
+    const tile = document.createElement("div");
+    tile.className = "tile" + (picks[id] ? " rated" : "");
+    tile.innerHTML = '<div class="tile-head"><b></b><span></span></div>' +
+      '<div class="stage"><div class="loading">Loading\u2026</div></div>' +
+      '<div class="seg" role="radiogroup">' + [1, 2, 3, 4, 5].map(s => '<button data-s="' + s + '" title="' + SCORE_LABELS[s] + '" role="radio" aria-checked="false" disabled>' + s + '</button>').join("") + '</div>';
+    tile.querySelector(".tile-head b").textContent = "Version " + LETTERS[k];
+    tile.querySelector(".seg").setAttribute("aria-label", "Rating for version " + LETTERS[k]);
+    tile.dataset.id = id;
+    tile.dataset.letter = LETTERS[k];
+    if (picks[id]) {
+      const pb = tile.querySelector('.seg button[data-s="' + picks[id] + '"]');
+      pb.classList.add("picked");
+      pb.setAttribute("aria-checked", "true");
+      tile.querySelector(".tile-head span").textContent = picks[id] + " \u00b7 " + SCORE_LABELS[picks[id]];
+    }
+    grid.appendChild(tile);
+    return tile.querySelector(".stage");
+  });
+  updateNext();
+
+  const showProgress = () => stages.forEach((st, k) => {
+    const l = st.querySelector(".loading"), pr = progress[ids[k]];
+    if (l && pr && pr.total) l.textContent = "Loading… " + Math.floor(pr.got / pr.total * 100) + "%";
+  });
+  const ticker = setInterval(showProgress, 250);
+  let urls;
+  try {
+    urls = await Promise.all(ids.map(id => loadMedia(byId[id])));
+    clearInterval(ticker);
+  } catch (e) {
+    clearInterval(ticker);
+    if (token !== screenToken) return;
+    stages.forEach(st => { const l = st.querySelector(".loading"); if (l) l.textContent = "Still loading\u2026 retrying"; });
+    setTimeout(() => { if (token === screenToken) runScreen(); }, 2500);
+    return;
+  }
+  if (token !== screenToken) return;
+
+  const unlock = () => {
+    if (watched || token !== screenToken) return;
+    watched = true;
+    $("watch-bar").style.width = "100%";
+    grid.querySelectorAll(".seg button").forEach(b => { b.disabled = false; });
+    updateNext();
+  };
+
+  if (block === "dk") {
+    screenVideos = urls.map((url, k) => {
+      const v = document.createElement("video");
+      v.muted = true; v.loop = true; v.playsInline = true; v.preload = "auto";
+      v.setAttribute("playsinline", "");
+      v.src = url;
+      stages[k].innerHTML = "";
+      stages[k].appendChild(v);
+      return v;
+    });
+    await Promise.all(screenVideos.map(v => v.readyState >= 3 ? null : new Promise(r => v.addEventListener("canplay", r, {once: true}))));
+    if (token !== screenToken) return;
+    screenVideos.forEach(v => { v.currentTime = 0; });
+    clockDur = screenVideos[0].duration || 9;
+    clockStart = performance.now();
+    // Only videos on screen play (on a phone that is one or two at a time); the others pause.
+    visibleVideos = new Set();
+    if (screenIO) screenIO.disconnect();
+    if ("IntersectionObserver" in window) {
+      screenIO = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          const v = en.target.querySelector("video");
+          if (!v) return;
+          if (en.isIntersecting) visibleVideos.add(v);
+          else { visibleVideos.delete(v); v.pause(); }
+        });
+      }, {threshold: 0.05});
+      stages.forEach(st => screenIO.observe(st));
+    } else {
+      screenVideos.forEach(v => visibleVideos.add(v));
+    }
+    (function sync() {
+      if (token !== screenToken) return;
+      const c = screenClock();
+      const zoomOpen = !$("zoom").hidden;
+      for (const v of screenVideos) {
+        // While the enlarged view is open, the grid videos behind it rest.
+        if (zoomOpen || !visibleVideos.has(v)) { if (!v.paused) v.pause(); continue; }
+        nudge(v, c);
+        if (v.paused) v.play().catch(() => {});
+      }
+      requestAnimationFrame(sync);
+    })();
+    // Ratings open as soon as the videos are on screen.
+    unlock();
+    screenVideos[0].play().catch(() => {
+      $("hint").textContent = "Tap any video to start playback.";
+      grid.addEventListener("click", playScreen, {once: true});
+    });
+  } else {
+    urls.forEach((url, k) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.alt = "Version " + LETTERS[k];
+      stages[k].innerHTML = "";
+      stages[k].appendChild(img);
+    });
+    unlock();
+  }
+  screenStart = performance.now();
+
+  const nextIds = index + 1 < session.order[block].length ? screenIds(block, index + 1)
+    : (block === "dk" ? screenIds("lom", 0) : []);
+  nextIds.forEach(id => loadMedia(byId[id]).catch(() => {}));
+}
+
+function saveRating(id, s, pos) {
+  const prev = session.ratings[id];
+  if (prev && prev.s === s) return;
+  const entry = {s: s, rt: Math.round(performance.now() - screenStart), pos: pos, at: new Date().toISOString()};
+  session.ratings[id] = entry;
+  session.done = remaining() === 0;
+  persist({ratings: {[id]: entry}, done: session.done});
+}
+function setPick(tile, s) {
+  const id = tile.dataset.id;
+  picks[id] = s;
+  tile.querySelectorAll(".seg button").forEach(x => {
+    x.classList.toggle("picked", Number(x.dataset.s) === s);
+    x.setAttribute("aria-checked", String(Number(x.dataset.s) === s));
+  });
+  tile.querySelector(".tile-head span").textContent = s + " \u00b7 " + SCORE_LABELS[s];
+  tile.classList.add("rated");
+  saveRating(id, s, tile.dataset.letter);
+  renderNav();
+  updateNext();
+  if (!$("zoom").hidden) { if (zoomTile === tile) renderZoomSeg(); renderZoomChips(); }
+}
+
+/* Enlarged view; videos stay in sync with the grid. */
+let zoomVideo = null;
+let zoomTile = null;
+function tiles() { return Array.from($("trial-grid").querySelectorAll(".tile")); }
+function renderZoomSeg() {
+  const seg = $("zoom-seg");
+  const id = zoomTile.dataset.id;
+  seg.innerHTML = [1, 2, 3, 4, 5].map(n => '<button data-s="' + n + '" title="' + SCORE_LABELS[n] + '" role="radio" aria-checked="' + (picks[id] === n) + '"' + (watched ? "" : " disabled") + ' class="' + (picks[id] === n ? "picked" : "") + '">' + n + '</button>').join("");
+}
+function openZoom(tile) {
+  const src = tile.querySelector("video, img");
+  if (!src) return;
+  if (zoomVideo) { zoomVideo.pause(); zoomVideo = null; }
+  zoomTile = tile;
+  const stage = $("zoom-stage");
+  // Keep the picture on screen until the next one can be shown, so switching never flashes
+  // blank. Anything still loading from an earlier switch is dropped straight away.
+  Array.from(stage.children).forEach(n => { if (!n.dataset.ready) n.remove(); });
+  const showOnly = node => {
+    node.dataset.ready = "1";
+    Array.from(stage.children).forEach(n => { if (n !== node) n.remove(); });
+  };
+  $("zoom-label").textContent = "Version " + tile.dataset.letter;
+  if (src.tagName === "VIDEO") {
+    const v = document.createElement("video");
+    v.muted = true; v.loop = true; v.playsInline = true;
+    v.src = src.currentSrc || src.src;
+    v.currentTime = screenClock();
+    v.addEventListener("loadeddata", () => { if (zoomVideo === v) showOnly(v); }, {once: true});
+    stage.appendChild(v);
+    v.play().catch(() => {});
+    zoomVideo = v;
+    (function follow() {
+      if (zoomVideo !== v) return;
+      nudge(v, screenClock());
+      requestAnimationFrame(follow);
+    })();
+  } else {
+    const img = document.createElement("img");
+    img.src = src.src;
+    img.alt = "Version " + tile.dataset.letter + " enlarged";
+    stage.appendChild(img);
+    showOnly(img);
+  }
+  renderZoomSeg();
+  renderZoomChips();
+  const wasHidden = $("zoom").hidden;
+  $("zoom").hidden = false;
+  if (wasHidden) $("zoom").focus();
+}
+function renderZoomChips() {
+  const box = $("zoom-chips");
+  box.innerHTML = "";
+  tiles().forEach(t => {
+    const c = document.createElement("button");
+    c.textContent = t.dataset.letter;
+    c.dataset.letter = t.dataset.letter;
+    c.setAttribute("role", "tab");
+    c.setAttribute("aria-selected", String(t === zoomTile));
+    c.setAttribute("aria-label", "Version " + t.dataset.letter + (picks[t.dataset.id] ? ", rated " + picks[t.dataset.id] : ""));
+    if (picks[t.dataset.id]) c.classList.add("rated");
+    box.appendChild(c);
+  });
+}
+function stepZoom(d) {
+  const all = tiles();
+  const k = all.indexOf(zoomTile);
+  if (k < 0) return;
+  openZoom(all[(k + d + all.length) % all.length]);
+}
+function closeZoom() {
+  if (zoomVideo) { zoomVideo.pause(); zoomVideo = null; }
+  zoomTile = null;
+  $("zoom").hidden = true;
+  $("zoom-stage").innerHTML = "";
+}
+
+function completionCode() {
+  const compact = {v: STUDY_VERSION, id: session.id, info: session.info, r: {}};
+  for (const [id, e] of Object.entries(session.ratings)) compact.r[id] = [e.s, e.rt, e.pos || ""];
+  return "NRQ:" + btoa(unescape(encodeURIComponent(JSON.stringify(compact))));
+}
+
+async function finish() {
+  screenToken++;
+  pauseScreen();
+  closeZoom();
+  show("screen-done");
+  // Give pending ratings a few seconds to reach the server before deciding what to show.
+  for (let k = 0; k < 10 && unsentCount() && ENDPOINT; k++) {
+    await flush();
+    if (unsentCount()) await new Promise(r => setTimeout(r, 600));
+  }
+  if (ENDPOINT && !unsentCount()) {
+    $("done-msg").textContent = "Thank you. Your ratings are saved and you can close this page.";
+    $("code-card").hidden = true;
+  } else {
+    $("done-msg").textContent = "Thank you. This offline copy of the study does not record ratings.";
+    $("code-card").hidden = true;
+  }
+}
+
+/* ---------- wiring: assessment ---------- */
+$("agree").addEventListener("change", () => { $("btn-start").disabled = !$("agree").checked; });
+$("btn-start").addEventListener("click", () => {
+  if (!session) session = newSession();
+  session.info = {experience: $("q-exp").value, display: $("q-display").value};
+  persist(null);
+  if (session.done && session.submitted) finish(); else goToOpen();
+});
+$("trial-grid").addEventListener("click", e => {
+  const b = e.target.closest(".seg button");
+  const tile = e.target.closest(".tile");
+  if (!tile) return;
+  if (b) {
+    if (!b.disabled) setPick(tile, Number(b.dataset.s));
+  } else if (e.target.closest(".stage")) {
+    openZoom(tile);
+  }
+});
+$("btn-prev").addEventListener("click", () => { const all = seq(), p = seqPos(); if (p > 0) goTo(all[p - 1]); });
+$("btn-next").addEventListener("click", () => { const all = seq(), p = seqPos(); if (p < all.length - 1) goTo(all[p + 1]); });
+$("btn-submit").addEventListener("click", () => {
+  if (remaining() > 0) return;
+  session.submitted = true;
+  session.done = true;
+  persist({submitted: true, done: true});
+  finish();
+});
+$("btn-zoom-close").addEventListener("click", closeZoom);
+$("btn-zoom-prev").addEventListener("click", e => { e.stopPropagation(); stepZoom(-1); });
+$("btn-zoom-next").addEventListener("click", e => { e.stopPropagation(); stepZoom(1); });
+$("zoom-chips").addEventListener("click", e => {
+  const c = e.target.closest("button[data-letter]");
+  if (!c) return;
+  const t = tiles().find(x => x.dataset.letter === c.dataset.letter);
+  if (t) openZoom(t);
+});
+// Swipe left or right on the enlarged picture to change version.
+let swipeX = null;
+$("zoom-stage-wrap").addEventListener("pointerdown", e => { if (!e.target.closest("button")) swipeX = e.clientX; });
+$("zoom-stage-wrap").addEventListener("pointerup", e => {
+  if (swipeX === null) return;
+  const dx = e.clientX - swipeX;
+  swipeX = null;
+  if (Math.abs(dx) > 40) stepZoom(dx < 0 ? 1 : -1);
+});
+$("zoom-stage-wrap").addEventListener("pointercancel", () => { swipeX = null; });
+$("zoom-seg").addEventListener("click", e => {
+  const b = e.target.closest("button[data-s]");
+  if (b && !b.disabled && zoomTile) setPick(zoomTile, Number(b.dataset.s));
+});
+$("zoom").addEventListener("click", e => { if (e.target === $("zoom")) closeZoom(); });
+document.addEventListener("keydown", e => {
+  if ($("zoom").hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === "Escape") closeZoom();
+  else if (e.key === "ArrowLeft") { e.preventDefault(); stepZoom(-1); }
+  else if (e.key === "ArrowRight") { e.preventDefault(); stepZoom(1); }
+  else if (/^[1-5]$/.test(e.key) && watched && zoomTile) setPick(zoomTile, Number(e.key));
+});
+$("btn-copy-code").addEventListener("click", () => copyText($("code-text").value, $("code-text")));
+/* ---------- boot ---------- */
+$("d-questions").textContent = TOTAL_Q;
+$("rule-sections").textContent = "Section 1 has " + SECTION_COUNTS.dk + " questions with looping videos that play in sync. Section 2 has " + SECTION_COUNTS.lom + " questions with still images.";
+(function boot() {
+  $("storage-note").textContent = ENDPOINT
+    ? "Each rating is sent to the study as soon as you click it. Your answers are anonymous."
+    : "This offline copy of the study does not send or record your ratings.";
+  const saved = lsGet(LS_KEY);
+  if (saved && saved.v === STUDY_VERSION && saved.order && saved.ratings) {
+    session = saved;
+    session.layout = session.layout || {};
+    session.pending = session.pending || {};
+    if (migrate(session)) lsSet(LS_KEY, session);
+    const n = Object.keys(session.ratings).filter(id => byId[id]).length;
+    if (session.done && session.submitted) {
+      $("resume-note").textContent = "You have already submitted this assessment. Thank you.";
+      $("btn-start").textContent = "View submission";
+    } else if (n) {
+      $("resume-note").textContent = n + " of " + TRIALS.length + " versions rated so far.";
+      $("btn-start").textContent = "Continue assessment";
+    }
+    if (session.info) {
+      $("q-exp").value = session.info.experience || "";
+      $("q-display").value = session.info.display || "";
+    }
+    if (unsentCount()) scheduleFlush(500);
+  }
+})();
+</script>
+</body>
+</html>
