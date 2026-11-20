@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#20232a"/><path d="M7.7 8.3 16 24.3 24.3 8.3" fill="none" stroke="#ffd666" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="r1"><stop offset="0" stop-color="#ff5e4d"/><stop offset="0.55" stop-color="#ff5e4d" stop-opacity="0.6"/><stop offset="1" stop-color="#ff5e4d" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g1"><stop offset="0" stop-color="#34d37a"/><stop offset="0.55" stop-color="#34d37a" stop-opacity="0.6"/><stop offset="1" stop-color="#34d37a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b1"><stop offset="0" stop-color="#4a9bff"/><stop offset="0.55" stop-color="#4a9bff" stop-opacity="0.6"/><stop offset="1" stop-color="#4a9bff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="veil" gradientUnits="userSpaceOnUse" cx="42" cy="15" r="30">
+      <stop offset="0" stop-color="#fde725"/><stop offset="0.25" stop-color="#5ec962"/>
+      <stop offset="0.5" stop-color="#21918c"/><stop offset="0.75" stop-color="#3b528b"/><stop offset="1" stop-color="#440154"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="13" fill="#1b1d23"/>
+  <path d="M32 31 L59 45 L32 59 L5 45 Z" fill="#2b2e37"/>
+  <ellipse cx="22" cy="45.5" rx="11" ry="5.5" fill="url(#r1)"/>
+  <ellipse cx="40" cy="48" rx="10" ry="5" fill="url(#b1)"/>
+  <ellipse cx="33" cy="40.5" rx="9" ry="4.5" fill="url(#g1)"/>
+  <path d="M32 4 L59 18 L32 32 L5 18 Z" fill="url(#veil)"/>
+  <path d="M32 4 L59 18 L32 32 L5 18 Z" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.1"/>
+</svg>
