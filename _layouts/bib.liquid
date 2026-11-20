@@ -36,34 +36,46 @@
           muted
           playsinline
           preload="none"
-          aria-label="{{ entry.title | strip_html | escape }}: hover to play"
+          aria-label="{{ entry.title | strip_html | escape }}: hover to play, click to enlarge"
+          style="cursor: zoom-in"
         ></video>
         <script>
           if (!window.__hoverPlay) {
             window.__hoverPlay = true;
             (function () {
-              function reset(v) { v.pause(); v.currentTime = 0; v.load(); }
-              function start(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
               function canHover() { return window.matchMedia('(hover: hover)').matches; }
-              document.addEventListener('mouseover', function (e) {
-                if (!canHover()) return;
-                var v = e.target.closest && e.target.closest('video.hover-play');
-                if (v && v.paused) start(v);
-              });
-              document.addEventListener('mouseout', function (e) {
-                if (!canHover()) return;
-                var v = e.target.closest && e.target.closest('video.hover-play');
-                if (v && !v.contains(e.relatedTarget)) reset(v);
-              });
-              document.addEventListener('click', function (e) {
-                var v = e.target.closest && e.target.closest('video.hover-play');
-                if (!v || canHover()) return;
-                if (v.paused) start(v); else reset(v);
-              });
+              function start(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+              function reset(v) { v.pause(); v.currentTime = 0; v.load(); }
               document.addEventListener('ended', function (e) {
                 var v = e.target;
-                if (v.matches && v.matches('video.hover-play')) { v.currentTime = parseFloat(v.dataset.loopStart) || 0; start(v); }
+                if (v.matches && v.matches('video.hover-play, video.hover-play-big')) { v.addEventListener('seeked', function () { start(v); }, { once: true }); v.currentTime = parseFloat(v.dataset.loopStart) || 0; }
               }, true);
+              function pick(e) { return e.target.closest && e.target.closest('video.hover-play'); }
+              document.addEventListener('mouseover', function (e) { var v = pick(e); if (v && canHover() && v.paused) start(v); });
+              document.addEventListener('mouseout', function (e) { var v = pick(e); if (v && canHover() && !v.contains(e.relatedTarget)) reset(v); });
+              function close(box) { var v = box.querySelector('video'); v.pause(); box.remove(); document.body.style.overflow = ''; }
+              document.addEventListener('click', function (e) {
+                var v = pick(e); if (!v) return;
+                e.preventDefault(); reset(v);
+                var box = document.createElement('div');
+                box.className = 'hover-play-lightbox';
+                box.setAttribute('role', 'dialog'); box.setAttribute('aria-label', v.getAttribute('aria-label') || 'Preview');
+                box.style.cssText = 'position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;cursor:zoom-out;padding:24px';
+                var big = document.createElement('video');
+                big.className = 'hover-play-big';
+                big.src = v.currentSrc || v.src; big.poster = v.poster; big.muted = true; big.playsInline = true; big.autoplay = true;
+                big.dataset.loopStart = v.dataset.loopStart;
+                big.style.cssText = 'max-width:min(960px,100%);max-height:100%;width:100%;border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,.5)';
+                var x = document.createElement('button');
+                x.type = 'button'; x.textContent = '\u2715'; x.setAttribute('aria-label', 'Close');
+                x.style.cssText = 'position:absolute;top:12px;right:16px;font-size:24px;line-height:1;color:#fff;background:none;border:0;cursor:pointer';
+                box.appendChild(big); box.appendChild(x); document.body.appendChild(box);
+                document.body.style.overflow = 'hidden';
+                start(big);
+                box.addEventListener('click', function () { close(box); });
+                function onKey(k) { if (k.key === 'Escape') { close(box); document.removeEventListener('keydown', onKey); } }
+                document.addEventListener('keydown', onKey);
+              });
             })();
           }
         </script>
