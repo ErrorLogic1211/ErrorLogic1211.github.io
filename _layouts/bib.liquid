@@ -29,8 +29,8 @@
         {% assign pp = '/assets/img/publication_preview/' %}
         <video
           class="preview z-depth-1 rounded hover-play"
-          src="{{ entry.preview_video | prepend: pp | relative_url }}"
-          poster="{{ entry.preview | prepend: pp | relative_url }}"
+          src="{{ entry.preview_video | prepend: pp | relative_url | bust_file_cache }}"
+          poster="{{ entry.preview | prepend: pp | relative_url | bust_file_cache }}"
           data-loop-start="{{ entry.preview_video_loop | default: 0 }}"
           width="100%"
           muted
