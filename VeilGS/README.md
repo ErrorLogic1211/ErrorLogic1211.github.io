@@ -26,7 +26,9 @@ site there would take over the `/VeilGS/` address.
 
 ## After arXiv assigns an ID
 
-Replace the placeholder everywhere (buttons and BibTeX), for example `2612.01234`:
+The Paper and arXiv buttons are disabled "coming soon" placeholders until then. Turn them
+into links to `https://arxiv.org/pdf/<ID>` and `https://arxiv.org/abs/<ID>`, and fill the ID
+into the BibTeX entry, for example `2612.01234`:
 
 ```bash
 grep -rl ARXIV_ID . | xargs sed -i 's/ARXIV_ID/2612.01234/g'
