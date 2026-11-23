@@ -70,8 +70,10 @@
       year: 2026
       description:
         - "<b>M. Kishawy</b>, C. Tang, S. Shirani, J. Chen"
-        - "Under review."
+        - "arXiv preprint arXiv:2611.27719, 2026."
       linkitems:
+        - linkname: Paper
+          link: https://arxiv.org/abs/2611.27719
         - linkname: Project Page
           link: https://errorlogic1211.github.io/VeilGS/
     - title: "RetinexDual: Retinex-Based Dual Nature Approach for Generalized Ultra-High-Definition Image Restoration"

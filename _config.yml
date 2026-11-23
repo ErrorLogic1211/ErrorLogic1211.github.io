@@ -310,6 +310,8 @@ filtered_bibtex_keywords:
     pdf,
     poster,
     preview,
+    preview_video,
+    preview_video_loop,
     selected,
     slides,
     supp,

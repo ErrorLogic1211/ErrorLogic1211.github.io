@@ -24,16 +24,9 @@ paper/VeilGS_full_quality.pdf  the arXiv paper with figures at their original re
 Keep GitHub Pages turned off in a future `ErrorLogic1211/VeilGS` code repository: a project
 site there would take over the `/VeilGS/` address.
 
-## After arXiv assigns an ID
+## Links
 
-The Paper and arXiv buttons are disabled "coming soon" placeholders until then. Turn them
-into links to `https://arxiv.org/pdf/<ID>` and `https://arxiv.org/abs/<ID>`, and fill the ID
-into the BibTeX entry, for example `2612.01234`:
-
-```bash
-grep -rl ARXIV_ID . | xargs sed -i 's/ARXIV_ID/2612.01234/g'
-```
-
+Paper: <https://arxiv.org/pdf/2611.27719> · arXiv: <https://arxiv.org/abs/2611.27719>.
 When the code is public, replace the disabled "Code (coming soon)" button in `index.html` with a
 link to the repository.
 
