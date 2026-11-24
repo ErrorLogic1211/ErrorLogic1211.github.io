@@ -75,7 +75,12 @@ ninja.data = [{
           section: "News",},{id: "news-presented-retinexdual-as-a-poster-at-icpr-2026-in-lyon-france-the-paper-is-now-available-in-the-proceedings-springer-lncs",
           title: 'Presented RetinexDual as a poster at ICPR 2026 in Lyon, France. The paper...',
           description: "",
-          section: "News",},{
+          section: "News",},{id: "news-veilgs-is-on-arxiv",
+          title: 'VeilGS is on arXiv',
+          description: "VeilGS, a 3D Gaussian Splatting method for low-light novel view synthesis, is now on arXiv with a project page.",
+          section: "News",handler: () => {
+              window.location.href = "/news/veilgs-arxiv/";
+            },},{
       id: 'light-theme',
       title: 'Change theme to light',
       description: 'Change the theme of the site to Light',
