@@ -12,7 +12,7 @@
     - name: Languages
       value: English (fluent), Arabic (native)
     - name: Summary
-      value: Computer vision researcher working on physically grounded image restoration and 3D scene reconstruction, with first-author papers at ICPR 2026, the CVPR 2026 Workshops, and <i>Scientific Reports</i>, and four top-5 finishes in NTIRE challenges at CVPR (2024–2026).
+      value: Computer vision researcher working on physically grounded image restoration and 3D scene reconstruction, with first-author papers at ICPR 2026, the CVPR 2026 Workshops, and <i>Scientific Reports</i>; a 3D Gaussian Splatting preprint (<a href="/VeilGS/">VeilGS</a>, 2026); and four top-5 finishes in NTIRE challenges at CVPR (2024–2026).
     - name: Links
       value: <a href="https://www.linkedin.com/in/mohab-m-eid/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a> &nbsp;&nbsp; <a href="https://github.com/ErrorLogic1211" target="_blank"><i class="fab fa-github fa-2x"></i></a> &nbsp;&nbsp; <a href="https://scholar.google.com/citations?user=CSkCecoAAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap fa-2x"></i></a>
 
